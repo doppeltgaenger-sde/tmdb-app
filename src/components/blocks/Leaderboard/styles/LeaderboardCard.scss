@@ -1,0 +1,26 @@
+@use "@styles/abstracts/variables" as v;
+
+.leaderboard-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  &:hover {
+    .leaderboard-card__username {
+      color: v.$tertiary--100;
+    }
+  }
+}
+
+.leaderboard-card__username {
+  font: 600 18px / 1 v.$source-sans;
+  transition: v.$transition--base;
+}
+
+.leaderboard-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}

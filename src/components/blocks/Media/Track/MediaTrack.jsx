@@ -1,0 +1,139 @@
+import { useEffect, useRef, useState, useCallback } from "react";
+import { classNames } from "@utils";
+import { Slider, Tabs } from "@shared";
+import { PosterCard } from "@blocks";
+import "./styles/MediaTrack.scss";
+
+const SKELETON_COUNT = 8;
+const MIN_LOADING_TIME = 500;
+
+const TRACK_VARIANTS = {
+  default: {
+    tabsVariant: "default",
+  },
+
+  trailers: {
+    tabsVariant: "inverted",
+  },
+};
+
+export const MediaTrack = (props) => {
+  const {
+    title,
+    items = [],
+    tabs,
+    activeTab,
+    onTabChange,
+    onCardHover,
+    onCardActivate,
+    CardComponent = PosterCard,
+    variant = "default",
+  } = props;
+
+  const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
+  const containerRef = useRef(null);
+  const loadingStartRef = useRef(0);
+  const [displayItems, setDisplayItems] = useState(items);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const [isLoadingPhase, setIsLoadingPhase] = useState(false);
+
+  useEffect(() => {
+    setIsFadingOut(true);
+    loadingStartRef.current = Date.now();
+  }, [activeTab]);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+
+    const handleTransitionEnd = (e) => {
+      if (e.propertyName !== "opacity") return;
+
+      if (isFadingOut) {
+        setDisplayItems([]);
+        setIsLoadingPhase(true);
+        setIsFadingOut(false);
+      }
+    };
+
+    node.addEventListener("transitionend", handleTransitionEnd);
+
+    return () => {
+      node.removeEventListener("transitionend", handleTransitionEnd);
+    };
+  }, [isFadingOut]);
+
+  useEffect(() => {
+    if (!isLoadingPhase) return;
+    if (!items.length) return;
+
+    const elapsed = Date.now() - loadingStartRef.current;
+    const remaining = Math.max(MIN_LOADING_TIME - elapsed, 0);
+
+    const timer = setTimeout(() => {
+      setDisplayItems(items);
+      setIsLoadingPhase(false);
+    }, remaining);
+
+    return () => clearTimeout(timer);
+  }, [items, isLoadingPhase]);
+
+  const handleHover = useCallback(
+    (item) => {
+      onCardHover?.(item);
+    },
+    [onCardHover],
+  );
+
+  const handleActivate = useCallback(
+    (item) => {
+      onCardActivate?.(item);
+    },
+    [onCardActivate],
+  );
+
+  const renderMedia = () => {
+    if (!displayItems.length) {
+      return [...Array(SKELETON_COUNT)].map((_, index) => (
+        <CardComponent key={index} isSkeleton />
+      ));
+    }
+
+    return displayItems.map((item) => (
+      <CardComponent
+        key={item.id}
+        {...item}
+        onMouseEnter={() => handleHover(item)}
+        onClick={() => handleActivate(item)}
+      />
+    ));
+  };
+
+  return (
+    <div className={classNames(["media-track", `media-track--${variant}`])}>
+      <div className="media-track__title-block">
+        <h2 className="media-track__title">{title}</h2>
+
+        {tabs && (
+          <Tabs
+            className="media-track__tabs"
+            items={tabs}
+            active={activeTab}
+            onChange={onTabChange}
+            variant={config.tabsVariant}
+          />
+        )}
+      </div>
+
+      <div
+        className={classNames([
+          "media-track__items",
+          isFadingOut && "media-track__items--fading",
+        ])}
+        ref={containerRef}
+      >
+        <Slider resetOnChange={activeTab}>{renderMedia()}</Slider>
+      </div>
+    </div>
+  );
+};

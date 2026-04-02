@@ -1,0 +1,45 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.media-track {
+  padding: 32px 0 0;
+}
+
+.media-track--trailers {
+  .media-track__title {
+    color: v.$neutral--0;
+  }
+
+  .slider__button {
+    height: v.$backdrop-height--trailer;
+  }
+
+  .slider__button--prev {
+    background: linear-gradient(270deg, v.$neutral--100, rgba(v.$neutral--100, 0));
+  }
+
+  .slider__button--next {
+    background: linear-gradient(90deg, v.$neutral--100, rgba(v.$neutral--100, 0));
+  }
+}
+
+.media-track__title-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  @include m.break-reverse(768) {
+    justify-content: flex-start;
+    width: fit-content;
+  }
+}
+
+.media-track__items {
+  opacity: 1;
+  transition: v.$transition--base;
+}
+
+.media-track__items--fading {
+  opacity: 0;
+}
