@@ -1,0 +1,89 @@
+@use "@styles/abstracts/variables" as v;
+
+.slider {
+  position: relative;
+
+  &:hover {
+    .slider__button {
+      &:not(.slider__button--disabled) {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:has(.slider__button--prev:hover:not(.slider__button--disabled)) {
+    .slider__button--next {
+      opacity: 0;
+    }
+  }
+
+  &:has(.slider__button--next:hover:not(.slider__button--disabled)) {
+    .slider__button--prev {
+      opacity: 0;
+    }
+  }
+}
+
+.slider--dragging {
+  .slider__button {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+}
+
+.slider__body {
+  padding: 20px 0 40px;
+}
+
+.slider__items {
+  display: flex;
+  gap: 20px;
+}
+
+.slider__item {
+  flex: 0 0 auto;
+}
+
+.slider__button {
+  position: absolute;
+  top: v.$slider-top-padding;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: v.$backdrop-height--poster;
+  background: rgba(v.$neutral--100, 0.65);
+  border: none;
+  opacity: 0;
+  transition: v.$transition--long;
+  cursor: pointer;
+
+  &:hover {
+    .slider__button-icon {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.slider__button--disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slider__button--prev {
+  left: -20px;
+  background: linear-gradient(270deg, v.$neutral--0, rgba(v.$neutral--0, 0));
+  border-radius: 0 8px 8px 0;
+}
+
+.slider__button--next {
+  right: -20px;
+  background: linear-gradient(90deg, v.$neutral--0, rgba(v.$neutral--0, 0));
+  border-radius: 8px 0 0 8px;
+}
+
+.slider__button-icon {
+  width: 16px;
+  fill: rgba(v.$neutral--0, 0.9);
+  transition: v.$transition--long;
+}

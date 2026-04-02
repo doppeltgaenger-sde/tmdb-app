@@ -1,0 +1,39 @@
+@use "@styles/abstracts/variables" as v;
+
+.average {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: v.$primary--100;
+  border-radius: 50%;
+}
+
+.average--skeleton {
+  background: v.$neutral--90;
+}
+
+.average__circle {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.average__circle-background {
+  fill: none;
+}
+
+.average__circle-progress {
+  fill: none;
+  transition: stroke-dashoffset 0.4s ease;
+}
+
+.average__value {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5px;
+  color: v.$neutral--0;
+}

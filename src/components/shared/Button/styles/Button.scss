@@ -1,0 +1,90 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  padding: 0 12px;
+  min-width: 64px;
+  max-width: fit-content;
+  height: 32px;
+  font: 600 16px / 1 v.$source-sans;
+  border: none;
+  border-radius: 6px;
+  transition: v.$transition--base;
+  overflow: hidden;
+  cursor: pointer;
+
+  @include m.break-reverse(768) {
+    padding: 0 16px;
+    min-width: 72px;
+    height: 36px;
+  }
+}
+
+.button--primary {
+  background: v.$primary--50;
+  color: v.$neutral--0;
+
+  &:hover,
+  &:focus {
+    background: v.$primary--25;
+  }
+
+  &:active {
+    background: v.$primary--100;
+  }
+
+  &:disabled {
+    background: v.$primary--0;
+  }
+}
+
+.button--secondary {
+  background: v.$secondary--25;
+  color: v.$neutral--0;
+
+  &:hover,
+  &:focus {
+    background: v.$secondary--50;
+  }
+
+  &:active {
+    background: v.$secondary--100;
+  }
+
+  &:disabled {
+    background: v.$secondary--0;
+  }
+}
+
+.button--tertiary {
+  background: v.$neutral--30;
+  color: v.$primary--50;
+
+  &:hover,
+  &:focus {
+    background: v.$neutral--50;
+  }
+
+  &:active {
+    background: v.$neutral--70;
+  }
+
+  &:disabled {
+    background: v.$neutral--10;
+  }
+}
+
+.button__content {
+  white-space: nowrap;
+  color: inherit;
+}
+
+.button__icon {
+  width: 16px;
+  height: 16px;
+}
