@@ -9,7 +9,6 @@ const IMAGE_BASE = "https://image.tmdb.org/t/p/w1280";
 
 export const HomeTrailers = () => {
   const dispatch = useDispatch();
-
   const [activeTab, setActiveTab] = useState("popular");
   const [activeBackdrop, setActiveBackdrop] = useState(null);
   const [visibleBackdrop, setVisibleBackdrop] = useState(null);
@@ -18,18 +17,16 @@ export const HomeTrailers = () => {
   const [activeMedia, setActiveMedia] = useState(null);
 
   const trackState = useSelector(
-    (state) => state.media.mediaTracks.trailersTrack?.[activeTab]
+    (state) => state.media.mediaTracks.trailersTrack?.[activeTab],
   );
 
-  const data = useMemo(() => {
-    return trackState?.data ?? [];
-  }, [trackState]);
+  const data = useMemo(() => trackState?.data ?? [], [trackState?.data]);
 
   useEffect(() => {
-    if (!trackState?.data?.length) {
+    if (!data.length) {
       dispatch(fetchMediaTrack("trailersTrack", activeTab));
     }
-  }, [dispatch, activeTab, trackState]);
+  }, [dispatch, activeTab, data.length]);
 
   useEffect(() => {
     if (data.length) {
