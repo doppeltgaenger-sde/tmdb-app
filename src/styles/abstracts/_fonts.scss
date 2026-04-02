@@ -1,0 +1,51 @@
+/*----- Source Sans 3 ----- */
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 300;
+  src:
+    url("../../fonts/source-sans-300.woff2") format("woff2"),
+    url("../../fonts/source-sans-300.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 400;
+  src:
+    url("../../fonts/source-sans-400.woff2") format("woff2"),
+    url("../../fonts/source-sans-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 600;
+  src:
+    url("../../fonts/source-sans-600.woff2") format("woff2"),
+    url("../../fonts/source-sans-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Source Sans 3";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("../../fonts/source-sans-700.woff2") format("woff2"),
+    url("../../fonts/source-sans-700.ttf") format("truetype");
+}
+
+/*----- Barlow ----- */
+@font-face {
+  font-display: swap;
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 700;
+  src:
+    url("../../fonts/barlow-700.woff2") format("woff2"),
+    url("../../fonts/barlow-700.ttf") format("truetype");
+}

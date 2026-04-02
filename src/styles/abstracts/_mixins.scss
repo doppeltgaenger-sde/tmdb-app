@@ -1,0 +1,17 @@
+@mixin break($px) {
+  @media (max-width: "#{$px}px") {
+    @content;
+  }
+}
+
+@mixin break-reverse($px) {
+  @media (min-width: "#{$px}px") {
+    @content;
+  }
+}
+
+@mixin break-and-break-reverse($w1px, $w2px) {
+  @media (min-width: "#{$w1px}px") and (max-width: "#{$w2px}px") {
+    @content;
+  }
+}

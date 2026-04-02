@@ -1,0 +1,426 @@
+@use "@styles/abstracts/variables" as v;
+
+@font-face {
+  font-display: swap;
+  font-family: "Consensus";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/consensus-400.woff2") format("woff2");
+}
+
+[class*=" icon-"],
+[class^="icon-"] {
+  text-transform: none;
+  font: 400 10px / 1 v.$consensus;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-r0:before {
+  content: "";
+  padding: 0 0 0 4px;
+}
+
+.icon-r1:before {
+  content: "";
+}
+
+.icon-r2:before {
+  content: "";
+}
+
+.icon-r3:before {
+  content: "";
+}
+
+.icon-r4:before {
+  content: "";
+}
+
+.icon-r5:before {
+  content: "";
+}
+
+.icon-r6:before {
+  content: "";
+}
+
+.icon-r7:before {
+  content: "";
+}
+
+.icon-r8:before {
+  content: "";
+}
+
+.icon-r9:before {
+  content: "";
+}
+
+.icon-r10:before {
+  content: "";
+}
+
+.icon-r11:before {
+  content: "";
+}
+
+.icon-r12:before {
+  content: "";
+}
+
+.icon-r13:before {
+  content: "";
+}
+
+.icon-r14:before {
+  content: "";
+}
+
+.icon-r15:before {
+  content: "";
+}
+
+.icon-r16:before {
+  content: "";
+}
+
+.icon-r17:before {
+  content: "";
+}
+
+.icon-r18:before {
+  content: "";
+}
+
+.icon-r19:before {
+  content: "";
+}
+
+.icon-r20:before {
+  content: "";
+}
+
+.icon-r21:before {
+  content: "";
+}
+
+.icon-r22:before {
+  content: "";
+}
+
+.icon-r23:before {
+  content: "";
+}
+
+.icon-r24:before {
+  content: "";
+}
+
+.icon-r25:before {
+  content: "";
+}
+
+.icon-r26:before {
+  content: "";
+}
+
+.icon-r27:before {
+  content: "";
+}
+
+.icon-r28:before {
+  content: "";
+}
+
+.icon-r29:before {
+  content: "";
+}
+
+.icon-r30:before {
+  content: "";
+}
+
+.icon-r31:before {
+  content: "";
+}
+
+.icon-r32:before {
+  content: "";
+}
+
+.icon-r33:before {
+  content: "";
+}
+
+.icon-r34:before {
+  content: "";
+}
+
+.icon-r35:before {
+  content: "";
+}
+
+.icon-r36:before {
+  content: "";
+}
+
+.icon-r37:before {
+  content: "";
+}
+
+.icon-r38:before {
+  content: "";
+}
+
+.icon-r39:before {
+  content: "";
+}
+
+.icon-r40:before {
+  content: "";
+}
+
+.icon-r41:before {
+  content: "";
+}
+
+.icon-r42:before {
+  content: "";
+}
+
+.icon-r43:before {
+  content: "";
+}
+
+.icon-r44:before {
+  content: "";
+}
+
+.icon-r45:before {
+  content: "";
+}
+
+.icon-r46:before {
+  content: "";
+}
+
+.icon-r47:before {
+  content: "";
+}
+
+.icon-r48:before {
+  content: "";
+}
+
+.icon-r49:before {
+  content: "";
+}
+
+.icon-r50:before {
+  content: "";
+}
+
+.icon-r51:before {
+  content: "";
+}
+
+.icon-r52:before {
+  content: "";
+}
+
+.icon-r53:before {
+  content: "";
+}
+
+.icon-r54:before {
+  content: "";
+}
+
+.icon-r55:before {
+  content: "";
+}
+
+.icon-r56:before {
+  content: "";
+}
+
+.icon-r57:before {
+  content: "";
+}
+
+.icon-r58:before {
+  content: "";
+}
+
+.icon-r59:before {
+  content: "";
+}
+
+.icon-r60:before {
+  content: "";
+}
+
+.icon-r61:before {
+  content: "";
+}
+
+.icon-r62:before {
+  content: "";
+}
+
+.icon-r63:before {
+  content: "";
+}
+
+.icon-r64:before {
+  content: "";
+}
+
+.icon-r65:before {
+  content: "";
+}
+
+.icon-r66:before {
+  content: "";
+}
+
+.icon-r67:before {
+  content: "";
+}
+
+.icon-r68:before {
+  content: "";
+}
+
+.icon-r69:before {
+  content: "";
+}
+
+.icon-r70:before {
+  content: "";
+}
+
+.icon-r71:before {
+  content: "";
+}
+
+.icon-r72:before {
+  content: "";
+}
+
+.icon-r73:before {
+  content: "";
+}
+
+.icon-r74:before {
+  content: "";
+}
+
+.icon-r75:before {
+  content: "";
+}
+
+.icon-r76:before {
+  content: "";
+}
+
+.icon-r77:before {
+  content: "";
+}
+
+.icon-r78:before {
+  content: "";
+}
+
+.icon-r79:before {
+  content: "";
+}
+
+.icon-r80:before {
+  content: "";
+}
+
+.icon-r81:before {
+  content: "";
+}
+
+.icon-r82:before {
+  content: "";
+}
+
+.icon-r83:before {
+  content: "";
+}
+
+.icon-r84:before {
+  content: "";
+}
+
+.icon-r85:before {
+  content: "";
+}
+
+.icon-r86:before {
+  content: "";
+}
+
+.icon-r87:before {
+  content: "";
+}
+
+.icon-r88:before {
+  content: "";
+}
+
+.icon-r89:before {
+  content: "";
+}
+
+.icon-r90:before {
+  content: "";
+}
+
+.icon-r91:before {
+  content: "";
+}
+
+.icon-r92:before {
+  content: "";
+}
+
+.icon-r93:before {
+  content: "";
+}
+
+.icon-r94:before {
+  content: "";
+}
+
+.icon-r95:before {
+  content: "";
+}
+
+.icon-r96:before {
+  content: "";
+}
+
+.icon-r97:before {
+  content: "";
+}
+
+.icon-r98:before {
+  content: "";
+}
+
+.icon-r99:before {
+  content: "";
+}
+
+.icon-r100:before {
+  content: "";
+}
+
+.icon-rNR:before {
+  content: "";
+}

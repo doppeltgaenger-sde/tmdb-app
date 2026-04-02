@@ -1,0 +1,53 @@
+/*----- sizes ----- */
+$backdrop-height--poster: 225px;
+$backdrop-height--trailer: 175px;
+$slider-top-padding: 20px;
+
+/*----- base colors ----- */
+$neutral--100: #000;
+$neutral--90: #8c9598;
+$neutral--70: #adb5bd;
+$neutral--50: #ced4da;
+$neutral--30: #dee2e6;
+$neutral--10: #e9ecef;
+$neutral--0: #fff;
+
+$primary--100: #081c22;
+$primary--50: #0d253f;
+$primary--25: #133a63;
+$primary--0: #9aa5b1;
+
+$secondary--100: #017da1;
+$secondary--50: #0196c2;
+$secondary--25: #01b4e4;
+$secondary--0: #9dd7e8;
+
+$tertiary--100: #1ed5a9;
+$tertiary--50: #90cea1;
+$tertiary--0: #c0fecf;
+
+$purple--100: #5b3fc0;
+$purple--50:  #805be7;
+$purple--25:  #9a7ff0;
+$purple--0:   #b7aee0;
+
+$pink: #efafbb;
+$orange: #fdc170;
+$red: #d93b63;
+
+$gradient--primary: linear-gradient(
+  90deg,
+  $tertiary--0 0%,
+  $tertiary--100 100%
+);
+$gradient--secondary: linear-gradient(90deg, $orange 0%, $red 100%);
+$gradient--tertiary: linear-gradient(90deg, $secondary--25, $tertiary--50);
+
+/*----- font-families ----- */
+$source-sans: "Source Sans 3", sans-serif;
+$barlow: "Barlow";
+$consensus: "Consensus";
+
+/*----- transition ----- */
+$transition--base: all 0.3s ease;
+$transition--long: all 0.5s ease;
