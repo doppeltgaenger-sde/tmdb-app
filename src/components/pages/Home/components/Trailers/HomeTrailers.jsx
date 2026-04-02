@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { classNames } from "@utils";
@@ -21,7 +21,9 @@ export const HomeTrailers = () => {
     (state) => state.media.mediaTracks.trailersTrack?.[activeTab]
   );
 
-  const data = trackState?.data ?? [];
+  const data = useMemo(() => {
+    return trackState?.data ?? [];
+  }, [trackState]);
 
   useEffect(() => {
     if (!trackState?.data?.length) {
