@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { classNames } from "@utils";
 import { users } from "@data";
 import { createLeaderboard } from "./model/createLeaderboard";
@@ -6,11 +5,12 @@ import { LeaderboardCard } from "./LeaderboardCard";
 import "./styles/Leaderboard.scss";
 
 export const Leaderboard = ({ className }) => {
-  const {
-    users: rankedUsers,
-    maxAllTime,
-    maxWeek,
-  } = useMemo(() => createLeaderboard(users), [users]);
+  const { 
+    users: rankedUsers, 
+    maxAllTime, 
+    maxWeek 
+  } =
+  createLeaderboard(users);
 
   return (
     <section className={classNames(["leaderboard", className])}>
