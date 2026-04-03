@@ -33,6 +33,7 @@ export const MediaTrack = (props) => {
   } = props;
 
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
+
   const containerRef = useRef(null);
   const loadingStartRef = useRef(0);
   const [displayItems, setDisplayItems] = useState(items);
@@ -69,7 +70,6 @@ export const MediaTrack = (props) => {
 
   useEffect(() => {
     if (!isLoadingPhase) return;
-    if (!items.length) return;
 
     const elapsed = Date.now() - loadingStartRef.current;
     const remaining = Math.max(MIN_LOADING_TIME - elapsed, 0);
@@ -86,7 +86,6 @@ export const MediaTrack = (props) => {
     if (!displayItems.length) return;
 
     setVisibleCount(INITIAL_ITEMS);
-
     let id;
 
     if ("requestIdleCallback" in window) {
