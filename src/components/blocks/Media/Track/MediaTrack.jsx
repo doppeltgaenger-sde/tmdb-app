@@ -5,13 +5,13 @@ import { PosterCard } from "@blocks";
 import "./styles/MediaTrack.scss";
 
 const SKELETON_COUNT = 8;
-const MIN_LOADING_TIME = 500;
+const INITIAL_ITEMS = 8;
+const FULL_ITEMS = 20;
 
 const TRACK_VARIANTS = {
   default: {
     tabsVariant: "default",
   },
-
   trailers: {
     tabsVariant: "inverted",
   },
@@ -31,64 +31,82 @@ export const MediaTrack = (props) => {
   } = props;
 
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
+
   const containerRef = useRef(null);
-  const loadingStartRef = useRef(0);
   const [displayItems, setDisplayItems] = useState(items);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [isLoadingPhase, setIsLoadingPhase] = useState(false);
 
   useEffect(() => {
     setIsFadingOut(true);
-    loadingStartRef.current = Date.now();
   }, [activeTab]);
 
   useEffect(() => {
+    if (!isFadingOut) return;
+
     const node = containerRef.current;
     if (!node) return;
 
+    let handled = false;
+
     const handleTransitionEnd = (e) => {
+      if (e.target !== node) return;
       if (e.propertyName !== "opacity") return;
 
-      if (isFadingOut) {
-        setDisplayItems([]);
-        setIsLoadingPhase(true);
-        setIsFadingOut(false);
-      }
+      handled = true;
+
+      setDisplayItems(items);
+      setIsFadingOut(false);
     };
 
     node.addEventListener("transitionend", handleTransitionEnd);
 
+    const fallback = setTimeout(() => {
+      if (handled) return;
+
+      setDisplayItems(items);
+      setIsFadingOut(false);
+    }, 300);
+
     return () => {
       node.removeEventListener("transitionend", handleTransitionEnd);
+      clearTimeout(fallback);
     };
-  }, [isFadingOut]);
+  }, [isFadingOut, items]);
 
   useEffect(() => {
-    if (!isLoadingPhase) return;
-    if (!items.length) return;
+    if (!displayItems.length) return;
 
-    const elapsed = Date.now() - loadingStartRef.current;
-    const remaining = Math.max(MIN_LOADING_TIME - elapsed, 0);
+    setVisibleCount(INITIAL_ITEMS);
 
-    const timer = setTimeout(() => {
-      setDisplayItems(items);
-      setIsLoadingPhase(false);
-    }, remaining);
+    let id;
 
-    return () => clearTimeout(timer);
-  }, [items, isLoadingPhase]);
+    if ("requestIdleCallback" in window) {
+      id = requestIdleCallback(() => {
+        setVisibleCount(FULL_ITEMS);
+      });
+    } else {
+      id = setTimeout(() => {
+        setVisibleCount(FULL_ITEMS);
+      }, 200);
+    }
+
+    return () => {
+      if ("cancelIdleCallback" in window) {
+        cancelIdleCallback(id);
+      } else {
+        clearTimeout(id);
+      }
+    };
+  }, [displayItems]);
 
   const handleHover = useCallback(
-    (item) => {
-      onCardHover?.(item);
-    },
+    (item) => onCardHover?.(item),
     [onCardHover],
   );
 
   const handleActivate = useCallback(
-    (item) => {
-      onCardActivate?.(item);
-    },
+    (item) => onCardActivate?.(item),
     [onCardActivate],
   );
 
@@ -99,7 +117,9 @@ export const MediaTrack = (props) => {
       ));
     }
 
-    return displayItems.map((item) => (
+    const visibleItems = displayItems.slice(0, visibleCount);
+
+    return visibleItems.map((item) => (
       <CardComponent
         key={item.id}
         {...item}
@@ -126,13 +146,15 @@ export const MediaTrack = (props) => {
       </div>
 
       <div
+        ref={containerRef}
         className={classNames([
           "media-track__items",
           isFadingOut && "media-track__items--fading",
         ])}
-        ref={containerRef}
       >
-        <Slider resetOnChange={activeTab}>{renderMedia()}</Slider>
+        <Slider resetOnChange={activeTab}>
+          {renderMedia()}
+        </Slider>
       </div>
     </div>
   );
