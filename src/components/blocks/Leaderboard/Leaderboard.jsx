@@ -10,7 +10,7 @@ export const Leaderboard = ({ className }) => {
     users: rankedUsers,
     maxAllTime,
     maxWeek,
-  } = useMemo(() => createLeaderboard(users), []);
+  } = useMemo(() => createLeaderboard(users), [users]);
 
   return (
     <section className={classNames(["leaderboard", className])}>

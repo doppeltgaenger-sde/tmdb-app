@@ -1,34 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchTrailer } from "@api";
 import { Modal, Loader } from "@shared";
 import { classNames } from "@utils";
 import "./styles/TrailerModal.scss";
 
 export const TrailerModal = (props) => {
-  const { 
-    isOpen, 
-    onClose, 
-    mediaId, 
-    mediaType, 
+  const {
+    isOpen,
+    onClose,
+    mediaId,
+    mediaType,
     title,
   } = props;
 
   const [trailerKey, setTrailerKey] = useState(null);
   const [isTrailerReady, setIsTrailerReady] = useState(false);
+  const cacheRef = useRef({});
 
   useEffect(() => {
     if (!isOpen || !mediaId) return;
 
+    let isActive = true;
+
     setTrailerKey(null);
     setIsTrailerReady(false);
 
+    if (cacheRef.current[mediaId]) {
+      setTrailerKey(cacheRef.current[mediaId]);
+      return;
+    }
+
     const loadTrailer = async () => {
       const key = await fetchTrailer(mediaId, mediaType);
-      setTrailerKey(key);
+
+      if (isActive) {
+        cacheRef.current[mediaId] = key;
+        setTrailerKey(key);
+      }
     };
 
     loadTrailer();
+
+    return () => {
+      isActive = false;
+    };
   }, [isOpen, mediaId, mediaType]);
+
+  const shouldRenderIframe = Boolean(trailerKey);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -38,18 +56,19 @@ export const TrailerModal = (props) => {
         </h3>
 
         <div className="trailer-modal__video">
-          {trailerKey && !isTrailerReady && (
+          {shouldRenderIframe && !isTrailerReady && (
             <Loader className="trailer-modal__loader" />
           )}
 
-          {trailerKey && (
+          {shouldRenderIframe && (
             <iframe
               className={classNames([
                 "trailer-modal__iframe",
                 isTrailerReady && "trailer-modal__iframe--visible",
               ])}
-              src={`https://www.youtube.com/embed/${trailerKey}`}
-              title={title || "TMDB trailer"}
+              src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1`}
+              title={title || "Trailer"}
+              loading="lazy"
               onLoad={() => setIsTrailerReady(true)}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

@@ -1,15 +1,21 @@
+import { useMemo } from "react";
 import { useViewport } from "@hooks";
 import { Icon } from "@shared";
 import { bannerData } from "./data/bannerData";
 import "./styles/WrapBanner.scss";
 
-export const WrapBanner = ({ className }) => {
+export const WrapBanner = () => {
   const { isMobileSm } = useViewport();
 
   const MAX_ITEMS = isMobileSm ? 6 : 5;
-  const deviceKey = isMobileSm ? "mobile" : "desktop";
 
-  const displayedBannerData = bannerData.slice(0, MAX_ITEMS);
+  const deviceKey = useMemo(() => {
+    return isMobileSm ? "mobile" : "desktop";
+  }, [isMobileSm]);
+
+  const displayedBannerData = useMemo(() => {
+    return bannerData.slice(0, MAX_ITEMS);
+  }, [MAX_ITEMS]);
 
   return (
     <section className="wrap-banner">
@@ -33,7 +39,7 @@ export const WrapBanner = ({ className }) => {
           </a>
 
           <div className="wrap-banner__backdrops">
-            {displayedBannerData.map((backdrop) => {
+            {displayedBannerData.map((backdrop, index) => {
               const current = backdrop[deviceKey];
               const src = current.image || current.fallback;
 
@@ -43,6 +49,7 @@ export const WrapBanner = ({ className }) => {
                     className="wrap-banner__image"
                     src={src}
                     alt="tmdb banner backdrop"
+                    loading={index === 0 ? "eager" : "lazy"}
                   />
                 </div>
               );

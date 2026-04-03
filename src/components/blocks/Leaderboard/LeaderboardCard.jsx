@@ -1,7 +1,9 @@
+import { memo } from "react";
 import { Avatar, MetricBar } from "@shared";
+import { useInView } from "@hooks";
 import "./styles/LeaderboardCard.scss";
 
-export const LeaderboardCard = (props) => {
+export const LeaderboardCard = memo((props) => {
   const { 
     username, 
     color, 
@@ -11,8 +13,12 @@ export const LeaderboardCard = (props) => {
     maxWeek,
   } = props;
 
+  const { editsAllTime, editsThisWeek } = stats;
+
+  const { ref, isInView } = useInView();
+
   return (
-    <div className="leaderboard-card">
+    <div ref={ref} className="leaderboard-card">
       <Avatar
         className="leaderboard-card__avatar"
         src={avatar}
@@ -25,18 +31,20 @@ export const LeaderboardCard = (props) => {
 
         <MetricBar
           className="leaderboard-card__metric-bar"
-          value={stats.editsAllTime}
+          value={editsAllTime}
           max={maxAllTime}
           variant="all"
+          isInView={isInView}
         />
 
         <MetricBar
           className="leaderboard-card__metric-bar"
-          value={stats.editsThisWeek}
+          value={editsThisWeek}
           max={maxWeek}
           variant="week"
+          isInView={isInView}
         />
       </div>
     </div>
   );
-};
+});
