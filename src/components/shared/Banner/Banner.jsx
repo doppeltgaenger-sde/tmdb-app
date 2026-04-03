@@ -18,17 +18,16 @@ export const Banner = (props) => {
 
   const backdrop = useMemo(() => {
     if (!backdrops.length) return null;
-
-    const index = Math.floor(
-      Math.random() * backdrops.length
-    );
-
-    return backdrops[index];
+    return backdrops[0];
   }, [backdrops]);
 
   const imageBase =
     IMAGE_VARIANTS[variant] ||
     IMAGE_VARIANTS.default;
+
+  const imageSrc = backdrop
+    ? `${imageBase}${backdrop}`
+    : null;
 
   return (
     <section
@@ -37,12 +36,17 @@ export const Banner = (props) => {
         variant !== "default" && `banner--${variant}`,
         className,
       ])}
-      style={{
-        backgroundImage: backdrop
-          ? `url("${imageBase}${backdrop}")`
-          : "none",
-      }}
     >
+      {imageSrc && (
+        <img
+          className="banner__background"
+          src={imageSrc}
+          alt="tmdb banner background"
+          loading="lazy"
+          decoding="async"
+        />
+      )}
+
       <div className="container">
         <div className="banner__body">
           {children}
@@ -51,3 +55,4 @@ export const Banner = (props) => {
     </section>
   );
 };
+

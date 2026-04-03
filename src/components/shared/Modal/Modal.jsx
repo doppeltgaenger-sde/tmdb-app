@@ -5,9 +5,9 @@ import { Icon } from "@shared";
 import "./styles/Modal.scss";
 
 export const Modal = (props) => {
-  const { 
-    isOpen, 
-    onClose, 
+  const {
+    isOpen,
+    onClose,
     children,
   } = props;
 
@@ -20,7 +20,9 @@ export const Modal = (props) => {
       setIsMounted(true);
 
       requestAnimationFrame(() => {
-        setIsVisible(true);
+        requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
       });
     } else {
       setIsVisible(false);
@@ -32,7 +34,7 @@ export const Modal = (props) => {
     if (!node) return;
 
     const handleTransitionEnd = (e) => {
-      if (e.target !== modalRef.current) return;
+      if (e.target !== node) return;
       if (e.propertyName !== "opacity") return;
 
       if (!isVisible) {
@@ -51,13 +53,16 @@ export const Modal = (props) => {
     if (!isMounted) return;
 
     const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+      }
     };
 
     const scrollBarWidth =
       window.innerWidth - document.documentElement.clientWidth;
 
     document.addEventListener("keydown", handleEsc);
+
     document.body.style.overflow = "hidden";
     document.body.style.paddingRight = `${scrollBarWidth}px`;
 
@@ -78,15 +83,15 @@ export const Modal = (props) => {
       <div className="modal__overlay" onClick={onClose} />
 
       <div className="modal__body">
-        <button 
-          className="modal__close" 
+        <button
+          className="modal__close"
           onClick={onClose}
           aria-label="Close modal"
         >
           <Icon className="modal__close-icon" name="close" />
         </button>
 
-        {children}
+        {isVisible && children}
       </div>
     </div>,
     document.body,

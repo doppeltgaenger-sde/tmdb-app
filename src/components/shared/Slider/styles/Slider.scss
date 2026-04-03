@@ -22,12 +22,12 @@
       opacity: 0;
     }
   }
-}
 
-.slider--dragging {
-  .slider__button {
-    opacity: 0 !important;
-    pointer-events: none;
+  &:has(.slider__body--dragging) {
+    .slider__button {
+      opacity: 0 !important;
+      pointer-events: none;
+    }
   }
 }
 

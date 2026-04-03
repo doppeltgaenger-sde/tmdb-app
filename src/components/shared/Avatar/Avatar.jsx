@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { memo, useState, useEffect, useMemo, useCallback } from "react";
 import { classNames, getInitials } from "@utils";
 import "./styles/Avatar.scss";
 
@@ -8,7 +8,7 @@ const sizeMap = {
   lg: 64,
 };
 
-export const Avatar = (props) => {
+export const Avatar = memo((props) => {
   const { 
     className, 
     src, 
@@ -19,33 +19,39 @@ export const Avatar = (props) => {
 
   const [imgError, setImgError] = useState(false);
 
-  const dimension =
-    typeof size === "number" ? size : sizeMap[size] || sizeMap.md;
+  const dimension = useMemo(() => {
+    return typeof size === "number"
+      ? size
+      : sizeMap[size] || sizeMap.md;
+  }, [size]);
 
   const showFallback = !src || imgError;
+
+  const initials = useMemo(() => {
+    return getInitials(name?.trim() || "?");
+  }, [name]);
+
+  const styles = useMemo(() => ({
+    minWidth: dimension,
+    maxWidth: dimension,
+    minHeight: dimension,
+    maxHeight: dimension,
+    backgroundColor: showFallback ? color : "transparent",
+  }), [dimension, showFallback, color]);
 
   useEffect(() => {
     setImgError(false);
   }, [src]);
 
-  const handleError = () => {
+  const handleError = useCallback(() => {
     setImgError(true);
-  };
+  }, []);
 
   return (
-    <div
-      className={classNames(["avatar", className])}
-      style={{
-        minWidth: dimension,
-        maxWidth: dimension,
-        minHeight: dimension,
-        maxHeight: dimension,
-        backgroundColor: showFallback ? color : "transparent",
-      }}
-    >
+    <div className={classNames(["avatar", className])} style={styles}>
       {showFallback ? (
         <span className="avatar__initials">
-          {getInitials(name?.trim() || "?")}
+          {initials}
         </span>
       ) : (
         <img
@@ -53,8 +59,9 @@ export const Avatar = (props) => {
           src={src}
           alt={name || "tmdb user avatar"}
           onError={handleError}
+          loading="lazy"
         />
       )}
     </div>
   );
-};
+});
