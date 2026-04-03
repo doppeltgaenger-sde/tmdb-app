@@ -6,8 +6,6 @@ import "./styles/MediaTrack.scss";
 
 const SKELETON_COUNT = 8;
 const MIN_LOADING_TIME = 500;
-const INITIAL_ITEMS = 8;
-const FULL_ITEMS = 20;
 
 const TRACK_VARIANTS = {
   default: {
@@ -33,11 +31,9 @@ export const MediaTrack = (props) => {
   } = props;
 
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
-
   const containerRef = useRef(null);
   const loadingStartRef = useRef(0);
   const [displayItems, setDisplayItems] = useState(items);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [isLoadingPhase, setIsLoadingPhase] = useState(false);
 
@@ -51,7 +47,6 @@ export const MediaTrack = (props) => {
     if (!node) return;
 
     const handleTransitionEnd = (e) => {
-      if (e.target !== node) return;
       if (e.propertyName !== "opacity") return;
 
       if (isFadingOut) {
@@ -70,6 +65,7 @@ export const MediaTrack = (props) => {
 
   useEffect(() => {
     if (!isLoadingPhase) return;
+    if (!items.length) return;
 
     const elapsed = Date.now() - loadingStartRef.current;
     const remaining = Math.max(MIN_LOADING_TIME - elapsed, 0);
@@ -81,31 +77,6 @@ export const MediaTrack = (props) => {
 
     return () => clearTimeout(timer);
   }, [items, isLoadingPhase]);
-
-  useEffect(() => {
-    if (!displayItems.length) return;
-
-    setVisibleCount(INITIAL_ITEMS);
-    let id;
-
-    if ("requestIdleCallback" in window) {
-      id = requestIdleCallback(() => {
-        setVisibleCount(FULL_ITEMS);
-      });
-    } else {
-      id = setTimeout(() => {
-        setVisibleCount(FULL_ITEMS);
-      }, 200);
-    }
-
-    return () => {
-      if ("cancelIdleCallback" in window) {
-        cancelIdleCallback(id);
-      } else {
-        clearTimeout(id);
-      }
-    };
-  }, [displayItems]);
 
   const handleHover = useCallback(
     (item) => {
@@ -128,9 +99,7 @@ export const MediaTrack = (props) => {
       ));
     }
 
-    const visibleItems = displayItems.slice(0, visibleCount);
-
-    return visibleItems.map((item) => (
+    return displayItems.map((item) => (
       <CardComponent
         key={item.id}
         {...item}
@@ -157,15 +126,13 @@ export const MediaTrack = (props) => {
       </div>
 
       <div
-        ref={containerRef}
         className={classNames([
           "media-track__items",
           isFadingOut && "media-track__items--fading",
         ])}
+        ref={containerRef}
       >
-        <Slider resetOnChange={activeTab}>
-          {renderMedia()}
-        </Slider>
+        <Slider resetOnChange={activeTab}>{renderMedia()}</Slider>
       </div>
     </div>
   );
