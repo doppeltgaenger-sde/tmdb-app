@@ -33,6 +33,7 @@ export const MediaTrack = (props) => {
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
 
   const containerRef = useRef(null);
+  const prevItemsRef = useRef();
   const [displayItems, setDisplayItems] = useState([]);
   const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -42,8 +43,9 @@ export const MediaTrack = (props) => {
   }, [activeTab]);
 
   useEffect(() => {
-    if (items !== displayItems) {
+    if (prevItemsRef.current !== items) {
       setIsFadingOut(true);
+      prevItemsRef.current = items;
     }
   }, [items]);
 
