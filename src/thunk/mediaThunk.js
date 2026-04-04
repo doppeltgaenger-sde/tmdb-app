@@ -12,6 +12,8 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
     const state = getState();
     const trackState = state.media.mediaTracks[track]?.[tab];
 
+    if (trackState?.loading) return;
+
     if (trackState?.isLoaded && page === 1) {
       return;
     }
