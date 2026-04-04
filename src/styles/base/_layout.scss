@@ -1,8 +1,14 @@
+@use "@styles/abstracts/mixins" as m;
+
 .container {
   margin: 0 auto;
   padding: 0 20px;
   max-width: 1400px;
   height: 100%;
+
+  @include m.break-reverse(1440) {
+    max-width: clamp(1400px, 80vw, 1600px);
+  }
 }
 
 .block-text {
