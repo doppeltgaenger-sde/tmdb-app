@@ -1,4 +1,8 @@
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { fetchMediaTrack } from "@thunk";
 import { WrapBanner, SignupBanner } from "@blocks";
+import { LazyBlock } from "@shared";
 import {
   HomeTrending,
   HomeTrailers,
@@ -8,13 +12,32 @@ import {
 } from "./components";
 
 export const Home = () => {
+  const dispatch = useDispatch();
+
+  const onLoadContent = useCallback((track, tab) => {
+    dispatch(fetchMediaTrack(track, tab));
+  }, [dispatch]);
+
   return (
     <div className="home">
       <WrapBanner />
-      <HomeTrending />
-      <HomeTrailers />
-      <HomePopular />
-      <HomeFree />
+
+      <LazyBlock onLoad={() => onLoadContent("trendingTrack", "today")}>
+        <HomeTrending />
+      </LazyBlock>
+
+      <LazyBlock onLoad={() => onLoadContent("trailersTrack", "popular")}>
+        <HomeTrailers />
+      </LazyBlock>
+
+      <LazyBlock onLoad={() => onLoadContent("popularTrack", "streaming")}>
+        <HomePopular />
+      </LazyBlock>
+
+      <LazyBlock onLoad={() => onLoadContent("freeTrack", "movie")}>
+        <HomeFree />
+      </LazyBlock>
+
       <SignupBanner />
       <HomeLeaderboard />
     </div>
