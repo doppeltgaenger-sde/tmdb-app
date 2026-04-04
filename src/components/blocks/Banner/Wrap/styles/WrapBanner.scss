@@ -1,15 +1,17 @@
 @use "@styles/abstracts/variables" as v;
 @use "@styles/abstracts/mixins" as m;
 
-.wrap-banner__body {
+.wrap-banner {
   position: relative;
+  background: rgba(v.$neutral--100, 0.7);
+}
+
+.wrap-banner__body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 -20px;
-  padding: 40px 20px;
+  padding: 40px 0;
   min-height: 450px;
-  background: rgba(v.$neutral--100, 0.7);
 }
 
 .wrap-banner__title {

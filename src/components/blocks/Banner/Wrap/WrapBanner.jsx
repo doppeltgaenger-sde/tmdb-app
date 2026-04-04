@@ -37,25 +37,25 @@ export const WrapBanner = () => {
             <span className="wrap-banner__button-content">Check it out</span>
             <Icon className="wrap-banner__button-icon" name="arrow-right" />
           </a>
-
-          <div className="wrap-banner__backdrops">
-            {displayedBannerData.map((backdrop, index) => {
-              const current = backdrop[deviceKey];
-              const src = current.image || current.fallback;
-
-              return (
-                <div className="wrap-banner__backdrop" key={backdrop.id}>
-                  <img
-                    className="wrap-banner__image"
-                    src={src}
-                    alt="tmdb banner backdrop"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </div>
-              );
-            })}
-          </div>
         </div>
+      </div>
+
+      <div className="wrap-banner__backdrops">
+        {displayedBannerData.map((backdrop, index) => {
+          const current = backdrop[deviceKey];
+          const src = current.image || current.fallback;
+
+          return (
+            <div className="wrap-banner__backdrop" key={backdrop.id}>
+              <img
+                className="wrap-banner__image"
+                src={src}
+                alt="tmdb banner backdrop"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          );
+        })}
       </div>
     </section>
   );
