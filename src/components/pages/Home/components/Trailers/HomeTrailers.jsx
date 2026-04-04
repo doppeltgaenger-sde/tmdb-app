@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { classNames } from "@utils";
@@ -22,9 +22,13 @@ export const HomeTrailers = () => {
 
   const data = useMemo(() => trackState?.data ?? [], [trackState?.data]);
 
-  useEffect(() => {
-    dispatch(fetchMediaTrack("trailersTrack", activeTab));
-  }, [dispatch, activeTab]);
+  const handleTabChange = useCallback(
+    (tab) => {
+      setActiveTab(tab);
+      dispatch(fetchMediaTrack("trailersTrack", tab));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     if (data.length) {
@@ -72,29 +76,27 @@ export const HomeTrailers = () => {
     setIsModalOpen(true);
   }, []);
 
-  const trackProps = {
-    title: "Latest Trailers",
-    items: data,
-    tabs: [
-      { value: "popular", label: "Popular" },
-      { value: "streaming", label: "Streaming" },
-      { value: "tv", label: "On TV" },
-      { value: "rent", label: "For Rent" },
-      { value: "theaters", label: "In Theaters" },
-    ],
-    activeTab,
-    onTabChange: setActiveTab,
-    CardComponent: TrailerCard,
-    onCardHover: handleCardHover,
-    onCardActivate: handleCardActivate,
-    variant: "trailers",
-  };
-
   return (
     <section className="home-trailers">
       <div className="container">
         <div className="home-trailers__body">
-          <MediaTrack {...trackProps} />
+          <MediaTrack
+            title="Latest Trailers"
+            items={data}
+            tabs={[
+              { value: "popular", label: "Popular" },
+              { value: "streaming", label: "Streaming" },
+              { value: "tv", label: "On TV" },
+              { value: "rent", label: "For Rent" },
+              { value: "theaters", label: "In Theaters" },
+            ]}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+            CardComponent={TrailerCard}
+            onCardHover={handleCardHover}
+            onCardActivate={handleCardActivate}
+            variant="trailers"
+          />
         </div>
       </div>
 

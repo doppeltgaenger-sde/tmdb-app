@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { MediaTrack } from "@blocks";
@@ -14,26 +14,28 @@ export const HomeTrending = () => {
 
   const data = trackState?.data || [];
 
-  useEffect(() => {
-    dispatch(fetchMediaTrack("trendingTrack", activeTab));
-  }, [dispatch, activeTab]);
-
-  const props = {
-    title: "Trending",
-    items: data,
-    tabs: [
-      { value: "today", label: "Today" },
-      { value: "week", label: "This week" },
-    ],
-    activeTab: activeTab,
-    onTabChange: setActiveTab,
-  };
+  const handleTabChange = useCallback(
+    (tab) => {
+      setActiveTab(tab);
+      dispatch(fetchMediaTrack("trendingTrack", tab));
+    },
+    [dispatch],
+  );
 
   return (
     <section className="home-trending">
       <div className="container">
         <div className="home-trending__body">
-          <MediaTrack {...props} />
+          <MediaTrack
+            title="Trending"
+            items={data}
+            tabs={[
+              { value: "today", label: "Today" },
+              { value: "week", label: "This week" },
+            ]}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+          />
         </div>
       </div>
     </section>

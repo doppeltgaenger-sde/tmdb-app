@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { MediaTrack } from "@blocks";
@@ -13,28 +13,30 @@ export const HomePopular = () => {
 
   const data = trackState?.data || [];
 
-  useEffect(() => {
-    dispatch(fetchMediaTrack("popularTrack", activeTab));
-  }, [dispatch, activeTab]);
-
-  const props = {
-    title: "What's Popular",
-    items: data,
-    tabs: [
-      { value: "streaming", label: "Streaming" },
-      { value: "tv", label: "On TV" },
-      { value: "rent", label: "For Rent" },
-      { value: "theaters", label: "In Theaters" },
-    ],
-    activeTab,
-    onTabChange: setActiveTab,
-  };
+  const handleTabChange = useCallback(
+    (tab) => {
+      setActiveTab(tab);
+      dispatch(fetchMediaTrack("popularTrack", tab));
+    },
+    [dispatch],
+  );
 
   return (
     <section className="home-popular">
       <div className="container">
         <div className="home-popular__body">
-          <MediaTrack {...props} />
+          <MediaTrack
+            title="What's Popular"
+            items={data}
+            tabs={[
+              { value: "streaming", label: "Streaming" },
+              { value: "tv", label: "On TV" },
+              { value: "rent", label: "For Rent" },
+              { value: "theaters", label: "In Theaters" },
+            ]}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+          />
         </div>
       </div>
     </section>

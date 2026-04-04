@@ -3,6 +3,7 @@ export * from "./Average/Average";
 export * from "./Banner/Banner";
 export * from "./Button/Button";
 export * from "./Icon/Icon";
+export * from "./LazyBlock/LazyBlock";
 export * from "./Loader/Loader";
 export * from "./MetricBar/MetricBar";
 export * from "./Modal/Modal";

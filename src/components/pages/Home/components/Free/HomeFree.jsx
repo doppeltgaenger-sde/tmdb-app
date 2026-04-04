@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { MediaTrack } from "@blocks";
@@ -13,26 +13,28 @@ export const HomeFree = () => {
 
   const data = trackState?.data || [];
 
-  useEffect(() => {
-    dispatch(fetchMediaTrack("freeTrack", activeTab));
-  }, [dispatch, activeTab]);
-
-  const props = {
-    title: "Free To Watch",
-    items: data,
-    tabs: [
-      { value: "movie", label: "Movies" },
-      { value: "tv", label: "TV" },
-    ],
-    activeTab,
-    onTabChange: setActiveTab,
-  };
+  const handleTabChange = useCallback(
+    (tab) => {
+      setActiveTab(tab);
+      dispatch(fetchMediaTrack("freeTrack", tab));
+    },
+    [dispatch],
+  );
 
   return (
     <section className="home-free">
       <div className="container">
         <div className="home-free__body">
-          <MediaTrack {...props} />
+          <MediaTrack
+            title="Free To Watch"
+            items={data}
+            tabs={[
+              { value: "movie", label: "Movies" },
+              { value: "tv", label: "TV" },
+            ]}
+            activeTab={activeTab}
+            onTabChange={handleTabChange}
+          />
         </div>
       </div>
     </section>
