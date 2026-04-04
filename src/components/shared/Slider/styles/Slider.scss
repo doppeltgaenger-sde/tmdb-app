@@ -1,4 +1,5 @@
 @use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
 
 .slider {
   position: relative;
@@ -33,6 +34,10 @@
 
 .slider__body {
   padding: 20px 0 40px;
+
+  @include m.break-reverse(1440) {
+    overflow: hidden;
+  }
 }
 
 .slider__items {
@@ -74,12 +79,20 @@
   left: -20px;
   background: linear-gradient(270deg, v.$neutral--0, rgba(v.$neutral--0, 0));
   border-radius: 0 8px 8px 0;
+
+  @include m.break-reverse(1440) {
+    left: 0;
+  }
 }
 
 .slider__button--next {
   right: -20px;
   background: linear-gradient(90deg, v.$neutral--0, rgba(v.$neutral--0, 0));
   border-radius: 8px 0 0 8px;
+
+  @include m.break-reverse(1440) {
+    right: 0;
+  }
 }
 
 .slider__button-icon {
