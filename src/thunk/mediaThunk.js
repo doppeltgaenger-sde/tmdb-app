@@ -8,7 +8,14 @@ import {
 import { normalizeMediaData } from "@utils";
 
 export const fetchMediaTrack = (track, tab, page = 1) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const trackState = state.media.mediaTracks[track]?.[tab];
+
+    if (trackState?.isLoaded && page === 1) {
+      return;
+    }
+
     dispatch(startGlobalLoading());
 
     try {

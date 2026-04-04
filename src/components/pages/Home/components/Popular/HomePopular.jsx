@@ -14,10 +14,8 @@ export const HomePopular = () => {
   const data = trackState?.data || [];
 
   useEffect(() => {
-    if (!data.length) {
-      dispatch(fetchMediaTrack("popularTrack", activeTab));
-    }
-  }, [dispatch, activeTab, data.length]);
+    dispatch(fetchMediaTrack("popularTrack", activeTab));
+  }, [dispatch, activeTab]);
 
   const props = {
     title: "What's Popular",

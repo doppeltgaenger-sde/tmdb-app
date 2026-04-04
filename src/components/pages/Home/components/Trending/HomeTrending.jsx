@@ -15,10 +15,8 @@ export const HomeTrending = () => {
   const data = trackState?.data || [];
 
   useEffect(() => {
-    if (!data.length) {
-      dispatch(fetchMediaTrack("trendingTrack", activeTab));
-    }
-  }, [dispatch, activeTab, data.length]);
+    dispatch(fetchMediaTrack("trendingTrack", activeTab));
+  }, [dispatch, activeTab]);
 
   const props = {
     title: "Trending",

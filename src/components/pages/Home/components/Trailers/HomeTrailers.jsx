@@ -23,10 +23,8 @@ export const HomeTrailers = () => {
   const data = useMemo(() => trackState?.data ?? [], [trackState?.data]);
 
   useEffect(() => {
-    if (!data.length) {
-      dispatch(fetchMediaTrack("trailersTrack", activeTab));
-    }
-  }, [dispatch, activeTab, data.length]);
+    dispatch(fetchMediaTrack("trailersTrack", activeTab));
+  }, [dispatch, activeTab]);
 
   useEffect(() => {
     if (data.length) {

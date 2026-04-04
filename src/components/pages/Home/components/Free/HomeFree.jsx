@@ -14,10 +14,8 @@ export const HomeFree = () => {
   const data = trackState?.data || [];
 
   useEffect(() => {
-    if (!data.length) {
-      dispatch(fetchMediaTrack("freeTrack", activeTab));
-    }
-  }, [dispatch, activeTab, data.length]);
+    dispatch(fetchMediaTrack("freeTrack", activeTab));
+  }, [dispatch, activeTab]);
 
   const props = {
     title: "Free To Watch",
@@ -26,7 +24,7 @@ export const HomeFree = () => {
       { value: "movie", label: "Movies" },
       { value: "tv", label: "TV" },
     ],
-    activeTab: activeTab,
+    activeTab,
     onTabChange: setActiveTab,
   };
 
