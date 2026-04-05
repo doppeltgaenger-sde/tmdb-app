@@ -1,7 +1,12 @@
-import { START_GLOBAL_LOADING, STOP_GLOBAL_LOADING } from "@actions/appActions";
+import {
+  START_GLOBAL_LOADING,
+  STOP_GLOBAL_LOADING,
+  SET_APP_INITIALIZED,
+} from "@actions/appActions";
 
 const initialState = {
   loadingCount: 0,
+  isAppInitialized: false,
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -16,6 +21,12 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingCount: Math.max(0, state.loadingCount - 1),
+      };
+
+    case SET_APP_INITIALIZED:
+      return {
+        ...state,
+        isAppInitialized: action.payload,
       };
 
     default:

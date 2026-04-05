@@ -1,5 +1,9 @@
 import { fetchMedia } from "@api";
-import { startGlobalLoading, stopGlobalLoading } from "@actions/appActions";
+import {
+  startGlobalLoading,
+  stopGlobalLoading,
+  setAppInitialized,
+} from "@actions/appActions";
 import {
   fetchMediaTrackStart,
   fetchMediaTrackSuccess,
@@ -11,6 +15,7 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
   return async (dispatch, getState) => {
     const state = getState();
     const trackState = state.media.mediaTracks[track]?.[tab];
+    const { isAppInitialized } = state.app;
 
     if (trackState?.loading) return;
 
@@ -18,7 +23,9 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
       return;
     }
 
-    dispatch(startGlobalLoading());
+    if (!isAppInitialized) {
+      dispatch(startGlobalLoading());
+    }
 
     try {
       dispatch(fetchMediaTrackStart(track, tab));
@@ -36,7 +43,10 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
     } catch (error) {
       dispatch(fetchMediaTrackError(track, tab, error.message));
     } finally {
-      dispatch(stopGlobalLoading());
+      if (!isAppInitialized) {
+        dispatch(stopGlobalLoading());
+        dispatch(setAppInitialized(true));
+      }
     }
   };
 };
