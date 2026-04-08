@@ -1,0 +1,1 @@
+export { getCertification } from "./getCertification";

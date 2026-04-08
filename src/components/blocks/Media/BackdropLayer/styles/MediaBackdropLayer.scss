@@ -1,0 +1,15 @@
+.media-backdrop-layer {
+  position: relative;
+}
+
+.media-backdrop-layer__image {
+  width: 100%;
+  height: 100%;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.media-backdrop-layer__overlay {
+  position: absolute;
+  inset: 0;
+}
