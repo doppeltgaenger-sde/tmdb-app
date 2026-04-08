@@ -8,7 +8,7 @@
 
   @include m.break-reverse(768) {
     flex-direction: row;
-    gap: 30px; 
+    gap: 30px;
     font-size: 18px;
   }
 }
@@ -30,24 +30,6 @@
   @include m.break-reverse(768) {
     margin: 0 0 32px;
     max-width: 100%;
-  }
-}
-
-.signup-banner__cta-button {
-  background: v.$purple--50;
-  box-shadow: 0 4px 12px rgba(v.$neutral--100, 0.25);
-
-  &:hover,
-  &:focus {
-    background: v.$purple--25;
-  }
-
-  &:active {
-    background: v.$purple--100;
-  }
-
-  &:disabled {
-    background: v.$purple--0;
   }
 }
 

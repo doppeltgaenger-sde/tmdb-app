@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useViewport } from "@hooks";
-import { Icon } from "@shared";
+import { Button } from "@shared";
 import { bannerData } from "./data/bannerData";
 import "./styles/WrapBanner.scss";
 
@@ -30,13 +30,16 @@ export const WrapBanner = () => {
             The best (and worst) of the year from TMDB.
           </p>
 
-          <a
+          <Button
             className="wrap-banner__button"
+            size="lg"
+            variant="promo"
+            theme="gradient"
             href="https://www.themoviedb.org/2025"
+            iconRight="arrow-right"
           >
-            <span className="wrap-banner__button-content">Check it out</span>
-            <Icon className="wrap-banner__button-icon" name="arrow-right" />
-          </a>
+            Check it out
+          </Button>
         </div>
       </div>
 
@@ -46,14 +49,13 @@ export const WrapBanner = () => {
           const src = current.image || current.fallback;
 
           return (
-            <div className="wrap-banner__backdrop" key={backdrop.id}>
-              <img
-                className="wrap-banner__image"
-                src={src}
-                alt="tmdb banner backdrop"
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </div>
+            <div
+              className="wrap-banner__backdrop"
+              key={backdrop.id}
+              style={{
+                backgroundImage: `url(${src})`,
+              }}
+            />
           );
         })}
       </div>

@@ -5,12 +5,7 @@ import { LeaderboardCard } from "./LeaderboardCard";
 import "./styles/Leaderboard.scss";
 
 export const Leaderboard = ({ className }) => {
-  const { 
-    users: rankedUsers, 
-    maxAllTime, 
-    maxWeek 
-  } =
-  createLeaderboard(users);
+  const { users: rankedUsers, maxAllTime, maxWeek } = createLeaderboard(users);
 
   return (
     <section className={classNames(["leaderboard", className])}>
