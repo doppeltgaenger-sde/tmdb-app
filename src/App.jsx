@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 import { ViewportProvider } from "@hooks";
 import { store } from "@store";
 import { GlobalLoader } from "@layout";
@@ -32,8 +33,10 @@ function App() {
   return (
     <Provider store={store}>
       <ViewportProvider>
-        <GlobalLoader />
-        <MainContent />
+        <BrowserRouter>
+          <GlobalLoader />
+          <MainContent />
+        </BrowserRouter>
       </ViewportProvider>
     </Provider>
   );

@@ -1,9 +1,4 @@
-const HUES = [
-  210,
-  260,
-  0,
-  30,
-];
+const HUES = [210, 260, 0, 30];
 
 export const getColorFromId = (id) => {
   const h = HUES[id % HUES.length];

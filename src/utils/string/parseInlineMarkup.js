@@ -3,9 +3,11 @@ export const parseInlineMarkup = (text) => {
 
   return parts.map((part, i) =>
     i % 2 === 1 ? (
-      <span key={i} className="highlight-text">{part}</span>
+      <span key={i} className="highlight-text">
+        {part}
+      </span>
     ) : (
       part
-    )
+    ),
   );
 };
