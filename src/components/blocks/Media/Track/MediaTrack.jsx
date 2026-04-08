@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { classNames } from "@utils";
-import { Slider, Tabs } from "@shared";
 import { PosterCard } from "@blocks";
+import { Slider, Tabs } from "@shared";
 import "./styles/MediaTrack.scss";
 
 const SKELETON_COUNT = 8;
@@ -17,21 +17,18 @@ const TRACK_VARIANTS = {
   },
 };
 
-export const MediaTrack = (props) => {
-  const {
-    title,
-    items = [],
-    tabs,
-    activeTab,
-    onTabChange,
-    onCardHover,
-    onCardActivate,
-    CardComponent = PosterCard,
-    variant = "default",
-  } = props;
-
+export const MediaTrack = ({
+  title,
+  items = [],
+  tabs,
+  activeTab,
+  onTabChange,
+  onCardHover,
+  onCardActivate,
+  CardComponent = PosterCard,
+  variant = "default",
+}) => {
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
-
   const containerRef = useRef(null);
   const prevItemsRef = useRef();
   const [displayItems, setDisplayItems] = useState([]);
@@ -108,10 +105,7 @@ export const MediaTrack = (props) => {
     };
   }, [displayItems]);
 
-  const handleHover = useCallback(
-    (item) => onCardHover?.(item),
-    [onCardHover],
-  );
+  const handleHover = useCallback((item) => onCardHover?.(item), [onCardHover]);
 
   const handleActivate = useCallback(
     (item) => onCardActivate?.(item),
@@ -160,9 +154,7 @@ export const MediaTrack = (props) => {
           isFadingOut && "media-track__items--fading",
         ])}
       >
-        <Slider resetOnChange={activeTab}>
-          {renderMedia()}
-        </Slider>
+        <Slider resetOnChange={activeTab}>{renderMedia()}</Slider>
       </div>
     </div>
   );

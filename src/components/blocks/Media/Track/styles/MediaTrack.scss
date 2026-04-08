@@ -2,7 +2,7 @@
 @use "@styles/abstracts/mixins" as m;
 
 .media-track {
-  padding: 32px 0 0;
+  padding: 30px 0 0;
 }
 
 .media-track--trailers {
@@ -15,11 +15,19 @@
   }
 
   .slider__button--prev {
-    background: linear-gradient(270deg, v.$neutral--100, rgba(v.$neutral--100, 0));
+    background: linear-gradient(
+      270deg,
+      v.$neutral--100,
+      rgba(v.$neutral--100, 0)
+    );
   }
 
   .slider__button--next {
-    background: linear-gradient(90deg, v.$neutral--100, rgba(v.$neutral--100, 0));
+    background: linear-gradient(
+      90deg,
+      v.$neutral--100,
+      rgba(v.$neutral--100, 0)
+    );
   }
 }
 

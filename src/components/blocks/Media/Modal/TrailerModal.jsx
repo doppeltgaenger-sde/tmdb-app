@@ -4,15 +4,13 @@ import { Modal, Loader } from "@shared";
 import { classNames } from "@utils";
 import "./styles/TrailerModal.scss";
 
-export const TrailerModal = (props) => {
-  const {
-    isOpen,
-    onClose,
-    mediaId,
-    mediaType,
-    title,
-  } = props;
-
+export const TrailerModal = ({
+  isOpen,
+  onClose,
+  mediaId,
+  mediaType,
+  title,
+}) => {
   const [trailerKey, setTrailerKey] = useState(null);
   const [isTrailerReady, setIsTrailerReady] = useState(false);
   const cacheRef = useRef({});
