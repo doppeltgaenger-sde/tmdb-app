@@ -1,13 +1,27 @@
 @use "@styles/abstracts/variables" as v;
 
 .average {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
   background: v.$primary--100;
   border-radius: 50%;
+}
+
+.average--sm {
+  width: 40px;
+  height: 40px;
+}
+
+.average--md {
+  width: 64px;
+  height: 64px;
+
+  [class*=" icon-"],
+  [class^="icon-"] {
+    font-size: 16px;
+  }
 }
 
 .average--skeleton {
@@ -18,6 +32,8 @@
   position: absolute;
   inset: 0;
   transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
 }
 
 .average__circle-background {

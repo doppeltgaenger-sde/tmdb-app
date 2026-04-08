@@ -5,29 +5,24 @@ import "./styles/Banner.scss";
 const IMAGE_VARIANTS = {
   default: "https://image.tmdb.org/t/p/w1280",
   blue: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,00192f,00baff)",
-  purple: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)",
+  purple:
+    "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)",
 };
 
-export const Banner = (props) => {
-  const {
-    className,
-    variant = "default",
-    backdrops = [],
-    children,
-  } = props;
-
+export const Banner = ({
+  className,
+  variant = "default",
+  backdrops = [],
+  children,
+}) => {
   const backdrop = useMemo(() => {
     if (!backdrops.length) return null;
     return backdrops[0];
   }, [backdrops]);
 
-  const imageBase =
-    IMAGE_VARIANTS[variant] ||
-    IMAGE_VARIANTS.default;
+  const imageBase = IMAGE_VARIANTS[variant] || IMAGE_VARIANTS.default;
 
-  const imageSrc = backdrop
-    ? `${imageBase}${backdrop}`
-    : null;
+  const imageSrc = backdrop ? `${imageBase}${backdrop}` : null;
 
   return (
     <section
@@ -48,11 +43,8 @@ export const Banner = (props) => {
       )}
 
       <div className="container">
-        <div className="banner__body">
-          {children}
-        </div>
+        <div className="banner__body">{children}</div>
       </div>
     </section>
   );
 };
-

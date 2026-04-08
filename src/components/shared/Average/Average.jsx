@@ -5,13 +5,7 @@ import {
 } from "@utils";
 import "./styles/Average.scss";
 
-export const Average = (props) => {
-  const { 
-    className, 
-    value, 
-    isSkeleton,
-  } = props;
-
+export const Average = ({ className, value, size = "sm", isSkeleton }) => {
   const normalizedValue = Number(value) || 0;
   const circleRadius = 17;
   const strokeWidth = 3;
@@ -58,6 +52,7 @@ export const Average = (props) => {
     <div
       className={classNames([
         "average",
+        `average--${size}`,
         isSkeleton && "average--skeleton",
         className,
       ])}

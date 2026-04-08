@@ -1,12 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const LazyBlock = (props) => {
-  const {
-    children,
-    onLoad,
-    rootMargin = "300px",
-  } = props;
-
+export const LazyBlock = ({ children, onLoad, rootMargin = "300px" }) => {
   const ref = useRef(null);
   const hasLoadedRef = useRef(false);
 

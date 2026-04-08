@@ -11,16 +11,14 @@ import { classNames } from "@utils";
 import { Icon } from "@shared";
 import "./styles/Tabs.scss";
 
-export const Tabs = (props) => {
-  const {
-    className,
-    items = [],
-    active,
-    onChange,
-    renderLabel,
-    variant = "default",
-  } = props;
-
+export const Tabs = ({
+  className,
+  items = [],
+  active,
+  onChange,
+  renderLabel,
+  variant = "default",
+}) => {
   const containerRef = useRef(null);
   const dropdownRef = useRef(null);
   const { isMobileLg } = useViewport();

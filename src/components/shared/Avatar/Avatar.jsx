@@ -2,42 +2,20 @@ import { memo, useState, useEffect, useMemo, useCallback } from "react";
 import { classNames, getInitials } from "@utils";
 import "./styles/Avatar.scss";
 
-const sizeMap = {
-  sm: 48,
-  md: 56,
-  lg: 64,
-};
-
-export const Avatar = memo((props) => {
-  const { 
-    className, 
-    src, 
-    name, 
-    color, 
-    size = "md",
-  } = props;
-
+export const Avatar = memo(({ className, src, name, color, size = "md" }) => {
   const [imgError, setImgError] = useState(false);
-
-  const dimension = useMemo(() => {
-    return typeof size === "number"
-      ? size
-      : sizeMap[size] || sizeMap.md;
-  }, [size]);
-
   const showFallback = !src || imgError;
 
   const initials = useMemo(() => {
     return getInitials(name?.trim() || "?");
   }, [name]);
 
-  const styles = useMemo(() => ({
-    minWidth: dimension,
-    maxWidth: dimension,
-    minHeight: dimension,
-    maxHeight: dimension,
-    backgroundColor: showFallback ? color : "transparent",
-  }), [dimension, showFallback, color]);
+  const styles = useMemo(
+    () => ({
+      backgroundColor: showFallback ? color : "transparent",
+    }),
+    [showFallback, color],
+  );
 
   useEffect(() => {
     setImgError(false);
@@ -48,11 +26,12 @@ export const Avatar = memo((props) => {
   }, []);
 
   return (
-    <div className={classNames(["avatar", className])} style={styles}>
+    <div
+      className={classNames(["avatar", `avatar--${size}`, className])}
+      style={styles}
+    >
       {showFallback ? (
-        <span className="avatar__initials">
-          {initials}
-        </span>
+        <span className="avatar__initials">{initials}</span>
       ) : (
         <img
           className="avatar__image"

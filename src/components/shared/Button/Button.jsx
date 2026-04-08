@@ -3,29 +3,51 @@ import { classNames } from "@utils";
 import { Icon } from "@shared";
 import "./styles/Button.scss";
 
+const SIZES = {
+  sm: "button--sm",
+  md: "button--md",
+  lg: "button--lg",
+};
+
 const VARIANTS = {
   primary: "button--primary",
   secondary: "button--secondary",
   tertiary: "button--tertiary",
+  promo: "button--promo",
+  overlay: "button--overlay",
 };
 
-export const Button = (props) => {
-  const {
-    children,
-    type = "button",
-    variant = "",
-    className = "",
-    onClick = () => {},
-    iconLeft,
-    iconRight,
-    disabled = false,
-    ...restProps
-  } = props;
+const THEMES = {
+  purple: "button--purple",
+  gradient: "button--gradient",
+};
+
+export const Button = ({
+  className = "",
+  size = "md",
+  type = "button",
+  variant = "primary",
+  theme = "",
+  onClick = () => {},
+  iconLeft,
+  iconRight,
+  disabled = false,
+  children,
+  ...restProps
+}) => {
+  const isPromo = variant === "promo";
+  const themeClass = isPromo ? THEMES[theme] : "";
 
   return (
     <button
       type={type}
-      className={classNames(["button", VARIANTS[variant], className])}
+      className={classNames([
+        "button",
+        SIZES[size],
+        VARIANTS[variant],
+        themeClass,
+        className,
+      ])}
       onClick={onClick}
       disabled={disabled}
       {...restProps}

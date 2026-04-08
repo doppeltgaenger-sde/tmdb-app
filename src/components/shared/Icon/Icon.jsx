@@ -2,13 +2,7 @@ import PropTypes from "prop-types";
 import { classNames } from "@utils";
 import ICONS from "./icons";
 
-export const Icon = (props) => {
-  const { 
-    name, 
-    className = "", 
-    ...restProps
-  } = props;
-
+export const Icon = ({ className = "", name, ...restProps }) => {
   if (!ICONS[name]) {
     return null;
   }

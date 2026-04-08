@@ -8,6 +8,20 @@
   overflow: hidden;
 }
 
+.avatar--sm {
+  min-width: 48px;
+  max-width: 48px;
+  min-height: 48px;
+  max-height: 48px;
+}
+
+.avatar--md {
+  min-width: 56px;
+  max-width: 56px;
+  min-height: 56px;
+  max-height: 56px;
+}
+
 .avatar__initials {
   font-size: 18px;
   color: v.$neutral--0;

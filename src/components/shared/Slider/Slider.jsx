@@ -7,14 +7,12 @@ import "./styles/Slider.scss";
 
 const DRAG_RESET_DELAY = 200;
 
-export const Slider = (props) => {
-  const {
-    children,
-    className,
-    resetOnChange,
-    options = {},
-  } = props;
-
+export const Slider = ({
+  children,
+  className,
+  resetOnChange,
+  options = {},
+}) => {
   const { isMobileLg } = useViewport();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -86,9 +84,7 @@ export const Slider = (props) => {
       <div ref={emblaRef} className="slider__body">
         <div className="slider__items">
           {React.Children.map(children, (child) => (
-            <div className="slider__item">
-              {child}
-            </div>
+            <div className="slider__item">{child}</div>
           ))}
         </div>
       </div>
