@@ -1,6 +1,6 @@
-import { getYear, getColorFromId, getTextColor } from "@utils"; 
-import { MediaBackdropLayer, MediaMeta } from "@blocks"; 
-import { Average, Button } from "@shared"; 
+import { getYear, getColorFromId, getTextColor } from "@utils";
+import { MediaBackdropLayer, MediaMeta } from "@blocks";
+import { Average, Button } from "@shared";
 import "./styles/MediaHero.scss";
 
 const IMAGE_BASE = "https://media.themoviedb.org/t/p/w300_and_h450_face";
@@ -45,10 +45,7 @@ export const MediaHero = ({
   };
 
   return (
-    <section
-      className="media-hero"
-      style={{ color: textColor }}
-    >
+    <section className="media-hero" style={{ color: textColor }}>
       <MediaBackdropLayer {...backdropProps} />
 
       <div className="container">
@@ -61,10 +58,7 @@ export const MediaHero = ({
                 ${IMAGE_BASE}${poster_path} 1x,
                 ${IMAGE_BASE_2X}${poster_path} 2x
               `}
-              alt={name 
-                ? `${name} film poster` 
-                : "tmdb film poster"
-              }
+              alt={name ? `${name} film poster` : "tmdb film poster"}
               loading="lazy"
             />
           </div>
@@ -79,27 +73,19 @@ export const MediaHero = ({
 
             <Average {...averageProps} />
 
-            <Button 
-              className="media-hero__play-button" 
+            <Button
+              className="media-hero__play-button"
               variant="overlay"
               iconLeft="play"
             >
               Play Trailer
             </Button>
 
-            {tagline && (
-              <p className="media-hero__tagline">
-                {tagline}
-              </p>
-            )}
+            {tagline && <p className="media-hero__tagline">{tagline}</p>}
 
             <div className="media-hero__overview">
-              <h2 className="media-hero__overview-title">
-                Overview
-              </h2>
-              <p className="media-hero__overview-description">
-                {description}
-              </p>
+              <h2 className="media-hero__overview-title">Overview</h2>
+              <p className="media-hero__overview-description">{description}</p>
             </div>
           </div>
         </div>

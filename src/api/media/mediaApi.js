@@ -44,9 +44,7 @@ const RENT_PARAMS = {
   sort_by: "popularity.desc",
 };
 
-export const fetchMedia = async (props) => {
-  const { type, category, page = 1 } = props;
-
+export const fetchMediaApi = async ({ type, category, page = 1 }) => {
   let endpoint = "";
   const params = { page };
 
@@ -116,5 +114,46 @@ export const fetchMedia = async (props) => {
         results: attachMediaType(response.data.results, config.media_type),
       },
     };
+  }
+};
+
+export const fetchReleaseDates = async (id, mediaType = "movie") => {
+  const endpoint =
+    mediaType === "tv"
+      ? `/${mediaType}/${id}/content_ratings`
+      : `/${mediaType}/${id}/release_dates`;
+
+  const response = await apiClient.get(endpoint);
+
+  return response.data.results || [];
+};
+
+export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
+  const endpoint = `/${mediaType}/${id}`;
+
+  const params = {
+    append_to_response: "videos,credits,similar",
+  };
+
+  try {
+    const [detailsRes, release_dates] = await Promise.all([
+      apiClient.get(endpoint, { params }),
+      fetchReleaseDates(id, mediaType),
+    ]);
+
+    const details = detailsRes.data;
+
+    return {
+      details,
+      release_dates,
+    };
+  } catch (e) {
+    console.error("fetchMediaFullDetailsApi:", {
+      id,
+      mediaType,
+      error: e,
+    });
+
+    throw e;
   }
 };

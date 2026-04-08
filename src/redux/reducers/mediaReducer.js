@@ -2,6 +2,9 @@ import {
   FETCH_MEDIA_TRACK_START,
   FETCH_MEDIA_TRACK_SUCCESS,
   FETCH_MEDIA_TRACK_ERROR,
+  FETCH_MEDIA_DETAILS_START,
+  FETCH_MEDIA_DETAILS_SUCCESS,
+  FETCH_MEDIA_DETAILS_ERROR,
 } from "@actions/mediaActions";
 
 const initialState = {
@@ -96,6 +99,11 @@ const initialState = {
       },
     },
   },
+
+  mediaDetails: {
+    movie: {},
+    tv: {},
+  },
 };
 
 export const mediaReducer = (state = initialState, action) => {
@@ -129,7 +137,6 @@ export const mediaReducer = (state = initialState, action) => {
           [track]: {
             ...state.mediaTracks[track],
             [tab]: {
-              ...state.mediaTracks[track][tab],
               data,
               loading: false,
               error: null,
@@ -151,6 +158,68 @@ export const mediaReducer = (state = initialState, action) => {
             ...state.mediaTracks[track],
             [tab]: {
               ...state.mediaTracks[track][tab],
+              loading: false,
+              error,
+              isLoaded: true,
+            },
+          },
+        },
+      };
+    }
+
+    case FETCH_MEDIA_DETAILS_START: {
+      const { mediaType, id } = action.payload;
+
+      const prevState = state.mediaDetails[mediaType]?.[id];
+
+      return {
+        ...state,
+        mediaDetails: {
+          ...state.mediaDetails,
+          [mediaType]: {
+            ...state.mediaDetails[mediaType],
+            [id]: {
+              data: prevState?.data || null,
+              loading: true,
+              error: null,
+              isLoaded: prevState?.isLoaded || false,
+            },
+          },
+        },
+      };
+    }
+
+    case FETCH_MEDIA_DETAILS_SUCCESS: {
+      const { mediaType, id, data } = action.payload;
+
+      return {
+        ...state,
+        mediaDetails: {
+          ...state.mediaDetails,
+          [mediaType]: {
+            ...state.mediaDetails[mediaType],
+            [id]: {
+              data,
+              loading: false,
+              error: null,
+              isLoaded: true,
+            },
+          },
+        },
+      };
+    }
+
+    case FETCH_MEDIA_DETAILS_ERROR: {
+      const { mediaType, id, error } = action.payload;
+
+      return {
+        ...state,
+        mediaDetails: {
+          ...state.mediaDetails,
+          [mediaType]: {
+            ...state.mediaDetails[mediaType],
+            [id]: {
+              data: null,
               loading: false,
               error,
               isLoaded: true,

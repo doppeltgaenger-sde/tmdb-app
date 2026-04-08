@@ -1,15 +1,11 @@
 export const getCertification = (releaseDates, country = "US") => {
   if (!releaseDates?.length) return "";
 
-  const region = releaseDates.find(
-    (r) => r.iso_3166_1 === country
-  );
+  const region = releaseDates.find((r) => r.iso_3166_1 === country);
 
   if (!region) return "";
 
-  const cert = region.release_dates?.find(
-    (r) => r.certification
-  );
+  const cert = region.release_dates?.find((r) => r.certification);
 
   return cert?.certification || "";
 };

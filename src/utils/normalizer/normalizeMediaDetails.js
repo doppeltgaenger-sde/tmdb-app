@@ -1,9 +1,6 @@
-import { getCertification } from "@utils"; 
+import { getCertification } from "@utils";
 
-export const normalizeMediaDetails = ({
-  details: item,
-  release_dates,
-}) => {
+export const normalizeMediaDetails = ({ details: item, release_dates }) => {
   const name = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const poster = item.poster_path || item.backdrop_path;
@@ -13,16 +10,11 @@ export const normalizeMediaDetails = ({
 
   const runtime =
     item.runtime ||
-    (Array.isArray(item.episode_run_time)
-      ? item.episode_run_time[0]
-      : null);
+    (Array.isArray(item.episode_run_time) ? item.episode_run_time[0] : null);
 
   const genres = item.genres?.map((g) => g.name) || [];
 
-  const certification = getCertification(
-    release_dates,
-    "US"
-  );
+  const certification = getCertification(release_dates, "US");
 
   return {
     id: item.id,

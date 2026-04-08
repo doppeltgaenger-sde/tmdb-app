@@ -9,7 +9,7 @@ export const MediaDetails = () => {
   const dispatch = useDispatch();
 
   const detailsState = useSelector(
-    (state) => state.media.mediaDetails?.[mediaType]?.[id]
+    (state) => state.media.mediaDetails?.[mediaType]?.[id],
   );
 
   const isInitialLoading =
@@ -32,9 +32,5 @@ export const MediaDetails = () => {
     return <div className="media-details">Something went wrong</div>;
   }
 
-  return (
-    <div className="media-details">
-      {data && <MediaHero {...data} />}
-    </div>
-  );
+  return <div className="media-details">{data && <MediaHero {...data} />}</div>;
 };

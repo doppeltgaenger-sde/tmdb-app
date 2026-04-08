@@ -1,4 +1,4 @@
-import { fetchMedia } from "@api";
+import { fetchMediaApi, fetchMediaDetailsApi } from "@api";
 import {
   startGlobalLoading,
   stopGlobalLoading,
@@ -8,8 +8,11 @@ import {
   fetchMediaTrackStart,
   fetchMediaTrackSuccess,
   fetchMediaTrackError,
+  fetchMediaDetailsStart,
+  fetchMediaDetailsSuccess,
+  fetchMediaDetailsError,
 } from "@actions/mediaActions";
-import { normalizeMediaData } from "@utils";
+import { normalizeMediaData, normalizeMediaDetails } from "@utils";
 
 export const fetchMediaTrack = (track, tab, page = 1) => {
   return async (dispatch, getState) => {
@@ -30,7 +33,7 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
     try {
       dispatch(fetchMediaTrackStart(track, tab));
 
-      const response = await fetchMedia({
+      const response = await fetchMediaApi({
         type: tab,
         category: track,
         page,
@@ -47,6 +50,31 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
         dispatch(stopGlobalLoading());
         dispatch(setAppInitialized(true));
       }
+    }
+  };
+};
+
+export const fetchMediaDetails = ({ mediaType, id }) => {
+  return async (dispatch, getState) => {
+    const state = getState();
+    const detailsState = state.media.mediaDetails?.[mediaType]?.[id];
+
+    if (detailsState?.loading) return;
+    if (detailsState?.data) return;
+
+    try {
+      dispatch(fetchMediaDetailsStart(mediaType, id));
+
+      const response = await fetchMediaDetailsApi({
+        mediaType,
+        id,
+      });
+
+      const data = normalizeMediaDetails(response);
+
+      dispatch(fetchMediaDetailsSuccess(mediaType, id, data));
+    } catch (error) {
+      dispatch(fetchMediaDetailsError(mediaType, id, error.message));
     }
   };
 };
