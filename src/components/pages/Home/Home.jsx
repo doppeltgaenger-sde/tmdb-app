@@ -14,9 +14,12 @@ import {
 export const Home = () => {
   const dispatch = useDispatch();
 
-  const onLoadContent = useCallback((track, tab) => {
-    dispatch(fetchMediaTrack(track, tab));
-  }, [dispatch]);
+  const onLoadContent = useCallback(
+    (track, tab) => {
+      dispatch(fetchMediaTrack(track, tab));
+    },
+    [dispatch],
+  );
 
   return (
     <div className="home">

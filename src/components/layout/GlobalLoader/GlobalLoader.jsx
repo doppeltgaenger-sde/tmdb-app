@@ -36,10 +36,5 @@ export const GlobalLoader = () => {
 
   if (!visible) return null;
 
-  return (
-    <div 
-      className="global-loader" 
-      style={{ width: `${progress}%` }} 
-    />
-  );
+  return <div className="global-loader" style={{ width: `${progress}%` }} />;
 };
