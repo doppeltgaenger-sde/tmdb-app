@@ -25,12 +25,22 @@ export const MediaDetails = () => {
   }, [dispatch, mediaType, id]);
 
   if (isInitialLoading) {
-    return <div className="media-details">Loading...</div>;
+    return (
+      <div className="media-details">Loading...</div>
+    ) 
   }
 
   if (error) {
-    return <div className="media-details">Something went wrong</div>;
+    return (
+      <div className="media-details">Something went wrong</div>
+    ) 
   }
 
-  return <div className="media-details">{data && <MediaHero {...data} />}</div>;
+  return (
+    <div className="media-details">
+      {data && 
+        <MediaHero {...data} />
+      }
+    </div>
+  )
 };

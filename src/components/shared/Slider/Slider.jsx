@@ -89,7 +89,7 @@ export const Slider = ({
         </div>
       </div>
 
-      {!isMobileLg && (
+      {!isMobileLg && 
         <>
           <button
             className={classNames([
@@ -117,7 +117,7 @@ export const Slider = ({
             <Icon className="slider__button-icon" name="chevron-right" />
           </button>
         </>
-      )}
+      }
     </div>
   );
 };

@@ -1,14 +1,17 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
-import { WrapBanner, SignupBanner } from "@blocks";
+import { 
+  WrapBanner, 
+  SignupBanner, 
+  Leaderboard,
+} from "@blocks";
 import { LazyBlock } from "@shared";
 import {
   HomeTrending,
   HomeTrailers,
   HomePopular,
   HomeFree,
-  HomeLeaderboard,
 } from "./components";
 
 export const Home = () => {
@@ -42,7 +45,7 @@ export const Home = () => {
       </LazyBlock>
 
       <SignupBanner />
-      <HomeLeaderboard />
+      <Leaderboard />
     </div>
   );
 };

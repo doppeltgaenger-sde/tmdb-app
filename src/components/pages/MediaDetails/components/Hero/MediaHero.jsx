@@ -23,30 +23,13 @@ export const MediaHero = ({
   const color = getColorFromId(id);
   const textColor = getTextColor(color.r, color.g, color.b);
 
-  const backdropProps = {
-    className: "media-hero__backdrop",
-    color,
-    backdrop_path,
-  };
-
-  const metaProps = {
-    className: "media-hero__meta",
-    certification: certification,
-    releaseDate: date,
-    country: "US",
-    genres,
-    runtime,
-  };
-
-  const averageProps = {
-    className: "media-hero__average",
-    value: vote_average,
-    size: "md",
-  };
-
   return (
     <section className="media-hero" style={{ color: textColor }}>
-      <MediaBackdropLayer {...backdropProps} />
+      <MediaBackdropLayer
+        className="media-hero__backdrop"
+        color={color}
+        backdrop_path={backdrop_path}
+      />
 
       <div className="container">
         <div className="media-hero__body">
@@ -69,9 +52,20 @@ export const MediaHero = ({
               <span className="media-hero__date">({year})</span>
             </h1>
 
-            <MediaMeta {...metaProps} />
+            <MediaMeta
+              className="media-hero__meta"
+              certification={certification}
+              releaseDate={date}
+              country="US"
+              genres={genres}
+              runtime={runtime}
+            />
 
-            <Average {...averageProps} />
+            <Average
+              className="media-hero__average"
+              value={vote_average}
+              size="md"
+            />
 
             <Button
               className="media-hero__play-button"
@@ -81,7 +75,9 @@ export const MediaHero = ({
               Play Trailer
             </Button>
 
-            {tagline && <p className="media-hero__tagline">{tagline}</p>}
+            {tagline && 
+              <p className="media-hero__tagline">{tagline}</p>
+            }
 
             <div className="media-hero__overview">
               <h2 className="media-hero__overview-title">Overview</h2>

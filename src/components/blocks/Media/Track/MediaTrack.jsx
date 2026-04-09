@@ -136,7 +136,7 @@ export const MediaTrack = ({
       <div className="media-track__title-block">
         <h2 className="media-track__title">{title}</h2>
 
-        {tabs && (
+        {tabs && 
           <Tabs
             className="media-track__tabs"
             items={tabs}
@@ -144,7 +144,7 @@ export const MediaTrack = ({
             onChange={onTabChange}
             variant={config.tabsVariant}
           />
-        )}
+        }
       </div>
 
       <div

@@ -58,7 +58,7 @@ export const TrailerModal = ({
             <Loader className="trailer-modal__loader" />
           )}
 
-          {shouldRenderIframe && (
+          {shouldRenderIframe && 
             <iframe
               className={classNames([
                 "trailer-modal__iframe",
@@ -71,7 +71,7 @@ export const TrailerModal = ({
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-          )}
+          }
         </div>
       </div>
     </Modal>

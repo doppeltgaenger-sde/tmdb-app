@@ -4,7 +4,11 @@ import { classNames } from "@utils";
 import { Icon } from "@shared";
 import "./styles/Modal.scss";
 
-export const Modal = ({ isOpen, onClose, children }) => {
+export const Modal = ({ 
+  isOpen, 
+  onClose, 
+  children 
+}) => {
   const modalRef = useRef(null);
   const [isMounted, setIsMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(false);

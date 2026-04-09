@@ -32,7 +32,7 @@ export const Banner = ({
         className,
       ])}
     >
-      {imageSrc && (
+      {imageSrc && 
         <img
           className="banner__background"
           src={imageSrc}
@@ -40,7 +40,7 @@ export const Banner = ({
           loading="lazy"
           decoding="async"
         />
-      )}
+      }
 
       <div className="container">
         <div className="banner__body">{children}</div>

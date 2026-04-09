@@ -1,14 +1,17 @@
-import { classNames } from "@utils";
 import { users } from "@data";
 import { createLeaderboard } from "./model/createLeaderboard";
 import { LeaderboardCard } from "./LeaderboardCard";
 import "./styles/Leaderboard.scss";
 
-export const Leaderboard = ({ className }) => {
-  const { users: rankedUsers, maxAllTime, maxWeek } = createLeaderboard(users);
+export const Leaderboard = () => {
+  const { 
+    users: rankedUsers, 
+    maxAllTime, 
+    maxWeek,
+  } = createLeaderboard(users);
 
   return (
-    <section className={classNames(["leaderboard", className])}>
+    <section className="leaderboard">
       <div className="container">
         <div className="leaderboard__body">
           <div className="leaderboard__title-block">

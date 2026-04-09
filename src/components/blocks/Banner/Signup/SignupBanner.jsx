@@ -15,9 +15,7 @@ export const SignupBanner = () => {
   } = bannerData;
 
   const { lead: desktopLead, features: desktopFeatures } = desktop;
-
   const { lead: mobileLead, features: mobileFeatures } = mobile;
-
   const { isMobileLg } = useViewport();
 
   return (

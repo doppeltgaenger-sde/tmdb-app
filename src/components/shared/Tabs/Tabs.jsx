@@ -130,7 +130,7 @@ export const Tabs = ({
           <Icon className="tabs-dropdown__icon" name="chevron-tab" />
         </button>
 
-        {isOpen && (
+        {isOpen && 
           <div
             className={classNames([
               "tabs-dropdown__items",
@@ -148,13 +148,13 @@ export const Tabs = ({
               >
                 <span className="tabs-dropdown__label">{item.label}</span>
 
-                {item.value === active && (
+                {item.value === active && 
                   <Icon className="tabs-dropdown__icon" name="chevron-tab" />
-                )}
+                }
               </button>
             ))}
           </div>
-        )}
+        }
       </div>
     );
   }

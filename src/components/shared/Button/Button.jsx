@@ -52,15 +52,15 @@ export const Button = ({
       disabled={disabled}
       {...restProps}
     >
-      {iconLeft && (
+      {iconLeft && 
         <Icon className="button__icon button__icon--left" name={iconLeft} />
-      )}
+      }
 
       <span className="button__content">{children}</span>
 
-      {iconRight && (
+      {iconRight && 
         <Icon className="button__icon button__icon--right" name={iconRight} />
-      )}
+      }
     </button>
   );
 };

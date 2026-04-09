@@ -5,71 +5,69 @@ import "./styles/TrailerCard.scss";
 const IMAGE_BASE = "https://image.tmdb.org/t/p/w355_and_h200_multi_faces";
 const IMAGE_BASE_2X = "https://image.tmdb.org/t/p/w710_and_h400_multi_faces";
 
-export const TrailerCard = memo(
-  ({
-    name,
-    description,
-    backdrop_path,
-    isSkeleton,
-    onClick,
-    onMouseEnter,
-    ...trailerData
-  }) => {
-    const handleClick = useCallback(() => {
-      if (!isSkeleton && onClick) {
-        onClick(trailerData);
-      }
-    }, [isSkeleton, onClick, trailerData]);
+export const TrailerCard = memo(({
+  name,
+  description,
+  backdrop_path,
+  isSkeleton,
+  onClick,
+  onMouseEnter,
+  ...trailerData
+}) => {
+  const handleClick = useCallback(() => {
+    if (!isSkeleton && onClick) {
+      onClick(trailerData);
+    }
+  }, [isSkeleton, onClick, trailerData]);
 
-    const handleMouseEnter = () => {
-      if (!isSkeleton && onMouseEnter) {
-        onMouseEnter(trailerData);
-      }
-    };
+  const handleMouseEnter = () => {
+    if (!isSkeleton && onMouseEnter) {
+      onMouseEnter(trailerData);
+    }
+  };
 
-    const renderBackdrop = () => {
-      const showSkeleton = isSkeleton || !backdrop_path;
+  const renderBackdrop = () => {
+    const showSkeleton = isSkeleton || !backdrop_path;
 
-      if (showSkeleton) {
-        return (
-          <Icon
-            className="trailer-card__placeholder"
-            name="media-placeholder"
-          />
-        );
-      }
-
+    if (showSkeleton) {
       return (
-        <>
-          <img
-            className="trailer-card__backdrop-image"
-            src={`${IMAGE_BASE}${backdrop_path}`}
-            srcSet={`
+        <Icon
+          className="trailer-card__placeholder"
+          name="media-placeholder"
+        />
+      );
+    }
+
+    return (
+      <>
+        <img
+          className="trailer-card__backdrop-image"
+          src={`${IMAGE_BASE}${backdrop_path}`}
+          srcSet={`
             ${IMAGE_BASE}${backdrop_path} 1x,
             ${IMAGE_BASE_2X}${backdrop_path} 2x
           `}
-            alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
-            loading="lazy"
-          />
+          alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
+          loading="lazy"
+        />
 
-          <Icon className="trailer-card__overlay" name="trailer-overlay" />
-        </>
-      );
-    };
-
-    return (
-      <div
-        className="trailer-card"
-        onClick={handleClick}
-        onMouseEnter={handleMouseEnter}
-      >
-        <div className="trailer-card__backdrop">{renderBackdrop()}</div>
-
-        <div className="trailer-card__content">
-          <h3 className="trailer-card__name">{name}</h3>
-          <p className="trailer-card__description">{description}</p>
-        </div>
-      </div>
+        <Icon className="trailer-card__overlay" name="trailer-overlay" />
+      </>
     );
-  },
-);
+  };
+
+  return (
+    <div
+      className="trailer-card"
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
+    >
+      <div className="trailer-card__backdrop">{renderBackdrop()}</div>
+
+      <div className="trailer-card__content">
+        <h3 className="trailer-card__name">{name}</h3>
+        <p className="trailer-card__description">{description}</p>
+      </div>
+    </div>
+  );
+});

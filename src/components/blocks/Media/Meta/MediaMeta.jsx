@@ -19,32 +19,32 @@ export const MediaMeta = ({
 
   return (
     <div className={classNames(["media-meta", className])}>
-      {(certification || date) && (
+      {(certification || date) && 
         <span className="media-meta__item media-meta__item--release-date">
-          {certification && (
+          {certification && 
             <span className="media-meta__certification">{certification}</span>
-          )}
+          }
 
-          {date && (
+          {date && 
             <span className="media-meta__date">
               {date}
-              {country && ` (${country})`}
+              {country && `(${country})`}
             </span>
-          )}
+          }
         </span>
-      )}
+      }
 
-      {genresContent && (
+      {genresContent && 
         <span className="media-meta__item media-meta__item--genres">
           {genresContent}
         </span>
-      )}
+      }
 
-      {runtimeContent && (
+      {runtimeContent && 
         <span className="media-meta__item media-meta__item--runtime">
           {runtimeContent}
         </span>
-      )}
+      }
     </div>
   );
 };

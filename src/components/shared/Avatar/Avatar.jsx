@@ -2,7 +2,13 @@ import { memo, useState, useEffect, useMemo, useCallback } from "react";
 import { classNames, getInitials } from "@utils";
 import "./styles/Avatar.scss";
 
-export const Avatar = memo(({ className, src, name, color, size = "md" }) => {
+export const Avatar = memo(({ 
+  className, 
+  src, 
+  name, 
+  color, 
+  size = "md" 
+}) => {
   const [imgError, setImgError] = useState(false);
   const showFallback = !src || imgError;
 
