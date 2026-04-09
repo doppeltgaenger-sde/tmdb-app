@@ -29,7 +29,6 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "format": "prettier --write .",
     "lint:styles": "stylelint 'src/**/*.{scss,css}'"
   },
   "eslintConfig": {
@@ -49,8 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "prettier": "^3.8.1"
   }
 }
