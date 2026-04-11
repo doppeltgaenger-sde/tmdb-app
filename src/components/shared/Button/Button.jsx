@@ -23,12 +23,13 @@ const THEMES = {
 };
 
 export const Button = ({
+  as: Component = "button",
   className = "",
   size = "md",
   type = "button",
   variant = "primary",
   theme = "",
-  onClick = () => {},
+  onClick,
   iconLeft,
   iconRight,
   disabled = false,
@@ -37,38 +38,43 @@ export const Button = ({
 }) => {
   const isPromo = variant === "promo";
   const themeClass = isPromo ? THEMES[theme] : "";
+  const isButton = Component === "button";
 
   return (
-    <button
-      type={type}
+    <Component
+      type={isButton ? type : undefined}
       className={classNames([
         "button",
         SIZES[size],
         VARIANTS[variant],
         themeClass,
+        disabled && "button--disabled",
         className,
       ])}
       onClick={onClick}
-      disabled={disabled}
+      disabled={isButton ? disabled : undefined}
+      aria-disabled={!isButton && disabled ? true : undefined}
       {...restProps}
     >
-      {iconLeft && 
+      {iconLeft && (
         <Icon className="button__icon button__icon--left" name={iconLeft} />
-      }
+      )}
 
       <span className="button__content">{children}</span>
 
-      {iconRight && 
+      {iconRight && (
         <Icon className="button__icon button__icon--right" name={iconRight} />
-      }
-    </button>
+      )}
+    </Component>
   );
 };
 
 Button.propTypes = {
+  as: PropTypes.elementType,
   children: PropTypes.node,
   onClick: PropTypes.func,
   className: PropTypes.string,
   variant: PropTypes.string,
+  size: PropTypes.string,
   disabled: PropTypes.bool,
 };

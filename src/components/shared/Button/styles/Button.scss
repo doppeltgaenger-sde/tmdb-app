@@ -146,20 +146,24 @@
 }
 
 .button--overlay {
+  padding: 0;
+  min-width: auto;
+  height: fit-content;
   background: transparent;
   color: v.$neutral--0;
+  box-shadow: none;
 
   &:hover,
   &:focus {
-    opacity: 0.6;
+    color: rgba(v.$neutral--0, 0.6);
   }
 
   &:active {
-    opacity: 0.8;
+    color: rgba(v.$neutral--0, 0.8);
   }
 
   &:disabled {
-    opacity: 0.4;
+    color: rgba(v.$neutral--0, 0.4);
   }
 }
 
