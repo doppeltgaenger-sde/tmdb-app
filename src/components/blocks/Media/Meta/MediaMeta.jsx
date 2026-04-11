@@ -1,4 +1,11 @@
-import { classNames, formatRuntime, formatGenres, formatDate } from "@utils";
+import { 
+  classNames, 
+  formatRuntime, 
+  formatGenresList, 
+  formatDate 
+} from "@utils";
+import { Link } from "react-router-dom";
+import { Button } from "@shared";
 import "./styles/MediaMeta.scss";
 
 export const MediaMeta = ({
@@ -10,10 +17,10 @@ export const MediaMeta = ({
   runtime,
 }) => {
   const date = formatDate(releaseDate);
-  const genresContent = formatGenres(genres);
   const runtimeContent = formatRuntime(runtime);
+  const genresList = formatGenresList(genres);
 
-  const hasMeta = certification || date || genresContent || runtimeContent;
+  const hasMeta = certification || date || genresList || runtimeContent;
 
   if (!hasMeta) return null;
 
@@ -34,15 +41,27 @@ export const MediaMeta = ({
         </span>
       }
 
-      {genresContent && 
-        <span className="media-meta__item media-meta__item--genres">
-          {genresContent}
-        </span>
-      }
-
       {runtimeContent && 
         <span className="media-meta__item media-meta__item--runtime">
           {runtimeContent}
+        </span>
+      }
+
+      {genresList  && 
+        <span className="media-meta__item media-meta__item--genres">
+          {genresList.map(({ name, separator }, index) => (
+            <span className="media-meta__genre" key={index}>
+              <Button
+                className="media-meta__genre-button"
+                as={Link}
+                to={`/`}
+                variant="overlay"
+              >
+                {name}
+              </Button>
+              {separator}
+            </span>
+          ))}
         </span>
       }
     </div>

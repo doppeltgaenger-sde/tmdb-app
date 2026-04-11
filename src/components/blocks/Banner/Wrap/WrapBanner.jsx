@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useViewport } from "@hooks";
+import { Link } from "react-router-dom";
 import { Button } from "@shared";
 import { bannerData } from "./data/bannerData";
 import "./styles/WrapBanner.scss";
@@ -32,10 +33,12 @@ export const WrapBanner = () => {
 
           <Button
             className="wrap-banner__button"
+            as={Link} 
+            to="https://www.themoviedb.org/2025"
+            target="_blank"
             size="lg"
             variant="promo"
             theme="gradient"
-            href="https://www.themoviedb.org/2025"
             iconRight="arrow-right"
           >
             Check it out

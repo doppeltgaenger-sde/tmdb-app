@@ -1,0 +1,17 @@
+.media-crew {
+  display: flex;
+  gap: 24px;
+}
+
+.media-crew__name,
+.media-crew__jobs {
+  white-space: nowrap;
+}
+
+.media-crew__name {
+  font-weight: 700;
+}
+
+.media-crew__jobs {
+  font-size: 14px;
+}
