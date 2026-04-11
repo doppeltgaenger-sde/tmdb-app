@@ -1,5 +1,12 @@
+import { useState } from "react";
+import { useViewport } from "@hooks";
 import { getYear, getColorFromId, getTextColor } from "@utils";
-import { MediaBackdropLayer, MediaMeta } from "@blocks";
+import { 
+  MediaBackdropLayer, 
+  MediaMeta, 
+  MediaCrew, 
+  TrailerModal,
+} from "@blocks";
 import { Average, Button } from "@shared";
 import "./styles/MediaHero.scss";
 
@@ -18,17 +25,25 @@ export const MediaHero = ({
   runtime,
   genres,
   certification,
+  crew,
+  mediaType
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isMobileLg } = useViewport();
+
   const year = getYear(date);
   const color = getColorFromId(id);
   const textColor = getTextColor(color.r, color.g, color.b);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <section className="media-hero" style={{ color: textColor }}>
       <MediaBackdropLayer
         className="media-hero__backdrop"
-        color={color}
         backdrop_path={backdrop_path}
+        color={color}
       />
 
       <div className="container">
@@ -49,8 +64,32 @@ export const MediaHero = ({
           <div className="media-hero__content">
             <h1 className="media-hero__title">
               <span className="media-hero__name">{name}</span>
-              <span className="media-hero__date">({year})</span>
+              <span className="media-hero__date"> ({year})</span>
             </h1>
+            
+            <div className="media-hero__attractions">
+              <div className="media-hero__average-block">
+                <Average
+                  className="media-hero__average"
+                  value={vote_average}
+                  size={isMobileLg ? "md" : "lg"}
+                />
+
+                <h3 className="media-hero__average-label">
+                  <span className="block-text">User</span>
+                  <span className="block-text">Score</span>
+                </h3>
+              </div>
+
+              <Button
+                className="media-hero__play-button"
+                variant="overlay"
+                iconLeft="play"
+                onClick={openModal}
+              >
+                Play Trailer
+              </Button>
+            </div>
 
             <MediaMeta
               className="media-hero__meta"
@@ -61,20 +100,6 @@ export const MediaHero = ({
               runtime={runtime}
             />
 
-            <Average
-              className="media-hero__average"
-              value={vote_average}
-              size="md"
-            />
-
-            <Button
-              className="media-hero__play-button"
-              variant="overlay"
-              iconLeft="play"
-            >
-              Play Trailer
-            </Button>
-
             {tagline && 
               <p className="media-hero__tagline">{tagline}</p>
             }
@@ -83,9 +108,22 @@ export const MediaHero = ({
               <h2 className="media-hero__overview-title">Overview</h2>
               <p className="media-hero__overview-description">{description}</p>
             </div>
+
+            <MediaCrew 
+              className="media-hero__crew"
+              crew={crew}
+            />
           </div>
         </div>
       </div>
+
+      <TrailerModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        mediaId={id}
+        mediaType={mediaType}
+        title={name}
+      />
     </section>
   );
 };
