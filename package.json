@@ -29,7 +29,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "lint:styles": "stylelint 'src/**/*.{scss,css}'"
+    "lint:styles": "stylelint 'src/**/*.{scss,css}'",
+    "proxy": "https://tmdb-app-fawn.vercel.app"
   },
   "eslintConfig": {
     "extends": [

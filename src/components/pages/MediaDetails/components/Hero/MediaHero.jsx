@@ -1,6 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useViewport } from "@hooks";
-import { getYear, getColorFromId, getTextColor } from "@utils";
+import { 
+  getYear, 
+  getColorFromId, 
+  getTextColor,
+  normalizeColor,
+  rgbToHsl,
+  getColorFromCache,
+  setColorToCache,
+} from "@utils";
 import { 
   MediaBackdropLayer, 
   MediaMeta, 
@@ -29,11 +37,55 @@ export const MediaHero = ({
   mediaType
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [color, setColor] = useState(() => getColorFromId(id));
   const { isMobileLg } = useViewport();
 
   const year = getYear(date);
-  const color = getColorFromId(id);
-  const textColor = getTextColor(color.r, color.g, color.b);
+
+  const posterUrl = poster_path
+    ? `${IMAGE_BASE}${poster_path}`
+    : null;
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (!posterUrl) return;
+
+    const cached = getColorFromCache(posterUrl);
+
+    if (cached) {
+      setColor(cached.hsl);
+      return;
+    }
+
+    const fetchColor = async () => {
+      try {
+        const res = await fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`);
+        if (!res.ok) throw new Error("failed");
+
+        const rgb = await res.json();
+        const normalized = normalizeColor(rgb);
+        const hsl = rgbToHsl(normalized);
+
+        setColorToCache(posterUrl, { hsl });
+
+        if (!isMounted) return;
+
+        setColor(hsl);
+
+      } catch {
+        console.error("COLOR API FAILED");
+      }
+    };
+
+    fetchColor();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [posterUrl]);
+
+  const textColor = getTextColor(color.h, color.s, color.l);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
