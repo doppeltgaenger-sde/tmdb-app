@@ -1,4 +1,4 @@
-import { getCertification } from "@utils";
+import { getCertification, getTopCrew } from "@utils";
 
 export const normalizeMediaDetails = ({ details: item, release_dates }) => {
   const name = item.title || item.name;
@@ -16,6 +16,9 @@ export const normalizeMediaDetails = ({ details: item, release_dates }) => {
 
   const certification = getCertification(release_dates, "US");
 
+  const crew = item.credits?.crew || [];
+  const topCrew = getTopCrew(crew);
+
   return {
     id: item.id,
     name,
@@ -30,5 +33,6 @@ export const normalizeMediaDetails = ({ details: item, release_dates }) => {
     genres,
     media_type: mediaType,
     certification,
+    crew: topCrew,
   };
 };
