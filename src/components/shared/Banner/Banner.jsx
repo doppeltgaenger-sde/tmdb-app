@@ -5,8 +5,7 @@ import "./styles/Banner.scss";
 const IMAGE_VARIANTS = {
   default: "https://image.tmdb.org/t/p/w1280",
   blue: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,00192f,00baff)",
-  purple:
-    "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)",
+  purple: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)",
 };
 
 export const Banner = ({

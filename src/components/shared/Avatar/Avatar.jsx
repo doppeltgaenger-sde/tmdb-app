@@ -9,8 +9,8 @@ export const Avatar = memo(({
   color, 
   size = "md" 
 }) => {
-  const [imgError, setImgError] = useState(false);
-  const showFallback = !src || imgError;
+  const [imageError, setImageError] = useState(false);
+  const showFallback = !src || imageError;
 
   const initials = useMemo(() => {
     return getInitials(name?.trim() || "?");
@@ -24,11 +24,11 @@ export const Avatar = memo(({
   );
 
   useEffect(() => {
-    setImgError(false);
+    setImageError(false);
   }, [src]);
 
   const handleError = useCallback(() => {
-    setImgError(true);
+    setImageError(true);
   }, []);
 
   return (
