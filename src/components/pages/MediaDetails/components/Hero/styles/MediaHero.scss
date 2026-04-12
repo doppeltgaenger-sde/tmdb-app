@@ -131,6 +131,7 @@
 
 .media-hero__average-label {
   font-size: 14px;
+  font-weight: 700;
 
   @include m.break-reverse(768) {
     font-size: 16px;

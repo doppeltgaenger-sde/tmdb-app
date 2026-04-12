@@ -87,10 +87,10 @@ export const MediaHero = ({
                   size={isMobileLg ? "md" : "lg"}
                 />
 
-                <h3 className="media-hero__average-label">
+                <p className="media-hero__average-label">
                   <span className="block-text">User</span>
                   <span className="block-text">Score</span>
-                </h3>
+                </p>
               </div>
 
               <Button
