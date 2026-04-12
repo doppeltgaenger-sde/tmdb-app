@@ -128,32 +128,56 @@ export const fetchReleaseDates = async (id, mediaType = "movie") => {
   return response.data.results || [];
 };
 
+// export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
+//   const endpoint = `/${mediaType}/${id}`;
+//   const params = {
+//     append_to_response: "videos,credits,similar",
+//   };
+
+//   try {
+//     const detailsRes = await apiClient.get(endpoint, { params });
+//     const details = detailsRes.data;
+//     const posterUrl = `https://image.tmdb.org/t/p/w92${details.poster_path}`;
+//     const colorApiUrl = `/api/color?url=${encodeURIComponent(posterUrl)}`;
+
+//     const [release_dates, rawOverlay] = await Promise.all([
+//       fetchReleaseDates(id, mediaType),
+//       apiClient.get(colorApiUrl).catch(() => ({ data: { r: 20, g: 20, b: 20 } })) 
+//     ]);
+
+//     return {
+//       details,
+//       release_dates,
+//       overlay: rawOverlay.data,
+//     };
+//   } catch (e) {
+//     console.error("fetchMediaFullDetailsApi Error:", e);
+//     throw e;
+//   }
+// };
+
 export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
   const endpoint = `/${mediaType}/${id}`;
-
-  const params = {
-    append_to_response: "videos,credits,similar",
-  };
+  const params = { append_to_response: "videos,credits,similar" };
 
   try {
-    const [detailsRes, release_dates] = await Promise.all([
-      apiClient.get(endpoint, { params }),
-      fetchReleaseDates(id, mediaType),
-    ]);
+    const { data: details } = await apiClient.get(endpoint, { params });
+    const posterUrl = `https://image.tmdb.org/t/p/w45${details.poster_path}`;
 
-    const details = detailsRes.data;
+    const [release_dates, overlay] = await Promise.all([
+      fetchReleaseDates(id, mediaType),
+      fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`)
+        .then(res => res.ok ? res.json() : null)
+        .catch(() => null)
+    ]);
 
     return {
       details,
       release_dates,
+      overlay: overlay || { r: 20, g: 20, b: 20 },
     };
   } catch (e) {
-    console.error("fetchMediaFullDetailsApi:", {
-      id,
-      mediaType,
-      error: e,
-    });
-
+    console.error("fetchMediaFullDetailsApi Error:", e);
     throw e;
   }
 };
