@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useViewport } from "@hooks";
 import { 
+  classNames,
   getYear, 
-  getColorFromId, 
   getTextColor,
-  normalizeColor,
-  rgbToHsl,
-  getColorFromCache,
-  setColorToCache,
 } from "@utils";
 import { 
   MediaBackdropLayer, 
@@ -34,68 +30,32 @@ export const MediaHero = ({
   genres,
   certification,
   crew,
-  mediaType
+  mediaType,
+  overlay,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [color, setColor] = useState(() => getColorFromId(id));
   const { isMobileLg } = useViewport();
 
   const year = getYear(date);
 
-  const posterUrl = poster_path
-    ? `${IMAGE_BASE}${poster_path}`
-    : null;
-
-  useEffect(() => {
-    let isMounted = true;
-
-    if (!posterUrl) return;
-
-    const cached = getColorFromCache(posterUrl);
-
-    if (cached) {
-      setColor(cached.hsl);
-      return;
-    }
-
-    const fetchColor = async () => {
-      try {
-        const res = await fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`);
-        if (!res.ok) throw new Error("failed");
-
-        const rgb = await res.json();
-        const normalized = normalizeColor(rgb);
-        const hsl = rgbToHsl(normalized);
-
-        setColorToCache(posterUrl, { hsl });
-
-        if (!isMounted) return;
-
-        setColor(hsl);
-
-      } catch {
-        console.error("COLOR API FAILED");
-      }
-    };
-
-    fetchColor();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [posterUrl]);
-
-  const textColor = getTextColor(color.h, color.s, color.l);
+  const textColor = getTextColor(overlay.h, overlay.s, overlay.l);
+  const textVariant = textColor === "#000" ? "dark-text" : "light-text";
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <section className="media-hero" style={{ color: textColor }}>
+    <section 
+      className={classNames([
+        "media-hero", 
+        `media-hero--${textVariant}`,
+      ])}
+      style={{ color: textColor }}
+    >
       <MediaBackdropLayer
         className="media-hero__backdrop"
         backdrop_path={backdrop_path}
-        color={color}
+        overlay={overlay}
       />
 
       <div className="container">
@@ -108,8 +68,8 @@ export const MediaHero = ({
                 ${IMAGE_BASE}${poster_path} 1x,
                 ${IMAGE_BASE_2X}${poster_path} 2x
               `}
-              alt={name ? `${name} film poster` : "tmdb film poster"}
-              loading="lazy"
+              alt={name}
+              loading="eager" 
             />
           </div>
 

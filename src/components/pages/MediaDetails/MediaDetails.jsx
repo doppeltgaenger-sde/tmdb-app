@@ -32,7 +32,7 @@ export const MediaDetails = () => {
 
   if (error) {
     return (
-      <div className="media-details">Something went wrong</div>
+      <div className="media-details">Something went wrong. Please try again later...</div>
     ) 
   }
 
