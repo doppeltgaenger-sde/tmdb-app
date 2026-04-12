@@ -1,6 +1,12 @@
-import { getCertification, getTopCrew } from "@utils";
+import { 
+  getCertification, 
+  getTopCrew, 
+  normalizeColor, 
+  rgbToHsl, 
+  getColorFromId 
+} from "@utils";
 
-export const normalizeMediaDetails = ({ details: item, release_dates }) => {
+export const normalizeMediaDetails = ({ details: item, release_dates, overlay }) => {
   const name = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const poster = item.poster_path || item.backdrop_path;
@@ -13,11 +19,13 @@ export const normalizeMediaDetails = ({ details: item, release_dates }) => {
     (Array.isArray(item.episode_run_time) ? item.episode_run_time[0] : null);
 
   const genres = item.genres?.map((g) => g.name) || [];
-
   const certification = getCertification(release_dates, "US");
-
   const crew = item.credits?.crew || [];
   const topCrew = getTopCrew(crew);
+
+  const overlayTheme = overlay 
+    ? rgbToHsl(normalizeColor(overlay)) 
+    : getColorFromId(item.id);
 
   return {
     id: item.id,
@@ -34,5 +42,6 @@ export const normalizeMediaDetails = ({ details: item, release_dates }) => {
     media_type: mediaType,
     certification,
     crew: topCrew,
+    overlay: overlayTheme,
   };
 };
