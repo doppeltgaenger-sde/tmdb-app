@@ -35,7 +35,7 @@ export const MediaMeta = ({
           {date && 
             <span className="media-meta__date">
               {date}
-              {country && `(${country})`}
+              {country && ` (${country})`}
             </span>
           }
         </span>
