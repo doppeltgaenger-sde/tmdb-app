@@ -1,3 +1,5 @@
+import { formatDate } from "@utils";
+
 export const normalizeMediaData = (item) => {
   const name = item.title || item.name;
   const date = item.release_date || item.first_air_date;
@@ -9,9 +11,9 @@ export const normalizeMediaData = (item) => {
   return {
     id: item.id,
     name: name,
-    date: date,
-    poster_path: poster,
-    backdrop_path: backdrop,
+    date: formatDate(date),
+    posterPath: poster,
+    backdropPath: backdrop,
     vote_average: item.vote_average,
     description: description,
     media_type: mediaType,
