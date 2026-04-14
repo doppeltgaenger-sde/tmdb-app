@@ -1,0 +1,11 @@
+@use "@styles/abstracts/mixins" as m;
+
+.stats-group__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @include m.break-reverse(768) {
+    gap: 16px;
+  }
+}

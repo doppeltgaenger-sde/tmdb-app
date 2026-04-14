@@ -1,0 +1,13 @@
+@use "@styles/abstracts/variables" as v;
+
+.keywords-group__title {
+  margin: 0 0 12px;
+  font: 600 18px / 1 v.$source-sans;
+}
+
+.keywords-group__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}

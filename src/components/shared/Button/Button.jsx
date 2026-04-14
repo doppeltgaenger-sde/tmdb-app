@@ -15,6 +15,8 @@ const VARIANTS = {
   tertiary: "button--tertiary",
   promo: "button--promo",
   overlay: "button--overlay",
+  keyword: "button--keyword",
+  social: "button--social",
 };
 
 const THEMES = {

@@ -24,6 +24,10 @@
   }
 }
 
+.button--sm {
+  height: 24px;
+}
+
 .button--md {
   height: 32px;
 
@@ -76,9 +80,10 @@
   }
 }
 
-.button--tertiary {
+.button--tertiary,
+.button--keyword {
   background: v.$neutral--30;
-  color: v.$primary--50;
+  color: v.$neutral--100;
 
   &:hover,
   &:focus {
@@ -145,14 +150,18 @@
   }
 }
 
-.button--overlay {
+.button--overlay,
+.button--social {
   padding: 0;
   min-width: auto;
   height: fit-content;
   background: transparent;
-  color: v.$neutral--0;
   border-radius: unset;
   box-shadow: none;
+}
+
+.button--overlay {
+  color: v.$neutral--0;
 
   &:hover,
   &:focus {
@@ -165,6 +174,38 @@
 
   &:disabled {
     color: rgba(v.$neutral--0, 0.4);
+  }
+}
+
+.button--keyword {
+  padding: 0 8px;
+  min-width: auto;
+  font-size: 12px;
+  font-weight: 400;
+  border: 1px solid v.$neutral--50;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.button--social {
+  color: v.$neutral--100;
+
+  &:hover,
+  &:focus {
+    color: v.$secondary--25;
+  }
+
+  &:active {
+    background: v.$secondary--100;
+  }
+
+  &:disabled {
+    background: v.$secondary--0;
+  }
+
+  .button__icon {
+    width: 32px;
+    height: 32px;
   }
 }
 
