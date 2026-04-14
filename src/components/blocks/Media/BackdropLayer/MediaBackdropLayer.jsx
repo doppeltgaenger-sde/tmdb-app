@@ -8,15 +8,15 @@ const IMAGE_BASE_DT = "https://media.themoviedb.org/t/p/w1920_and_h800_multi_fac
 export const MediaBackdropLayer = ({ 
   className, 
   overlay, 
-  backdrop_path,
+  backdropPath,
 }) => {
   const { isMobileLg } = useViewport();
   const imageBase = isMobileLg ? IMAGE_BASE_MB : IMAGE_BASE_DT;
   const overlayGradients = buildOverlay(overlay);
   const gradientVariant = isMobileLg ? overlayGradients.mobile : overlayGradients.desktop;
 
-  const imageUrl = backdrop_path 
-    ? `${imageBase}${backdrop_path}` 
+  const imageUrl = backdropPath 
+    ? `${imageBase}${backdropPath}` 
     : null;
 
   return (

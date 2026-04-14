@@ -1,5 +1,5 @@
-import { classNames } from "@utils";
 import { Link } from "react-router-dom";
+import { classNames } from "@utils";
 import { Button } from "@shared";
 import "./styles/MediaCrew.scss";
 

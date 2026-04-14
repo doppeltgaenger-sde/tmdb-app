@@ -8,7 +8,7 @@ const IMAGE_BASE_2X = "https://image.tmdb.org/t/p/w710_and_h400_multi_faces";
 export const TrailerCard = memo(({
   name,
   description,
-  backdrop_path,
+  backdropPath,
   isSkeleton,
   onClick,
   onMouseEnter,
@@ -27,7 +27,7 @@ export const TrailerCard = memo(({
   };
 
   const renderBackdrop = () => {
-    const showSkeleton = isSkeleton || !backdrop_path;
+    const showSkeleton = isSkeleton || !backdropPath;
 
     if (showSkeleton) {
       return (
@@ -42,10 +42,10 @@ export const TrailerCard = memo(({
       <>
         <img
           className="trailer-card__backdrop-image"
-          src={`${IMAGE_BASE}${backdrop_path}`}
+          src={`${IMAGE_BASE}${backdropPath}`}
           srcSet={`
-            ${IMAGE_BASE}${backdrop_path} 1x,
-            ${IMAGE_BASE_2X}${backdrop_path} 2x
+            ${IMAGE_BASE}${backdropPath} 1x,
+            ${IMAGE_BASE_2X}${backdropPath} 2x
           `}
           alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
           loading="lazy"

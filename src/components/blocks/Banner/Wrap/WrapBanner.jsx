@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { useViewport } from "@hooks";
 import { Link } from "react-router-dom";
+import { useViewport } from "@hooks";
 import { Button } from "@shared";
 import { bannerData } from "./data/bannerData";
 import "./styles/WrapBanner.scss";
