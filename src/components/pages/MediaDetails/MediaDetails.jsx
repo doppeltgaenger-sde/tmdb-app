@@ -2,11 +2,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchMediaDetails } from "@thunk";
-import { MediaHero } from "./components";
+import { useViewport } from "@hooks";
+import { 
+  MediaHero, 
+  MediaSocials, 
+  MediaStats, 
+  MediaKeywords, 
+} from "./components";
+import "./styles/MediaDetails.scss";
 
 export const MediaDetails = () => {
   const { mediaType, id } = useParams();
+  const { isMobileLg } = useViewport();
   const dispatch = useDispatch();
+
+  const AsideTag = isMobileLg ? "div" : "aside";
 
   const detailsState = useSelector(
     (state) => state.media.mediaDetails?.[mediaType]?.[id],
@@ -38,9 +48,21 @@ export const MediaDetails = () => {
 
   return (
     <div className="media-details">
-      {data && 
-        <MediaHero {...data} />
-      }
+      <MediaHero {...data} />
+
+      <div className="container">
+        <div className="media-details__body">
+          <div className="media-details__main">
+
+          </div>
+
+          <AsideTag className="media-details__aside">
+            <MediaSocials {...data} />
+            <MediaStats {...data} />
+            <MediaKeywords {...data} />
+          </AsideTag>
+        </div>
+      </div>
     </div>
   )
 };

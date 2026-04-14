@@ -46,7 +46,7 @@
 
 .media-hero__body {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   padding: calc(100vw / 3 + 40px) 0 20px;
 
   @include m.break-reverse(768) {

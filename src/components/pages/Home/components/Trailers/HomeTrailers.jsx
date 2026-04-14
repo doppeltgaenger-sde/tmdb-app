@@ -32,7 +32,7 @@ export const HomeTrailers = () => {
 
   useEffect(() => {
     if (data.length) {
-      setActiveBackdrop(data[0].backdrop_path);
+      setActiveBackdrop(data[0].backdropPath);
     }
   }, [data]);
 
@@ -57,14 +57,14 @@ export const HomeTrailers = () => {
   };
 
   const handleCardHover = useCallback((trailer) => {
-    if (trailer?.backdrop_path) {
-      setActiveBackdrop(trailer.backdrop_path);
+    if (trailer?.backdropPath) {
+      setActiveBackdrop(trailer.backdropPath);
     }
   }, []);
 
   const handleCardActivate = useCallback((trailer) => {
-    if (trailer?.backdrop_path) {
-      setActiveBackdrop(trailer.backdrop_path);
+    if (trailer?.backdropPath) {
+      setActiveBackdrop(trailer.backdropPath);
     }
 
     setActiveMedia({

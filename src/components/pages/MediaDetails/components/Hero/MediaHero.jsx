@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useViewport } from "@hooks";
-import { 
-  classNames,
-  getYear, 
-  getTextColor,
-} from "@utils";
+import { classNames, getTextColor } from "@utils";
 import { 
   MediaBackdropLayer, 
   MediaMeta, 
@@ -20,23 +16,23 @@ const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/w600_and_h900_face";
 export const MediaHero = ({
   id,
   name,
-  date,
-  vote_average,
-  tagline,
+  fullDate,
+  yearDate,
+  posterPath,
+  backdropPath,
+  voteAverage,
   description,
-  backdrop_path,
-  poster_path,
+  tagline,
+  mediaType,
   runtime,
+  country,
   genres,
   certification,
   crew,
-  mediaType,
   overlay,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isMobileLg } = useViewport();
-
-  const year = getYear(date);
 
   const textColor = getTextColor(overlay.h, overlay.s, overlay.l);
   const textVariant = textColor === "#000" ? "dark-text" : "light-text";
@@ -54,7 +50,7 @@ export const MediaHero = ({
     >
       <MediaBackdropLayer
         className="media-hero__backdrop"
-        backdrop_path={backdrop_path}
+        backdropPath={backdropPath}
         overlay={overlay}
       />
 
@@ -63,10 +59,10 @@ export const MediaHero = ({
           <div className="media-hero__poster">
             <img
               className="media-hero__poster-image"
-              src={`${IMAGE_BASE}${poster_path}`}
+              src={`${IMAGE_BASE}${posterPath}`}
               srcSet={`
-                ${IMAGE_BASE}${poster_path} 1x,
-                ${IMAGE_BASE_2X}${poster_path} 2x
+                ${IMAGE_BASE}${posterPath} 1x,
+                ${IMAGE_BASE_2X}${posterPath} 2x
               `}
               alt={name}
               loading="eager" 
@@ -76,14 +72,14 @@ export const MediaHero = ({
           <div className="media-hero__content">
             <h1 className="media-hero__title">
               <span className="media-hero__name">{name}</span>
-              <span className="media-hero__date"> ({year})</span>
+              <span className="media-hero__date"> ({yearDate})</span>
             </h1>
             
             <div className="media-hero__attractions">
               <div className="media-hero__average-block">
                 <Average
                   className="media-hero__average"
-                  value={vote_average}
+                  value={voteAverage}
                   size={isMobileLg ? "md" : "lg"}
                 />
 
@@ -106,8 +102,8 @@ export const MediaHero = ({
             <MediaMeta
               className="media-hero__meta"
               certification={certification}
-              releaseDate={date}
-              country="US"
+              date={fullDate}
+              country={country}
               genres={genres}
               runtime={runtime}
             />
