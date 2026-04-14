@@ -35,11 +35,7 @@ $pink: #efafbb;
 $orange: #fdc170;
 $red: #d93b63;
 
-$gradient--primary: linear-gradient(
-  90deg,
-  $tertiary--0 0%,
-  $tertiary--100 100%
-);
+$gradient--primary: linear-gradient(90deg, $tertiary--0 0%, $tertiary--100 100%);
 $gradient--secondary: linear-gradient(90deg, $orange 0%, $red 100%);
 $gradient--tertiary: linear-gradient(90deg, $secondary--25, $tertiary--50);
 
