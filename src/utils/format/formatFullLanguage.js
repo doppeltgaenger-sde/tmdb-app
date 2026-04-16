@@ -1,4 +1,4 @@
-const languageNames = new Intl.DisplayNames(['en'], { type: 'language' });
+const languageNames = new Intl.DisplayNames(["en"], { type: "language" });
 
 export const formatFullLanguage = (code) => {
   if (!code) return "";
