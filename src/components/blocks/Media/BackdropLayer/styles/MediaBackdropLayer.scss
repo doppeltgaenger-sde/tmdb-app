@@ -9,21 +9,14 @@
   z-index: 1;
   width: 100%;
   height: calc(100vw / 3 + 40px);
-  background-position: calc((100vw * 0.45 - 20px) / 3) 0%;
+  background-position: calc((100vw / 6.666666) - (20px / 3)) 0%;
   background-size: cover;
+  background-repeat: no-repeat;
 
   @include m.break-reverse(768) {
     z-index: inherit;
     height: 100%;
-    background-position: calc((100vw * 0.35 - 20px) / 3) 0%;
-  }
-
-  @include m.break-reverse(992) {
-    background-position: calc((100vw * 0.25 - 20px) / 3) 0%;
-  }
-
-  @include m.break-reverse(1440) {
-    background-position: calc((100vw * 0.45 - 20px) / 3) 0%;
+    background-position: calc(50vw - 510px) 0%;
   }
 }
 

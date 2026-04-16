@@ -3,7 +3,7 @@ import { classNames } from "@utils";
 import { Button } from "@shared";
 import "./styles/MediaCrew.scss";
 
-export const MediaCrew = ({ className, crew = [] }) => {
+export const MediaCrew = ({ className, crew = [], theme }) => {
   if (!crew.length) return null;
 
   return (
@@ -16,6 +16,7 @@ export const MediaCrew = ({ className, crew = [] }) => {
               as={Link} 
               to={`/`}
               variant="overlay"
+              theme={theme}
             >
               {person.name}
             </Button>

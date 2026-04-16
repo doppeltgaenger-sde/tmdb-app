@@ -1,5 +1,6 @@
 import { memo } from "react";
-import { Avatar, MetricBar } from "@shared";
+import { Link } from "react-router-dom";
+import { Button, Avatar, MetricBar } from "@shared";
 import { useInView } from "@hooks";
 import "./styles/LeaderboardCard.scss";
 
@@ -25,7 +26,17 @@ export const LeaderboardCard = memo(({
       />
 
       <div className="leaderboard-card__content">
-        <h3 className="leaderboard-card__username">{username}</h3>
+        <h3 className="leaderboard-card__username">
+          <Button 
+            className="leaderboard-card__button" 
+            as={Link} 
+            to={`/`}
+            variant="overlay"
+            theme="dark"
+          >
+            {username}
+          </Button>
+        </h3>
 
         <MetricBar
           className="leaderboard-card__metric-bar"

@@ -1,21 +1,22 @@
 @use "@styles/abstracts/variables" as v;
 
 .leaderboard-card {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
-  cursor: pointer;
-
-  &:hover {
-    .leaderboard-card__username {
-      color: v.$tertiary--100;
-    }
-  }
 }
 
-.leaderboard-card__username {
+.leaderboard-card__button {
+  position: static;
   font: 600 18px / 1 v.$source-sans;
-  transition: v.$transition--base;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
 }
 
 .leaderboard-card__content {

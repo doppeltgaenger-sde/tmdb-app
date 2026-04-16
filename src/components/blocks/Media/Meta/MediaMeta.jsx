@@ -10,6 +10,7 @@ export const MediaMeta = ({
   country,
   genres,
   runtime,
+  theme,
 }) => {
   const hasMeta = certification || date || genres || runtime;
 
@@ -47,6 +48,7 @@ export const MediaMeta = ({
                 as={Link}
                 to={`/`}
                 variant="overlay"
+                theme={theme}
               >
                 {name}
               </Button>

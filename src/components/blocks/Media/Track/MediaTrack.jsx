@@ -14,6 +14,7 @@ const TRACK_VARIANTS = {
   },
   trailers: {
     tabsVariant: "inverted",
+    sliderVariant: "inverted",
   },
 };
 
@@ -25,6 +26,7 @@ export const MediaTrack = ({
   onTabChange,
   onCardHover,
   onCardActivate,
+  onScrollStateChange,
   CardComponent = PosterCard,
   variant = "default",
 }) => {
@@ -154,7 +156,13 @@ export const MediaTrack = ({
           isFadingOut && "media-track__items--fading",
         ])}
       >
-        <Slider resetOnChange={activeTab}>{renderMedia()}</Slider>
+        <Slider 
+          resetOnChange={activeTab}
+          variant={config.tabsVariant}
+          onScrollStateChange={onScrollStateChange}
+        >
+          {renderMedia()}
+        </Slider>
       </div>
     </div>
   );
