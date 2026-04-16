@@ -6,15 +6,8 @@ import "./styles/SocialsGroup.scss";
 export const SocialsGroup = ({ className, socials = [] }) => {
   if (!socials.length) return null;
 
-    console.log(socials);
-
   return (
-    <section
-      className={classNames([
-        "socials-group", 
-        className,
-      ])}
-    >
+    <section className={classNames([ "socials-group", className ])}>
       {socials.map((social) => (
 
         <Button
@@ -22,7 +15,9 @@ export const SocialsGroup = ({ className, socials = [] }) => {
           key={social.name}
           as={Link} 
           to={social.url}
+          target="_blank"
           variant="social"
+          theme="dark"
           size="sm"
         >
           <Icon className="button__icon socials-group__icon" name={social.name} />

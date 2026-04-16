@@ -3,33 +3,42 @@
 
 .slider {
   position: relative;
+}
 
-  &:hover {
-    .slider__button {
-      &:not(.slider__button--disabled) {
-        opacity: 1;
-      }
-    }
+.slider--inverted {
+  .slider__overlay--left {
+    background: linear-gradient(90deg, rgba(v.$primary--50, 0.9), transparent);
   }
 
-  &:has(.slider__button--prev:hover:not(.slider__button--disabled)) {
-    .slider__button--next {
-      opacity: 0;
-    }
+  .slider__overlay--right {
+    background: linear-gradient(270deg, rgba(v.$primary--50, 0.9), transparent);
   }
+}
 
-  &:has(.slider__button--next:hover:not(.slider__button--disabled)) {
-    .slider__button--prev {
-      opacity: 0;
-    }
-  }
+.slider__overlay {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 60px;
+  height: 100vh;
+  opacity: 0;
+  transition: v.$transition--base;
+  pointer-events: none;
+}
 
-  &:has(.slider__body--dragging) {
-    .slider__button {
-      opacity: 0 !important;
-      pointer-events: none;
-    }
-  }
+.slider__overlay--left {
+  left: -20px;
+  background: linear-gradient(90deg, rgba(v.$neutral--0, 0.9), transparent);
+}
+
+.slider__overlay--right {
+  right: -20px;
+  background: linear-gradient(270deg, rgba(v.$neutral--0, 0.9), transparent);
+}
+
+.slider__overlay--visible {
+  opacity: 1;
 }
 
 .slider__body {
@@ -49,54 +58,7 @@
   flex: 0 0 auto;
 }
 
-.slider__button {
-  position: absolute;
-  top: v.$slider-top-padding;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: v.$backdrop-height--poster;
-  background: rgba(v.$neutral--100, 0.65);
-  border: none;
-  opacity: 0;
-  transition: v.$transition--long;
-  cursor: pointer;
-
-  &:hover {
-    .slider__button-icon {
-      transform: scale(1.2);
-    }
-  }
-}
-
 .slider__button--disabled {
   opacity: 0;
   pointer-events: none;
-}
-
-.slider__button--prev {
-  left: -20px;
-  background: linear-gradient(270deg, v.$neutral--0, rgba(v.$neutral--0, 0));
-  border-radius: 0 8px 8px 0;
-
-  @include m.break-reverse(1440) {
-    left: 0;
-  }
-}
-
-.slider__button--next {
-  right: -20px;
-  background: linear-gradient(90deg, v.$neutral--0, rgba(v.$neutral--0, 0));
-  border-radius: 8px 0 0 8px;
-
-  @include m.break-reverse(1440) {
-    right: 0;
-  }
-}
-
-.slider__button-icon {
-  width: 16px;
-  fill: rgba(v.$neutral--0, 0.9);
-  transition: v.$transition--long;
 }

@@ -2,6 +2,7 @@ export * from "./Avatar/Avatar";
 export * from "./Average/Average";
 export * from "./Banner/Banner";
 export * from "./Button/Button";
+export * from "./Charts/ChartTooltip";
 export * from "./Icon/Icon";
 export * from "./Keywords/KeywordsGroup";
 export * from "./LazyBlock/LazyBlock";

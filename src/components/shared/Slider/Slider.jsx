@@ -1,20 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { useViewport } from "@hooks";
 import { classNames } from "@utils";
-import { Icon } from "@shared";
 import "./styles/Slider.scss";
-
-const DRAG_RESET_DELAY = 200;
 
 export const Slider = ({
   children,
   className,
   resetOnChange,
   options = {},
+  variant,
+  onScrollStateChange,
 }) => {
-  const { isMobileLg } = useViewport();
-
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "center",
     dragFree: true,
@@ -28,12 +24,8 @@ export const Slider = ({
 
   const updateNavigationState = useCallback(() => {
     if (!emblaApi) return;
-
-    const prev = emblaApi.canScrollPrev();
-    const next = emblaApi.canScrollNext();
-
-    setCanScrollPrev((p) => (p !== prev ? prev : p));
-    setCanScrollNext((n) => (n !== next ? next : n));
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
   }, [emblaApi]);
 
   useEffect(() => {
@@ -42,45 +34,51 @@ export const Slider = ({
     updateNavigationState();
 
     emblaApi.on("select", updateNavigationState);
+    emblaApi.on("scroll", updateNavigationState); 
     emblaApi.on("reInit", updateNavigationState);
 
     return () => {
       emblaApi.off("select", updateNavigationState);
+      emblaApi.off("scroll", updateNavigationState);
       emblaApi.off("reInit", updateNavigationState);
     };
   }, [emblaApi, updateNavigationState]);
+
+  useEffect(() => {
+    if (!emblaApi || !onScrollStateChange) return;
+
+    const handleScrollStart = () => onScrollStateChange(true);
+    const handleScrollEnd = () => onScrollStateChange(false);
+
+    emblaApi.on("pointerDown", handleScrollStart);
+    emblaApi.on("settle", handleScrollEnd);
+
+    return () => {
+      emblaApi.off("pointerDown", handleScrollStart);
+      emblaApi.off("settle", handleScrollEnd);
+    };
+  }, [emblaApi, onScrollStateChange]);
 
   useEffect(() => {
     if (!emblaApi) return;
     emblaApi.scrollTo(0);
   }, [resetOnChange, emblaApi]);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const rootNode = emblaApi.rootNode();
-
-    const handlePointerDown = () => {
-      rootNode.classList.add("slider__body--dragging");
-    };
-
-    const handlePointerUp = () => {
-      setTimeout(() => {
-        rootNode.classList.remove("slider__body--dragging");
-      }, DRAG_RESET_DELAY);
-    };
-
-    emblaApi.on("pointerDown", handlePointerDown);
-    emblaApi.on("pointerUp", handlePointerUp);
-
-    return () => {
-      emblaApi.off("pointerDown", handlePointerDown);
-      emblaApi.off("pointerUp", handlePointerUp);
-    };
-  }, [emblaApi]);
-
   return (
-    <div className={classNames(["slider", className])}>
+    <div 
+    className={classNames([
+      "slider", 
+      `slider--${variant}`,
+      className,
+    ])}
+    >
+      <div 
+        className={classNames([
+          "slider__overlay slider__overlay--left", 
+          canScrollPrev && "slider__overlay--visible"
+        ])} 
+      />
+
       <div ref={emblaRef} className="slider__body">
         <div className="slider__items">
           {React.Children.map(children, (child) => (
@@ -89,35 +87,12 @@ export const Slider = ({
         </div>
       </div>
 
-      {!isMobileLg && 
-        <>
-          <button
-            className={classNames([
-              "slider__button",
-              "slider__button--prev",
-              !canScrollPrev && "slider__button--disabled",
-            ])}
-            onClick={() => emblaApi?.scrollPrev()}
-            disabled={!canScrollPrev}
-            aria-label="Previous slide"
-          >
-            <Icon className="slider__button-icon" name="chevron-left" />
-          </button>
-
-          <button
-            className={classNames([
-              "slider__button",
-              "slider__button--next",
-              !canScrollNext && "slider__button--disabled",
-            ])}
-            onClick={() => emblaApi?.scrollNext()}
-            disabled={!canScrollNext}
-            aria-label="Next slide"
-          >
-            <Icon className="slider__button-icon" name="chevron-right" />
-          </button>
-        </>
-      }
+      <div 
+        className={classNames([
+          "slider__overlay slider__overlay--right", 
+          canScrollNext && "slider__overlay--visible",
+        ])}
+      />
     </div>
   );
 };

@@ -160,7 +160,7 @@
   box-shadow: none;
 }
 
-.button--overlay {
+.button--light {
   color: v.$neutral--0;
 
   &:hover,
@@ -177,6 +177,23 @@
   }
 }
 
+.button--dark {
+  color: v.$neutral--100;
+
+  &:hover,
+  &:focus {
+    color: rgba(v.$neutral--100, 0.6);
+  }
+
+  &:active {
+    background: rgba(v.$neutral--100, 0.8);
+  }
+
+  &:disabled {
+    background: rgba(v.$neutral--100, 0.4);
+  }
+}
+
 .button--keyword {
   padding: 0 8px;
   min-width: auto;
@@ -188,21 +205,6 @@
 }
 
 .button--social {
-  color: v.$neutral--100;
-
-  &:hover,
-  &:focus {
-    color: v.$secondary--25;
-  }
-
-  &:active {
-    background: v.$secondary--100;
-  }
-
-  &:disabled {
-    background: v.$secondary--0;
-  }
-
   .button__icon {
     width: 32px;
     height: 32px;

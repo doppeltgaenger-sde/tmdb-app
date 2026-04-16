@@ -22,6 +22,14 @@ const VARIANTS = {
 const THEMES = {
   purple: "button--purple",
   gradient: "button--gradient",
+  dark: "button--dark",
+  light: "button--light",
+};
+
+const VARIANT_THEMES = {
+  promo: ["purple", "gradient"],
+  overlay: ["dark", "light"],
+  social: ["dark", "light"],
 };
 
 export const Button = ({
@@ -38,8 +46,8 @@ export const Button = ({
   children,
   ...restProps
 }) => {
-  const isPromo = variant === "promo";
-  const themeClass = isPromo ? THEMES[theme] : "";
+  const isValidTheme = VARIANT_THEMES[variant]?.includes(theme);
+  const themeClass = isValidTheme ? THEMES[theme] : "";
   const isButton = Component === "button";
 
   return (
