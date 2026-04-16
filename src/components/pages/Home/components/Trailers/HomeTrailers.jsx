@@ -15,6 +15,7 @@ export const HomeTrailers = () => {
   const [isFading, setIsFading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(null);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const trackState = useSelector(
     (state) => state.media.mediaTracks.trailersTrack?.[activeTab],
@@ -57,10 +58,12 @@ export const HomeTrailers = () => {
   };
 
   const handleCardHover = useCallback((trailer) => {
+    if (isScrolling) return;
+
     if (trailer?.backdropPath) {
       setActiveBackdrop(trailer.backdropPath);
     }
-  }, []);
+  }, [isScrolling]);
 
   const handleCardActivate = useCallback((trailer) => {
     if (trailer?.backdropPath) {
@@ -95,6 +98,7 @@ export const HomeTrailers = () => {
             CardComponent={TrailerCard}
             onCardHover={handleCardHover}
             onCardActivate={handleCardActivate}
+            onScrollStateChange={setIsScrolling}
             variant="trailers"
           />
         </div>

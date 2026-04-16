@@ -8,6 +8,7 @@ import {
   MediaSocials, 
   MediaStats, 
   MediaKeywords, 
+  MediaChart,
 } from "./components";
 import "./styles/MediaDetails.scss";
 
@@ -60,6 +61,7 @@ export const MediaDetails = () => {
             <MediaSocials {...data} />
             <MediaStats {...data} />
             <MediaKeywords {...data} />
+            <MediaChart {...data} />
           </AsideTag>
         </div>
       </div>

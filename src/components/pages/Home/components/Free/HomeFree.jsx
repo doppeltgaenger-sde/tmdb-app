@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { MediaTrack } from "@blocks";
+import "./styles/HomeFree.scss";
 
 export const HomeFree = () => {
   const dispatch = useDispatch();

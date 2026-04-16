@@ -35,7 +35,7 @@ export const MediaHero = ({
   const { isMobileLg } = useViewport();
 
   const textColor = getTextColor(overlay.h, overlay.s, overlay.l);
-  const textVariant = textColor === "#000" ? "dark-text" : "light-text";
+  const theme = textColor === "#000" ? "dark" : "light";
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -44,7 +44,7 @@ export const MediaHero = ({
     <section 
       className={classNames([
         "media-hero", 
-        `media-hero--${textVariant}`,
+        `media-hero--${theme}`,
       ])}
       style={{ color: textColor }}
     >
@@ -92,6 +92,7 @@ export const MediaHero = ({
               <Button
                 className="media-hero__play-button"
                 variant="overlay"
+                theme={theme}
                 iconLeft="play"
                 onClick={openModal}
               >
@@ -106,6 +107,7 @@ export const MediaHero = ({
               country={country}
               genres={genres}
               runtime={runtime}
+              theme={theme}
             />
 
             {tagline && 
@@ -120,6 +122,7 @@ export const MediaHero = ({
             <MediaCrew 
               className="media-hero__crew"
               crew={crew}
+              theme={theme}
             />
           </div>
         </div>
