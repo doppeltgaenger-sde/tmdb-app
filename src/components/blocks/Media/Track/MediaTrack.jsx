@@ -4,18 +4,13 @@ import { PosterCard } from "@blocks";
 import { Slider, Tabs } from "@shared";
 import "./styles/MediaTrack.scss";
 
-const SKELETON_COUNT = 8;
 const INITIAL_ITEMS = 8;
 const FULL_ITEMS = 20;
+const MIN_LOADING_TIME = 500; 
 
 const TRACK_VARIANTS = {
-  default: {
-    tabsVariant: "default",
-  },
-  trailers: {
-    tabsVariant: "inverted",
-    sliderVariant: "inverted",
-  },
+  default: { tabsVariant: "default" },
+  trailers: { tabsVariant: "inverted", sliderVariant: "inverted" },
 };
 
 export const MediaTrack = ({
@@ -32,21 +27,15 @@ export const MediaTrack = ({
 }) => {
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
   const containerRef = useRef(null);
-  const prevItemsRef = useRef();
   const [displayItems, setDisplayItems] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
+  const loadingStartTimeRef = useRef(null);
 
   useEffect(() => {
     setIsFadingOut(true);
-  }, [activeTab]);
-
-  useEffect(() => {
-    if (prevItemsRef.current !== items) {
-      setIsFadingOut(true);
-      prevItemsRef.current = items;
-    }
-  }, [items]);
+    loadingStartTimeRef.current = Date.now();
+  }, [activeTab, items]);
 
   useEffect(() => {
     if (!isFadingOut) return;
@@ -54,26 +43,30 @@ export const MediaTrack = ({
     const node = containerRef.current;
     if (!node) return;
 
-    let handled = false;
-
     const handleTransitionEnd = (e) => {
-      if (e.target !== node) return;
-      if (e.propertyName !== "opacity") return;
+      if (e.target !== node || e.propertyName !== "opacity") return;
 
-      handled = true;
+      const timePassed = Date.now() - loadingStartTimeRef.current;
+      const remainingTime = Math.max(0, MIN_LOADING_TIME - timePassed);
 
-      setDisplayItems(items);
-      setIsFadingOut(false);
+      setTimeout(() => {
+        setVisibleCount(INITIAL_ITEMS);
+        setDisplayItems(items);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setIsFadingOut(false);
+          });
+        });
+      }, remainingTime);
     };
 
     node.addEventListener("transitionend", handleTransitionEnd);
-
+    
     const fallback = setTimeout(() => {
-      if (handled) return;
-
       setDisplayItems(items);
       setIsFadingOut(false);
-    }, 300);
+    }, MIN_LOADING_TIME + 300);
 
     return () => {
       node.removeEventListener("transitionend", handleTransitionEnd);
@@ -82,9 +75,7 @@ export const MediaTrack = ({
   }, [isFadingOut, items]);
 
   useEffect(() => {
-    if (!displayItems.length) return;
-
-    setVisibleCount(INITIAL_ITEMS);
+    if (isFadingOut || !displayItems.length) return;
 
     let id;
 
@@ -99,25 +90,18 @@ export const MediaTrack = ({
     }
 
     return () => {
-      if ("cancelIdleCallback" in window) {
-        cancelIdleCallback(id);
-      } else {
-        clearTimeout(id);
-      }
+      if ("cancelIdleCallback" in window) cancelIdleCallback(id);
+      else clearTimeout(id);
     };
-  }, [displayItems]);
+  }, [isFadingOut, displayItems]);
 
   const handleHover = useCallback((item) => onCardHover?.(item), [onCardHover]);
-
-  const handleActivate = useCallback(
-    (item) => onCardActivate?.(item),
-    [onCardActivate],
-  );
+  const handleActivate = useCallback((item) => onCardActivate?.(item), [onCardActivate]);
 
   const renderMedia = () => {
     if (!displayItems.length) {
-      return [...Array(SKELETON_COUNT)].map((_, index) => (
-        <CardComponent key={index} isSkeleton />
+      return [...Array(INITIAL_ITEMS)].map((_, index) => (
+        <CardComponent key={`skeleton-${index}`} isSkeleton />
       ));
     }
 
@@ -137,8 +121,7 @@ export const MediaTrack = ({
     <div className={classNames(["media-track", `media-track--${variant}`])}>
       <div className="media-track__title-block">
         <h2 className="media-track__title">{title}</h2>
-
-        {tabs && 
+        {tabs && (
           <Tabs
             className="media-track__tabs"
             items={tabs}
@@ -146,7 +129,7 @@ export const MediaTrack = ({
             onChange={onTabChange}
             variant={config.tabsVariant}
           />
-        }
+        )}
       </div>
 
       <div
@@ -155,6 +138,10 @@ export const MediaTrack = ({
           "media-track__items",
           isFadingOut && "media-track__items--fading",
         ])}
+        style={{ 
+          transition: "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          willChange: "opacity" 
+        }}
       >
         <Slider 
           resetOnChange={activeTab}
