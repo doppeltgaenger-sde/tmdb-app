@@ -5,9 +5,7 @@ import { Slider, Tabs } from "@shared";
 import "./styles/MediaTrack.scss";
 
 const SKELETON_COUNT = 8;
-const INITIAL_ITEMS = 8;
-const FULL_ITEMS = 20;
-const MIN_LOADING_TIME = 500; 
+const MIN_LOADING_TIME = 500;
 
 const TRACK_VARIANTS = {
   default: { tabsVariant: "default" },
@@ -30,7 +28,6 @@ export const MediaTrack = ({
   const containerRef = useRef(null);
   const [displayItems, setDisplayItems] = useState([]);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const loadingStartTimeRef = useRef(null);
 
   useEffect(() => {
@@ -51,7 +48,6 @@ export const MediaTrack = ({
       const remainingTime = Math.max(0, MIN_LOADING_TIME - timePassed);
 
       setTimeout(() => {
-        setVisibleCount(INITIAL_ITEMS);
         setDisplayItems(items);
 
         requestAnimationFrame(() => {
@@ -75,40 +71,17 @@ export const MediaTrack = ({
     };
   }, [isFadingOut, items]);
 
-  useEffect(() => {
-    if (isFadingOut || !displayItems.length) return;
-
-    let id;
-
-    if ("requestIdleCallback" in window) {
-      id = requestIdleCallback(() => {
-        setVisibleCount(FULL_ITEMS);
-      });
-    } else {
-      id = setTimeout(() => {
-        setVisibleCount(FULL_ITEMS);
-      }, 300);
-    }
-
-    return () => {
-      if ("cancelIdleCallback" in window) cancelIdleCallback(id);
-      else clearTimeout(id);
-    };
-  }, [isFadingOut, displayItems]);
-
   const handleHover = useCallback((item) => onCardHover?.(item), [onCardHover]);
   const handleActivate = useCallback((item) => onCardActivate?.(item), [onCardActivate]);
 
   const renderMedia = () => {
     if (!displayItems.length) {
-      return [...Array(INITIAL_ITEMS)].map((_, index) => (
+      return [...Array(SKELETON_COUNT)].map((_, index) => (
         <CardComponent key={`skeleton-${index}`} isSkeleton />
       ));
     }
 
-    const visibleItems = displayItems.slice(0, visibleCount);
-
-    return visibleItems.map((item) => (
+    return displayItems.map((item) => (
       <CardComponent
         key={item.id}
         {...item}
