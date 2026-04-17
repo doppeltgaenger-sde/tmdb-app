@@ -5,13 +5,16 @@ import { Slider, Tabs } from "@shared";
 import "./styles/MediaTrack.scss";
 
 const SKELETON_COUNT = 8;
-const MIN_LOADING_TIME = 500;
+const INITIAL_ITEMS = 8;
+const FULL_ITEMS = 20;
 
 const TRACK_VARIANTS = {
-  default: { tabsVariant: "default" },
-  trailers: { 
-    tabsVariant: "inverted", 
-    sliderVariant: "inverted" 
+  default: {
+    tabsVariant: "default",
+  },
+  trailers: {
+    tabsVariant: "inverted",
+    sliderVariant: "inverted",
   },
 };
 
@@ -29,14 +32,21 @@ export const MediaTrack = ({
 }) => {
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
   const containerRef = useRef(null);
+  const prevItemsRef = useRef();
   const [displayItems, setDisplayItems] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const loadingStartTimeRef = useRef(null);
 
   useEffect(() => {
     setIsFadingOut(true);
-    loadingStartTimeRef.current = Date.now();
-  }, [activeTab, items]);
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (prevItemsRef.current !== items) {
+      setIsFadingOut(true);
+      prevItemsRef.current = items;
+    }
+  }, [items]);
 
   useEffect(() => {
     if (!isFadingOut) return;
@@ -44,29 +54,26 @@ export const MediaTrack = ({
     const node = containerRef.current;
     if (!node) return;
 
+    let handled = false;
+
     const handleTransitionEnd = (e) => {
-      if (e.target !== node || e.propertyName !== "opacity") return;
+      if (e.target !== node) return;
+      if (e.propertyName !== "opacity") return;
 
-      const timePassed = Date.now() - loadingStartTimeRef.current;
-      const remainingTime = Math.max(0, MIN_LOADING_TIME - timePassed);
+      handled = true;
 
-      setTimeout(() => {
-        setDisplayItems(items);
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setIsFadingOut(false);
-          });
-        });
-      }, remainingTime);
+      setDisplayItems(items);
+      setIsFadingOut(false);
     };
 
     node.addEventListener("transitionend", handleTransitionEnd);
-    
+
     const fallback = setTimeout(() => {
+      if (handled) return;
+
       setDisplayItems(items);
       setIsFadingOut(false);
-    }, MIN_LOADING_TIME + 300);
+    }, 300);
 
     return () => {
       node.removeEventListener("transitionend", handleTransitionEnd);
@@ -74,17 +81,49 @@ export const MediaTrack = ({
     };
   }, [isFadingOut, items]);
 
+  useEffect(() => {
+    if (!displayItems.length) return;
+
+    setVisibleCount(INITIAL_ITEMS);
+
+    let id;
+
+    if ("requestIdleCallback" in window) {
+      id = requestIdleCallback(() => {
+        setVisibleCount(FULL_ITEMS);
+      });
+    } else {
+      id = setTimeout(() => {
+        setVisibleCount(FULL_ITEMS);
+      }, 200);
+    }
+
+    return () => {
+      if ("cancelIdleCallback" in window) {
+        cancelIdleCallback(id);
+      } else {
+        clearTimeout(id);
+      }
+    };
+  }, [displayItems]);
+
   const handleHover = useCallback((item) => onCardHover?.(item), [onCardHover]);
-  const handleActivate = useCallback((item) => onCardActivate?.(item), [onCardActivate]);
+
+  const handleActivate = useCallback(
+    (item) => onCardActivate?.(item),
+    [onCardActivate],
+  );
 
   const renderMedia = () => {
     if (!displayItems.length) {
       return [...Array(SKELETON_COUNT)].map((_, index) => (
-        <CardComponent key={`skeleton-${index}`} isSkeleton />
+        <CardComponent key={index} isSkeleton />
       ));
     }
 
-    return displayItems.map((item) => (
+    const visibleItems = displayItems.slice(0, visibleCount);
+
+    return visibleItems.map((item) => (
       <CardComponent
         key={item.id}
         {...item}
@@ -98,7 +137,8 @@ export const MediaTrack = ({
     <div className={classNames(["media-track", `media-track--${variant}`])}>
       <div className="media-track__title-block">
         <h2 className="media-track__title">{title}</h2>
-        {tabs && (
+
+        {tabs && 
           <Tabs
             className="media-track__tabs"
             items={tabs}
@@ -106,7 +146,7 @@ export const MediaTrack = ({
             onChange={onTabChange}
             variant={config.tabsVariant}
           />
-        )}
+        }
       </div>
 
       <div
