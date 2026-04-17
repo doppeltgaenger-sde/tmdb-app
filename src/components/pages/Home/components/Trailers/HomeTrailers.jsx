@@ -1,14 +1,18 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
+import { useViewport } from "@hooks";
 import { classNames } from "@utils";
 import { MediaTrack, TrailerCard, TrailerModal } from "@blocks";
 import "./styles/HomeTrailers.scss";
 
-const IMAGE_BASE = "https://image.tmdb.org/t/p/w1280";
+const IMAGE_BASE_MB = "https://image.tmdb.org/t/p/w780";
+const IMAGE_BASE_TB = "https://image.tmdb.org/t/p/w1280";
+const IMAGE_BASE_DT = "https://image.tmdb.org/t/p/w1920_and_h600_multi_faces";
 
 export const HomeTrailers = () => {
   const dispatch = useDispatch();
+  const { isTablet, isMobileLg } = useViewport();
   const [activeTab, setActiveTab] = useState("popular");
   const [activeBackdrop, setActiveBackdrop] = useState(null);
   const [visibleBackdrop, setVisibleBackdrop] = useState(null);
@@ -16,6 +20,11 @@ export const HomeTrailers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(null);
   const [isScrolling, setIsScrolling] = useState(false);
+
+  const imageBase = isMobileLg 
+    ? IMAGE_BASE_MB 
+    : isTablet ? IMAGE_BASE_TB
+    : IMAGE_BASE_DT;
 
   const trackState = useSelector(
     (state) => state.media.mediaTracks.trailersTrack?.[activeTab],
@@ -112,7 +121,7 @@ export const HomeTrailers = () => {
           ])}
           style={{
             backgroundImage: visibleBackdrop
-              ? `url(${IMAGE_BASE}${visibleBackdrop})`
+              ? `url(${imageBase}${visibleBackdrop})`
               : "none",
           }}
         />
@@ -125,7 +134,7 @@ export const HomeTrailers = () => {
           ])}
           style={{
             backgroundImage: activeBackdrop
-              ? `url(${IMAGE_BASE}${activeBackdrop})`
+              ? `url(${imageBase}${activeBackdrop})`
               : "none",
           }}
           onTransitionEnd={handleTransitionEnd}
