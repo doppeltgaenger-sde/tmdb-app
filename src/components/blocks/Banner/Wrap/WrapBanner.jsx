@@ -40,6 +40,7 @@ export const WrapBanner = () => {
             variant="promo"
             theme="gradient"
             iconRight="arrow-right"
+            aria-label="TMDB 2025 Year in Review"
           >
             Check it out
           </Button>

@@ -19,6 +19,7 @@ export const SocialsGroup = ({ className, socials = [] }) => {
           variant="social"
           theme="dark"
           size="sm"
+          aria-label={`Visit our official ${social.name}`}
         >
           <Icon className="button__icon socials-group__icon" name={social.name} />
         </Button>

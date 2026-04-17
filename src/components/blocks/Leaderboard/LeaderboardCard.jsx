@@ -33,6 +33,7 @@ export const LeaderboardCard = memo(({
             to={`/`}
             variant="overlay"
             theme="dark"
+            aria-label={`View ${username}'s profile`}
           >
             {username}
           </Button>

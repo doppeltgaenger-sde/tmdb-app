@@ -8,24 +8,29 @@ export const MediaCrew = ({ className, crew = [], theme }) => {
 
   return (
     <div className={classNames(["media-crew", className])}>
-      {crew.map((person) => (
-        <div className="media-crew__item" key={person.id}>
-          <h3 className="media-crew__name">
-            <Button 
-              className="media-crew__button" 
-              as={Link} 
-              to={`/`}
-              variant="overlay"
-              theme={theme}
-            >
-              {person.name}
-            </Button>
-          </h3>
-          <p className="media-crew__jobs">
-            {person.jobs.join(", ")}
-          </p>
-        </div>
-      ))}
+      {crew.map((person) => {
+        const personJob = person.jobs.join(", ");
+
+        return (
+          <div className="media-crew__item" key={person.id}>
+            <h3 className="media-crew__name">
+              <Button 
+                className="media-crew__button" 
+                as={Link} 
+                to={`/`}
+                variant="overlay"
+                theme={theme}
+                aria-label={`${person.name}}, ${personJob}`}
+              >
+                {person.name}
+              </Button>
+            </h3>
+            <p className="media-crew__jobs">
+              {personJob}
+            </p>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -25,6 +25,7 @@ export const KeywordsGroup = ({ className, title, keywords = [] }) => {
               to={`/`}
               variant="keyword"
               size="sm"
+              aria-label={`Search movies by keyword: ${keyword.name}`}
             >
               {keyword.name}
             </Button>

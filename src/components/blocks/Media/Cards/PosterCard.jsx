@@ -48,6 +48,7 @@ export const PosterCard = memo(({
             to={linkTo}
             variant="overlay"
             theme="dark"
+            aria-label={`${name}, ${date}. View details.`}
           >
             {name}
           </Button>

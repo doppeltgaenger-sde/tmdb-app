@@ -49,6 +49,7 @@ export const MediaMeta = ({
                 to={`/`}
                 variant="overlay"
                 theme={theme}
+                aria-label={`Explore more ${name} movies`}
               >
                 {name}
               </Button>
