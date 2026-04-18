@@ -14,6 +14,7 @@ export const PosterCard = memo(({
   date, 
   vote_average, 
   isSkeleton,
+  isPriority,
 }) => {
   const showSkeleton = isSkeleton || !posterPath;
   const linkTo = `/${media_type}/${id}`;
@@ -35,7 +36,9 @@ export const PosterCard = memo(({
               ${IMAGE_BASE_2X}${posterPath} 2x
             `}
             alt={name ? `${name} film poster` : "tmdb film poster"}
-            loading="lazy"
+            loading={isPriority ? "eager" : "lazy"}
+            fetchpriority={isPriority ? "high" : "low"}
+            decoding={isPriority ? "sync" : "async"}
           />
         )}
       </div>

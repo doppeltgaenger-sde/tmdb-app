@@ -14,9 +14,9 @@ export const SignupBanner = () => {
     mobile,
   } = bannerData;
 
+  const { isMobileLg } = useViewport();
   const { lead: desktopLead, features: desktopFeatures } = desktop;
   const { lead: mobileLead, features: mobileFeatures } = mobile;
-  const { isMobileLg } = useViewport();
 
   return (
     <Banner className="signup-banner" variant="purple" backdrops={backdropKeys}>
@@ -68,7 +68,11 @@ const renderMobileContent = (lead, features, label) => {
         ))}
       </ul>
 
-      <Button className="signup-banner__cta-button" variant="primary">
+      <Button
+        className="signup-banner__cta-button"
+        variant="promo"
+        theme="purple"
+      >
         {label}
       </Button>
     </div>

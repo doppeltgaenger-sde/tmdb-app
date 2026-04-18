@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useViewport } from "@hooks";
 import { classNames } from "@utils";
 import { PosterCard } from "@blocks";
 import { Slider, Tabs } from "@shared";
@@ -31,6 +32,9 @@ export const MediaTrack = ({
   const [isFadingOut, setIsFadingOut] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const loadingStartTimeRef = useRef(null);
+  const { isMobileLg, isTablet } = useViewport();
+
+  const priorityThreshold = isMobileLg ? 3 : isTablet ? 5 : 8;
 
   useEffect(() => {
     setIsFadingOut(true);
@@ -107,12 +111,13 @@ export const MediaTrack = ({
 
     const visibleItems = displayItems.slice(0, visibleCount);
 
-    return visibleItems.map((item) => (
+    return visibleItems.map((item, index) => (
       <CardComponent
         key={item.id}
         {...item}
         onMouseEnter={() => handleHover(item)}
         onClick={() => handleActivate(item)}
+        isPriority={index < priorityThreshold}
       />
     ));
   };

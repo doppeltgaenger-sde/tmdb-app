@@ -12,7 +12,6 @@ const IMAGE_BASE_DT = "https://image.tmdb.org/t/p/w1920_and_h600_multi_faces";
 
 export const HomeTrailers = () => {
   const dispatch = useDispatch();
-  const { isTablet, isMobileLg } = useViewport();
   const [activeTab, setActiveTab] = useState("popular");
   const [activeBackdrop, setActiveBackdrop] = useState(null);
   const [visibleBackdrop, setVisibleBackdrop] = useState(null);
@@ -20,6 +19,7 @@ export const HomeTrailers = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(null);
   const [isScrolling, setIsScrolling] = useState(false);
+  const { isTablet, isMobileLg } = useViewport();
 
   const imageBase = isMobileLg 
     ? IMAGE_BASE_MB 

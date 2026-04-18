@@ -21,12 +21,12 @@ export const Tabs = ({
 }) => {
   const containerRef = useRef(null);
   const dropdownRef = useRef(null);
-  const { isMobileLg } = useViewport();
   const [isOpen, setIsOpen] = useState(false);
   const [indicator, setIndicator] = useState({
     width: 0,
     left: 0,
   });
+  const { isMobileLg } = useViewport();
   const viewMode = isMobileLg ? "dropdown" : "tabs";
 
   const normalizedItems = useMemo(() => {

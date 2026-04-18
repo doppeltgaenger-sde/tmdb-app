@@ -17,23 +17,6 @@
   .media-meta__certification {
     border-color: v.$neutral--100;
   }
-
-  .media-meta__genre-button {
-    color: inherit;
-
-    &:hover,
-    &:focus {
-      color: rgba(v.$neutral--100, 0.6);
-    }
-
-    &:active {
-      background: rgba(v.$neutral--100, 0.8);
-    }
-
-    &:disabled {
-      background: rgba(v.$neutral--100, 0.4);
-    }
-  }
 }
 
 .media-hero__backdrop {

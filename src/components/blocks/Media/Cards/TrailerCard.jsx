@@ -12,6 +12,7 @@ export const TrailerCard = memo(({
   isSkeleton,
   onClick,
   onMouseEnter,
+  isPriority,
   ...trailerData
 }) => {
   const handleClick = useCallback(() => {
@@ -48,7 +49,9 @@ export const TrailerCard = memo(({
             ${IMAGE_BASE_2X}${backdropPath} 2x
           `}
           alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
-          loading="lazy"
+          loading={isPriority ? "eager" : "lazy"}
+          fetchpriority={isPriority ? "high" : "low"}
+          decoding={isPriority ? "sync" : "async"}
         />
 
         <Icon className="trailer-card__overlay" name="trailer-overlay" />
