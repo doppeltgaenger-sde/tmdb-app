@@ -1,4 +1,4 @@
-import { fetchMediaApi, fetchMediaDetailsApi } from "@api";
+import { fetchMediaApi, fetchMediaDetailsApi } from "@services";
 import {
   startGlobalLoading,
   stopGlobalLoading,

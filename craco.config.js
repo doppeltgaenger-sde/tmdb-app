@@ -4,9 +4,9 @@ module.exports = {
   webpack: {
     alias: {
       "@data": path.resolve(__dirname, "src/data"),
+      "@services": path.resolve(__dirname, "src/services"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@utils": path.resolve(__dirname, "src/utils"),
-      "@api": path.resolve(__dirname, "src/api"),
       "@actions": path.resolve(__dirname, "src/redux/actions"),
       "@reducers": path.resolve(__dirname, "src/redux/reducers"),
       "@store": path.resolve(__dirname, "src/redux/store"),

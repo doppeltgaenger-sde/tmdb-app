@@ -2,9 +2,9 @@ import Jimp from "jimp";
 import axios from "axios";
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-  res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader("Cache-Control", "s-maxage=86400, stale-while-revalidate");
 
   try {
     const { url } = req.query;
