@@ -1,6 +1,6 @@
-import { users } from "@data";
+import { processedUsers } from "@services";
+import { LeaderboardCard } from "@blocks";
 import { createLeaderboard } from "./model/createLeaderboard";
-import { LeaderboardCard } from "./LeaderboardCard";
 import "./styles/Leaderboard.scss";
 
 export const Leaderboard = () => {
@@ -8,7 +8,7 @@ export const Leaderboard = () => {
     users: rankedUsers, 
     maxAllTime, 
     maxWeek,
-  } = createLeaderboard(users);
+  } = createLeaderboard(processedUsers);
 
   return (
     <section className="leaderboard">

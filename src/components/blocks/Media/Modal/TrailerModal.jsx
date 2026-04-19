@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { fetchTrailer } from "@api";
+import { fetchTrailer } from "@services";
 import { Modal, Loader } from "@shared";
 import { classNames } from "@utils";
 import "./styles/TrailerModal.scss";

@@ -2,6 +2,8 @@ export { MediaBackdropLayer } from "./BackdropLayer/MediaBackdropLayer";
 export { MediaCrew } from "./Crew/MediaCrew";
 export { MediaMeta } from "./Meta/MediaMeta";
 export { PosterCard } from "./Cards/PosterCard";
+export { ReviewCard } from "./Cards/ReviewCard";
 export { TrailerCard } from "./Cards/TrailerCard";
 export { TrailerModal } from "./Modal/TrailerModal";
+export { MediaReview } from "./Review/MediaReview";
 export { MediaTrack } from "./Track/MediaTrack";

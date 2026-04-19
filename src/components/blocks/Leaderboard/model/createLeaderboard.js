@@ -1,5 +1,4 @@
 import { getScore } from "./getScore";
-import { getUserColor } from "@utils";
 
 export const createLeaderboard = (users = [], limit = 10) => {
   let maxAllTime = 1;
@@ -18,7 +17,6 @@ export const createLeaderboard = (users = [], limit = 10) => {
   const rankedUsers = users
     .map((user) => ({
       ...user,
-      color: getUserColor(user.id),
       score: getScore(user),
     }))
     .sort((a, b) => b.score - a.score)

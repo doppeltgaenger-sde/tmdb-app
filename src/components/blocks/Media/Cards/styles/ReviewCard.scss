@@ -1,0 +1,74 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid v.$neutral--10;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(v.$neutral--100, 0.1);
+}
+
+.review-card__header-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.review-card__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 2px;
+
+  @include m.break-reverse(576) {
+    row-gap: 4px;
+    column-gap: 8px;
+  }
+}
+
+.review-card__author {
+  width: 100%;
+  font-size: 20px;
+  line-height: 1;
+
+  @include m.break-reverse(576) {
+    order: 1;
+  }
+}
+
+.review-card__score-bage {
+  @include m.break-reverse(576) {
+    order: 2;
+  }
+}
+
+.review-card__date {
+  margin: 0 0 2px;
+  width: 100%;
+  font: 300 14px / 1 v.$source-sans;
+
+  @include m.break-reverse(576) {
+    order: 3;
+    margin: 0;
+    width: fit-content;
+  }
+}
+
+.review-card__button {
+  display: inline-flex;
+  font-size: inherit;
+}
+
+.review-card__review-title {
+  margin: 0 0 8px;
+}
+
+.review-card__review-text {
+  &:not(:last-of-type) {
+    margin: 0 0 8px;
+  }
+}

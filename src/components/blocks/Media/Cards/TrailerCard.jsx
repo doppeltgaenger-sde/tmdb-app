@@ -50,7 +50,7 @@ export const TrailerCard = memo(({
           `}
           alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
           loading={isPriority ? "eager" : "lazy"}
-          fetchpriority={isPriority ? "high" : "low"}
+          fetchPriority={isPriority ? "high" : "low"}
           decoding={isPriority ? "sync" : "async"}
         />
 

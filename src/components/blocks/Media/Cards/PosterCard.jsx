@@ -37,7 +37,7 @@ export const PosterCard = memo(({
             `}
             alt={name ? `${name} film poster` : "tmdb film poster"}
             loading={isPriority ? "eager" : "lazy"}
-            fetchpriority={isPriority ? "high" : "low"}
+            fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}
           />
         )}
