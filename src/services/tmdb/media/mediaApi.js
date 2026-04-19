@@ -138,12 +138,14 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
 
     const [release_dates, overlay] = await Promise.all([
       fetchReleaseDates(id, mediaType),
-      fetch(`api/color?url=${encodeURIComponent(posterUrl)}`)
+      fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`)
         .then(res => res.ok ? res.json() : null)
         .catch(() => null)
     ]);
 
     console.log(details);
+    console.log(overlay);
+    
 
     return {
       details,
