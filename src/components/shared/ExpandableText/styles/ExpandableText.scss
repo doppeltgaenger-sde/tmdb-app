@@ -1,0 +1,42 @@
+@use "@styles/abstracts/variables" as v;
+
+.expandable-text__content {
+  position: relative;
+  transition: v.$transition--long;
+  overflow: hidden;
+}
+
+.expandable-text__content--truncated {
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 32px;
+    background: linear-gradient(180deg, transparent, v.$neutral--0);
+    opacity: 1;
+    transition: v.$transition--long;
+    pointer-events: none;
+  }
+}
+
+.expandable-text__content--expanded {
+  &:before {
+    opacity: 0;
+  }
+}
+
+.expandable-text__button {
+  margin: 8px 0 0 auto;
+
+  .button__icon {
+    transition: v.$transition--base;
+  }
+}
+
+.expandable-text__button--expanded {
+  .button__icon {
+    transform: rotate(180deg);
+  }
+}

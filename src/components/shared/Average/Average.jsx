@@ -68,7 +68,11 @@ export const Average = ({
       </svg>
 
       <p
-        className={classNames(["icon", iconPercentageClass, "average__value"])}
+        className={classNames([
+          "icon", 
+          iconPercentageClass, 
+          "average__value"
+        ])}
       />
     </div>
   );

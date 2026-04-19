@@ -56,10 +56,5 @@
 }
 
 .average__value {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5px;
   color: v.$neutral--0;
 }
