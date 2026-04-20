@@ -11,6 +11,14 @@
     justify-content: space-between;
   }
 }
+
+
+.media-details__main {
+  @include m.break-reverse(768) {
+    min-width: 0;
+  }
+}
+
 .media-details__aside {
   display: flex;
   flex-direction: column;

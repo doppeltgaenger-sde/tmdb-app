@@ -5,7 +5,8 @@ import { fetchMediaDetails } from "@thunk";
 import { useViewport } from "@hooks";
 import { MediaReview } from "@blocks";
 import { 
-  MediaHero, 
+  MediaHero,
+  MediaCast,
   MediaSocials, 
   MediaStats, 
   MediaKeywords, 
@@ -55,6 +56,7 @@ export const MediaDetails = () => {
       <div className="container">
         <div className="media-details__body">
           <div className="media-details__main">
+            <MediaCast {...data} />
             <MediaReview {...data} />
           </div>
 
