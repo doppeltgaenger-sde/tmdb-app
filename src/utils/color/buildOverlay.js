@@ -1,9 +1,8 @@
 export const buildOverlay = ({ h, s, l }) => {
   const primaryMb = `linear-gradient(
     90deg,
-    hsla(${h}, ${s}%, ${l}%, 0.85) 0%,
-    hsla(${h}, ${s}%, ${l}%, 0.7) 50%,
-    hsla(${h}, ${s}%, ${l}%, 0.7) 100%
+    hsla(${h}, ${s}%, ${l}%, 1) 0%,
+    hsla(${h}, ${s}%, ${l}%, 0.95) 100%
   )`;
 
   const primaryDt = `linear-gradient(
@@ -13,8 +12,15 @@ export const buildOverlay = ({ h, s, l }) => {
     hsla(${h}, ${s}%, ${l}%, 0.85) 100%
   )`;
 
+  const secondary = `linear-gradient(
+    90deg,
+    hsla(${h}, ${s}%, ${l}%, 1) 25%,
+    hsla(${h}, ${s}%, ${l}%, 0) 55%
+  )`;
+
   return {
-    mobile: primaryMb,
-    desktop: primaryDt,
+    primaryMb,
+    primaryDt,
+    secondary,
   };
 };
