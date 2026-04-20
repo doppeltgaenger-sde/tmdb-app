@@ -102,7 +102,7 @@ export const MediaTrack = ({
   const handleHover = useCallback((item) => onCardHover?.(item), [onCardHover]);
   const handleActivate = useCallback((item) => onCardActivate?.(item), [onCardActivate]);
 
-  const renderMedia = () => {
+  const renderContent = () => {
     if (!displayItems.length) {
       return [...Array(INITIAL_ITEMS)].map((_, index) => (
         <CardComponent key={`skeleton-${index}`} isSkeleton />
@@ -153,7 +153,7 @@ export const MediaTrack = ({
           variant={config.tabsVariant}
           onScrollStateChange={onScrollStateChange}
         >
-          {renderMedia()}
+          {renderContent()}
         </Slider>
       </div>
     </div>

@@ -14,8 +14,6 @@ export const MediaBackdropLayer = ({
   const imageBase = isMobileLg ? IMAGE_BASE_MB : IMAGE_BASE_DT;
   const overlayGradients = buildOverlay(overlay);
   const gradientSecondary = overlayGradients.secondary;
-  console.log(gradientSecondary);
-  
 
   const gradientPrimaryVariant = isMobileLg 
     ? overlayGradients.primaryMb 
