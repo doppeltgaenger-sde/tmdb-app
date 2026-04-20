@@ -22,45 +22,33 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  row-gap: 2px;
-
-  @include m.break-reverse(576) {
-    row-gap: 4px;
-    column-gap: 8px;
-  }
+  gap: 4px;
 }
 
-.review-card__author {
+.review-card__title {
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 
-  @include m.break-reverse(576) {
-    order: 1;
-  }
-}
-
-.review-card__score-bage {
-  @include m.break-reverse(576) {
-    order: 2;
-  }
-}
-
-.review-card__date {
-  margin: 0 0 2px;
-  width: 100%;
-  font: 300 14px / 1 v.$source-sans;
-
-  @include m.break-reverse(576) {
-    order: 3;
-    margin: 0;
-    width: fit-content;
+  @include m.break-reverse(768) {
+    font-size: 20px;
   }
 }
 
 .review-card__button {
   display: inline-flex;
   font-size: inherit;
+  font-weight: inherit;
+}
+
+.review-card__timestamp {
+  font: 300 14px / 1 v.$source-sans;
+}
+
+.review-card__score-bage {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .review-card__review-title {

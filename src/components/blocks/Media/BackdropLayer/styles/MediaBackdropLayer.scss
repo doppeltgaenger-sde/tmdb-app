@@ -24,3 +24,7 @@
   position: absolute;
   inset: 0;
 }
+
+.media-backdrop-layer__overlay--secondary {
+  z-index: 1;
+}

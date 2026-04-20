@@ -35,12 +35,21 @@ export const ReviewCard = memo(({
         />
 
         <div className="review-card__meta">
-          <h3 className="review-card__author">
-            {`A review by ${username}`}
+          <h3 className="review-card__title">
+            <Button 
+              className="review-card__button" 
+              as={Link} 
+              to={`/`}
+              variant="overlay"
+              theme="dark"
+              aria-label={`View ${username}'s profile`}
+            >
+              {username}
+            </Button>
           </h3>
 
-          <p className="review-card__date">
-            Written by {renderUsername(username)} on {date}
+          <p className="review-card__timestamp">
+            Written on {date}
           </p>
 
           <ScoreBage 
@@ -64,18 +73,3 @@ export const ReviewCard = memo(({
     </div>
   );
 });
-
-const renderUsername = (username) => {
-  return (
-    <Button 
-      className="review-card__button" 
-      as={Link} 
-      to={`/`}
-      variant="overlay"
-      theme="dark"
-      aria-label={`View ${username}'s profile`}
-    >
-      {username}
-    </Button>
-  );
-};
