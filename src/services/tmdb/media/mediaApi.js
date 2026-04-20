@@ -144,8 +144,6 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
     ]);
 
     console.log(details);
-    console.log(overlay);
-    
 
     return {
       details,
