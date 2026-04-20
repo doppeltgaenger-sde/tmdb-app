@@ -155,8 +155,8 @@
   padding: 0;
   min-width: auto;
   height: fit-content;
-  background: transparent;
-  border-radius: unset;
+  background: transparent !important;
+  border-radius: none;
   box-shadow: none;
 }
 
