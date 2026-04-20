@@ -12,6 +12,7 @@ import {
   formatCurrency,
   formatSocials,
   buildFill,
+  getTopCast,
 } from "@utils";
 
 export const normalizeMediaDetails = ({ details: item, release_dates, overlay }) => {
@@ -53,6 +54,8 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
   const keywords =  item.keywords?.keywords || [];
   const socials = formatSocials(item.external_ids, item.homepage);
   const chartColor = buildFill(overlay) || "#0d253f";
+  const cast = item.credits?.cast || [];
+  const topCast = getTopCast(cast);
 
   return {
     id: item.id,
@@ -78,5 +81,6 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
     keywords,
     socials,
     chartColor,
+    cast: topCast,
   };
 };
