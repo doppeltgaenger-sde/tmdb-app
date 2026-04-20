@@ -39,8 +39,8 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  min-width: auto;
-  max-width: auto;
+  min-width: calc(100vw / 4.5);
+  max-width: calc(100vw / 4.5);
   height: calc(100vw / 3);
   border-radius: 8px;
   overflow: hidden;
