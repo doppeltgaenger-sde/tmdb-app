@@ -29,12 +29,12 @@ export const MediaHero = ({
   genres,
   certification,
   crew,
-  overlay,
+  contextColor,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isMobileLg } = useViewport();
 
-  const textColor = getTextColor(overlay.h, overlay.s, overlay.l);
+  const textColor = getTextColor(contextColor.h, contextColor.s,contextColor.l);
   const theme = textColor === "#000" ? "dark" : "light";
 
   const openModal = () => setIsModalOpen(true);
@@ -51,7 +51,7 @@ export const MediaHero = ({
       <MediaBackdropLayer
         className="media-hero__backdrop"
         backdropPath={backdropPath}
-        overlay={overlay}
+        overlay={contextColor}
       />
 
       <div className="container">

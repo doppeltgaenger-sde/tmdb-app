@@ -13,6 +13,7 @@ import {
   HomePopular,
   HomeFree,
 } from "./components";
+import "./styles/Home.scss";
 
 export const Home = () => {
   const dispatch = useDispatch();

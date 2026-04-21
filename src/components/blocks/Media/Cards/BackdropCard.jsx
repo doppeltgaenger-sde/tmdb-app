@@ -1,39 +1,39 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Button, Average, Icon } from "@shared";
-import "./styles/PosterCard.scss";
+import "./styles/BackdropCard.scss";
 
-const IMAGE_BASE = "https://image.tmdb.org/t/p/w220_and_h330_face";
-const IMAGE_BASE_2X = "https://image.tmdb.org/t/p/w440_and_h660_face";
+const IMAGE_BASE = "https://media.themoviedb.org/t/p/w250_and_h141_face";
+const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/w500_and_h282_face";
 
-export const PosterCard = memo(({ 
+export const BackdropCard = memo(({ 
   id,
   mediaType = "movie",
   name, 
-  posterPath, 
+  backdropPath, 
   date, 
   voteAverage, 
   isSkeleton,
   isPriority,
 }) => {
-  const showSkeleton = isSkeleton || !posterPath;
+  const showSkeleton = isSkeleton || !backdropPath;
   const linkTo = `/${mediaType}/${id}`;
 
   return (
-    <div className="poster-card">
-      <div className="poster-card__poster">
+    <div className="backdrop-card">
+      <div className="backdrop-card__backdrop">
         {showSkeleton ? (
           <Icon
-            className="poster-card__placeholder"
+            className="backdrop-card__placeholder"
             name="media-placeholder"
           />
         ) : (
           <img
-            className="poster-card__poster-image"
-            src={`${IMAGE_BASE}${posterPath}`}
+            className="backdrop-card__backdrop-image"
+            src={`${IMAGE_BASE}${backdropPath}`}
             srcSet={`
-              ${IMAGE_BASE}${posterPath} 1x,
-              ${IMAGE_BASE_2X}${posterPath} 2x
+              ${IMAGE_BASE}${backdropPath} 1x,
+              ${IMAGE_BASE_2X}${backdropPath} 2x
             `}
             alt={name ? `${name} film poster` : "tmdb film poster"}
             loading={isPriority ? "eager" : "lazy"}
@@ -43,10 +43,10 @@ export const PosterCard = memo(({
         )}
       </div>
 
-      <div className="poster-card__content">
-        <h3 className="poster-card__name">
+      <div className="backdrop-card__content">
+        <h3 className="backdrop-card__name">
           <Button 
-            className="poster-card__button" 
+            className="backdrop-card__button" 
             as={Link} 
             to={linkTo}
             variant="overlay"
@@ -57,12 +57,12 @@ export const PosterCard = memo(({
           </Button>
         </h3>
 
-        <p className="poster-card__date">
+        <p className="backdrop-card__date">
           {isSkeleton ? "" : date}
         </p>
 
         <Average
-          className="poster-card__average"
+          className="backdrop-card__average"
           value={voteAverage}
           isSkeleton={isSkeleton}
         />

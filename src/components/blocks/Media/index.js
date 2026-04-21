@@ -1,6 +1,7 @@
 export { MediaBackdropLayer } from "./BackdropLayer/MediaBackdropLayer";
 export { MediaCrew } from "./Crew/MediaCrew";
 export { MediaMeta } from "./Meta/MediaMeta";
+export { BackdropCard } from "./Cards/BackdropCard";
 export { CastCard } from "./Cards/CastCard";
 export { PosterCard } from "./Cards/PosterCard";
 export { ReviewCard } from "./Cards/ReviewCard";

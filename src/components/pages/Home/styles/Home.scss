@@ -1,0 +1,8 @@
+@use "@styles/abstracts/mixins" as m; 
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 0 0 30px;
+}

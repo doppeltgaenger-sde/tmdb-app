@@ -7,6 +7,7 @@ import { MediaReview } from "@blocks";
 import { 
   MediaHero,
   MediaCast,
+  MediaRecommendations,
   MediaSocials, 
   MediaStats, 
   MediaKeywords, 
@@ -58,6 +59,7 @@ export const MediaDetails = () => {
           <div className="media-details__main">
             <MediaCast {...data} />
             <MediaReview {...data} />
+            <MediaRecommendations {...data} />
           </div>
 
           <AsideTag className="media-details__aside">

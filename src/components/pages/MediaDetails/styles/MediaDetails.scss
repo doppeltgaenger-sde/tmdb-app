@@ -12,20 +12,23 @@
   }
 }
 
+.media-details__main,
+.media-details__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 
 .media-details__main {
   @include m.break-reverse(768) {
     min-width: 0;
+    overflow: hidden;
   }
 }
 
 .media-details__aside {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
   @include m.break-reverse(768) {
-    gap: 24px;
     min-width: 260px;
     width: 260px;
   }

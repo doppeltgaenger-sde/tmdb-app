@@ -15,6 +15,7 @@ const TRACK_VARIANTS = {
 };
 
 export const MediaTrack = ({
+  className,
   title,
   items = [],
   tabs,
@@ -123,7 +124,13 @@ export const MediaTrack = ({
   };
 
   return (
-    <div className={classNames(["media-track", `media-track--${variant}`])}>
+    <div 
+      className={classNames([
+        "media-track", 
+        `media-track--${variant}`,
+        className,
+      ])}
+    >
       <div className="media-track__title-block">
         <h2 className="media-track__title">{title}</h2>
         {tabs && (

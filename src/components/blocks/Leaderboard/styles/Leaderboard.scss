@@ -1,10 +1,6 @@
 @use "@styles/abstracts/variables" as v;
 @use "@styles/abstracts/mixins" as m;
 
-.leaderboard {
-  padding: 30px 0;
-}
-
 .leaderboard__title-block {
   display: flex;
   align-items: center;

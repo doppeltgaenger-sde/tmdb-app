@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useViewport } from "@hooks";
+import { classNames } from "@utils";
 import { CastCard } from "@blocks";
 import { Slider } from "@shared";
 import "./styles/SelectionTrack.scss";
@@ -8,6 +9,7 @@ const INITIAL_ITEMS = 8;
 const FULL_ITEMS = 20;
 
 export const SelectionTrack = ({
+  className,
   title,
   items = [],
   CardComponent = CastCard,
@@ -57,7 +59,7 @@ export const SelectionTrack = ({
   };
 
   return (
-    <section className="selection-track">
+    <section className={classNames(["selection-track", className])}>
       <h2 className="selection-track__title">{title}</h2>
 
       <div className="selection-track__content">
