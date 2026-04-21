@@ -13,12 +13,13 @@ import {
   formatSocials,
   buildFill,
   getTopCast,
+  getRecommendations,
 } from "@utils";
 
-export const normalizeMediaDetails = ({ details: item, release_dates, overlay }) => {
+export const normalizeMediaDetails = ({ details: item, releaseDates, contextColor }) => {
   const name = item.title || item.name;
 
-  const date = item.release_date || item.first_air_date;
+  const date = item.releaseDates || item.first_air_date;
   const fullDate = formatDate(date);
   const yearDate = getYear(date);
 
@@ -40,12 +41,12 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
   const genres = item.genres?.map((g) => g.name) || [];
   const genresList = formatGenresList(genres);
 
-  const certification = getCertification(release_dates, "US");
+  const certification = getCertification(releaseDates, "US");
   const crew = item.credits?.crew || [];
   const topCrew = getTopCrew(crew);
 
-  const overlayTheme = overlay 
-    ? rgbToHsl(normalizeColor(overlay)) 
+  const contextColorTheme = contextColor 
+    ? rgbToHsl(normalizeColor(contextColor)) 
     : getColorFromId(item.id);
 
   const originalLanguage = formatFullLanguage(item.original_language);
@@ -53,9 +54,10 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
   const revenue = formatCurrency(item.revenue) || "–";
   const keywords =  item.keywords?.keywords || [];
   const socials = formatSocials(item.external_ids, item.homepage);
-  const chartColor = buildFill(overlay) || "#0d253f";
+  const chartColor = buildFill(contextColor) || "#0d253f";
   const cast = item.credits?.cast || [];
   const topCast = getTopCast(cast);
+  const recommendations = getRecommendations(item.recommendations);
 
   return {
     id: item.id,
@@ -73,7 +75,7 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
     genres: genresList,
     certification,
     crew: topCrew,
-    overlay: overlayTheme,
+    contextColor: contextColorTheme,
     status: item.status,
     originalLanguage,
     budget,
@@ -82,5 +84,6 @@ export const normalizeMediaDetails = ({ details: item, release_dates, overlay })
     socials,
     chartColor,
     cast: topCast,
+    recommendations,
   };
 };

@@ -14,8 +14,8 @@ export const normalizeMediaData = (item) => {
     date: formatDate(date),
     posterPath: poster,
     backdropPath: backdrop,
-    vote_average: item.vote_average,
+    voteAverage: item.vote_average,
     description: description,
-    media_type: mediaType,
+    mediaType: mediaType,
   };
 };

@@ -3,6 +3,9 @@ const IMPORTANT_JOBS = [
   "Screenplay",
   "Writer",
   "Novel",
+  "Executive Producer",
+  "Producer",
+  "Original Music Composer",
 ];
 
 export const getTopCrew = (crew = [], limit = 4) => {

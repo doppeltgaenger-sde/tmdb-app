@@ -5,7 +5,7 @@ export const getCertification = (releaseDates, country = "US") => {
 
   if (!region) return "";
 
-  const cert = region.release_dates?.find((r) => r.certification);
+  const certification = region.release_dates?.find((r) => r.certification);
 
-  return cert?.certification || "";
+  return certification?.certification || "";
 };
