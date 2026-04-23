@@ -18,7 +18,7 @@ export const MediaCrew = ({ className, crew = [], theme }) => {
                 className="media-crew__button" 
                 as={Link} 
                 to={`/`}
-                variant="overlay"
+                variant="ghost"
                 theme={theme}
                 aria-label={`${person.name}}, ${personJob}`}
               >

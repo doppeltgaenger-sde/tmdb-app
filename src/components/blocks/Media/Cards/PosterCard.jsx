@@ -49,7 +49,7 @@ export const PosterCard = memo(({
             className="poster-card__button" 
             as={Link} 
             to={linkTo}
-            variant="overlay"
+            variant="ghost"
             theme="dark"
             aria-label={`${name}, ${date}. View details.`}
           >

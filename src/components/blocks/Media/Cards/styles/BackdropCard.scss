@@ -38,7 +38,7 @@
 
 .backdrop-card__placeholder {
   width: 50%;
-  fill: v.$neutral--70;
+  fill: v.$neutral--50;
 }
 
 .backdrop-card__content {
@@ -70,4 +70,8 @@
   top: 0;
   right: 0;
   transform: translate(8px, -8px);
+}
+
+.backdrop-card__date {
+  color: rgba(v.$neutral--100, 0.6);
 }

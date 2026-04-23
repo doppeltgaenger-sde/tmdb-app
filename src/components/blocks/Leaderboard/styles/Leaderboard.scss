@@ -27,13 +27,13 @@
 
 .leaderboard__meta-item--all {
   &:before {
-    background: v.$gradient--primary;
+    background: v.$gradient--green;
   }
 }
 
 .leaderboard__meta-item--week {
   &:before {
-    background: v.$gradient--secondary;
+    background: v.$gradient--orange;
   }
 }
 

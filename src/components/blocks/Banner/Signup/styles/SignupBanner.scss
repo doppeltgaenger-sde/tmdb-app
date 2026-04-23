@@ -15,8 +15,12 @@
 
 .signup-banner__title {
   margin: 0 0 20px;
-  font: 700 32px / 1 v.$source-sans;
+  font: 700 28px / 1 v.$source-sans;
   color: v.$neutral--0;
+
+  @include m.break-reverse(768) {
+    font-size: 32px;
+  }
 }
 
 .signup-banner__main {

@@ -37,7 +37,7 @@ const renderDesktopContent = (lead, label, features) => {
 
         <Button
           className="signup-banner__cta-button"
-          variant="promo"
+          variant="solid"
           theme="purple"
         >
           {label}
@@ -70,7 +70,7 @@ const renderMobileContent = (lead, features, label) => {
 
       <Button
         className="signup-banner__cta-button"
-        variant="promo"
+        variant="solid"
         theme="purple"
       >
         {label}

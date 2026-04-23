@@ -47,7 +47,7 @@ export const MediaMeta = ({
                 className="media-meta__genre-button"
                 as={Link}
                 to={`/`}
-                variant="overlay"
+                variant="ghost"
                 theme={theme}
                 aria-label={`Explore more ${name} movies`}
               >

@@ -1,4 +1,5 @@
 export { MediaBackdropLayer } from "./BackdropLayer/MediaBackdropLayer";
+export { MediaCollectionBanner } from "./CollectionBanner/MediaCollectionBanner";
 export { MediaCrew } from "./Crew/MediaCrew";
 export { MediaMeta } from "./Meta/MediaMeta";
 export { BackdropCard } from "./Cards/BackdropCard";

@@ -13,9 +13,8 @@ export const MediaBackdropLayer = ({
   const { isMobileLg } = useViewport();
   const imageBase = isMobileLg ? IMAGE_BASE_MB : IMAGE_BASE_DT;
   const overlayGradients = buildOverlay(overlay);
-  const gradientSecondary = overlayGradients.secondary;
 
-  const gradientPrimaryVariant = isMobileLg 
+  const gradientVariant = isMobileLg 
     ? overlayGradients.primaryMb 
     : overlayGradients.primaryDt;
 
@@ -35,18 +34,8 @@ export const MediaBackdropLayer = ({
           "media-backdrop-layer__overlay", 
           "media-backdrop-layer__overlay--primary", 
         ])}
-        style={gradientPrimaryVariant ? { background: gradientPrimaryVariant } : undefined}
+        style={gradientVariant ? { background: gradientVariant } : undefined}
       />
-
-      {isMobileLg &&
-        <div
-          className={classNames([
-            "media-backdrop-layer__overlay", 
-            "media-backdrop-layer__overlay--secondary", 
-          ])}
-          style={gradientSecondary ? { background: gradientSecondary } : undefined}
-        />
-      }
     </div>
   );
 };

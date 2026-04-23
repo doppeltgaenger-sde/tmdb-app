@@ -1,0 +1,56 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.media-collection-banner {
+  background: linear-gradient(
+    90deg,
+    rgba(v.$neutral--90, 1) 0,
+    rgba(v.$neutral--90, 0.75) 50%,
+    rgba(v.$neutral--90, 0.75) 100%
+  );
+  color: v.$neutral--0;
+  border-radius: 8px;
+  overflow: hidden;
+
+  .banner__body {
+    min-height: 220px;
+
+    @include m.break-reverse(768) {
+      min-height: 200px;
+    }
+
+    @include m.break-reverse(992) {
+      min-height: 240px;
+    }
+  }
+}
+
+.media-collection-banner__title {
+  margin: 0 0 8px;
+  width: fit-content;
+  font: 400 40px / 1 v.$barlow;
+  background: linear-gradient(135deg, v.$tertiary--0 0%, v.$tertiary--100 100%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @include m.break-reverse(768) {
+    font-size: 32px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 48px;
+  }
+}
+
+.media-collection-banner__subtitle {
+  margin: 0 0 20px;
+  font: 700 28px / 1 v.$source-sans;
+
+  @include m.break-reverse(768) {
+    font-size: 24px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 32px;
+  }
+}

@@ -37,8 +37,8 @@ export const WrapBanner = () => {
             to="https://www.themoviedb.org/2025"
             target="_blank"
             size="lg"
-            variant="promo"
-            theme="gradient"
+            variant="outline"
+            theme="pink-gradient"
             iconRight="arrow-right"
             aria-label="TMDB 2025 Year in Review"
           >
