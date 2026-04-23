@@ -12,15 +12,8 @@ export const buildOverlay = ({ h, s, l }) => {
     hsla(${h}, ${s}%, ${l}%, 0.85) 100%
   )`;
 
-  const secondary = `linear-gradient(
-    90deg,
-    hsla(${h}, ${s}%, ${l}%, 1) 25%,
-    hsla(${h}, ${s}%, ${l}%, 0) 55%
-  )`;
-
   return {
     primaryMb,
     primaryDt,
-    secondary,
   };
 };
