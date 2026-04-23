@@ -5,10 +5,11 @@ $slider-top-padding: 20px;
 
 /*----- base colors ----- */
 $neutral--100: #000;
-$neutral--90: #8c9598;
-$neutral--70: #adb5bd;
-$neutral--50: #ced4da;
-$neutral--30: #dee2e6;
+$neutral--90: #141414;
+$neutral--70: #8c9598;
+$neutral--50: #adb5bd;
+$neutral--30: #ced4da;
+$neutral--20: #dee2e6;
 $neutral--10: #e9ecef;
 $neutral--0: #fff;
 
@@ -35,9 +36,8 @@ $pink: #efafbb;
 $orange: #fdc170;
 $red: #d93b63;
 
-$gradient--primary: linear-gradient(90deg, $tertiary--0 0%, $tertiary--100 100%);
-$gradient--secondary: linear-gradient(90deg, $orange 0%, $red 100%);
-$gradient--tertiary: linear-gradient(90deg, $secondary--25, $tertiary--50);
+$gradient--green: linear-gradient(90deg, $tertiary--0 0%, $tertiary--100 100%);
+$gradient--orange: linear-gradient(90deg, $orange 0%, $red 100%);
 
 /*----- font-families ----- */
 $source-sans: "Source Sans 3", sans-serif;
