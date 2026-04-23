@@ -56,18 +56,20 @@ export const MediaHero = ({
 
       <div className="container">
         <div className="media-hero__body">
-          <div className="media-hero__poster">
-            <img
-              className="media-hero__poster-image"
-              src={`${IMAGE_BASE}${posterPath}`}
-              srcSet={`
-                ${IMAGE_BASE}${posterPath} 1x,
-                ${IMAGE_BASE_2X}${posterPath} 2x
-              `}
-              alt={name}
-              loading="eager" 
-            />
-          </div>
+          {!isMobileLg &&         
+            <div className="media-hero__poster">
+              <img
+                className="media-hero__poster-image"
+                src={`${IMAGE_BASE}${posterPath}`}
+                srcSet={`
+                  ${IMAGE_BASE}${posterPath} 1x,
+                  ${IMAGE_BASE_2X}${posterPath} 2x
+                `}
+                alt={name}
+                loading="eager" 
+              />
+            </div>
+          }
 
           <div className="media-hero__content">
             <h1 className="media-hero__title">
@@ -91,7 +93,7 @@ export const MediaHero = ({
 
               <Button
                 className="media-hero__play-button"
-                variant="overlay"
+                variant="ghost"
                 theme={theme}
                 iconLeft="play"
                 onClick={openModal}

@@ -36,21 +36,11 @@
 }
 
 .media-hero__poster {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  min-width: calc(100vw / 4.5);
-  max-width: calc(100vw / 4.5);
-  height: calc(100vw / 3);
+  min-width: 250px;
+  max-width: 250px;
+  height: 375px;
   border-radius: 8px;
   overflow: hidden;
-
-  @include m.break-reverse(768) {
-    position: static;
-    min-width: 250px;
-    max-width: 250px;
-    height: 375px;
-  }
 
   @include m.break-reverse(992) {
     min-width: 300px;
@@ -186,5 +176,6 @@
 
   @include m.break-reverse(768) {
     order: 6;
+    margin: 10px 0 0;
   }
 }

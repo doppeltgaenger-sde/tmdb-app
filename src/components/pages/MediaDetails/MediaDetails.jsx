@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchMediaDetails } from "@thunk";
 import { useViewport } from "@hooks";
-import { MediaReview } from "@blocks";
+import { MediaReview, MediaCollectionBanner } from "@blocks";
 import { 
   MediaHero,
   MediaCast,
@@ -59,6 +59,7 @@ export const MediaDetails = () => {
           <div className="media-details__main">
             <MediaCast {...data} />
             <MediaReview {...data} />
+            <MediaCollectionBanner {...data} />
             <MediaRecommendations {...data} />
           </div>
 

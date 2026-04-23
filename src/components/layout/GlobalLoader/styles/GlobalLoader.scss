@@ -7,6 +7,6 @@
   left: 0;
   width: 100%;
   height: 5px;
-  background: v.$gradient--tertiary;
+  background: linear-gradient(90deg, v.$secondary--25, v.$tertiary--50);
   transition: v.$transition--long;
 }
