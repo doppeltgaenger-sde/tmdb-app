@@ -6,6 +6,7 @@ const IMAGE_VARIANTS = {
   default: "https://image.tmdb.org/t/p/w1280",
   blue: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,00192f,00baff)",
   purple: "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces_filter(duotone,190235,ad47dd)",
+  collection: "https://media.themoviedb.org/t/p/w1440_and_h320_multi_faces",
 };
 
 export const Banner = ({
@@ -13,6 +14,7 @@ export const Banner = ({
   variant = "default",
   backdrops = [],
   children,
+  ...restProps
 }) => {
   const backdrop = useMemo(() => {
     if (!backdrops.length) return null;
@@ -30,6 +32,7 @@ export const Banner = ({
         variant !== "default" && `banner--${variant}`,
         className,
       ])}
+      {...restProps}
     >
       {imageSrc && 
         <img

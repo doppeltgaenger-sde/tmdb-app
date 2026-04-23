@@ -4,32 +4,32 @@ import { Icon } from "@shared";
 import "./styles/Button.scss";
 
 const SIZES = {
-  sm: "button--sm",
-  md: "button--md",
-  lg: "button--lg",
+  "sm": "button--sm",
+  "md": "button--md",
+  "lg": "button--lg",
 };
 
 const VARIANTS = {
-  primary: "button--primary",
-  secondary: "button--secondary",
-  tertiary: "button--tertiary",
-  promo: "button--promo",
-  overlay: "button--overlay",
-  keyword: "button--keyword",
-  social: "button--social",
+  "solid": "button--solid",
+  "outline": "button--outline",
+  "ghost": "button--ghost",
 };
 
 const THEMES = {
-  purple: "button--purple",
-  gradient: "button--gradient",
-  dark: "button--dark",
-  light: "button--light",
+  "primary": "button--primary",
+  "secondary": "button--secondary",
+  "neutral": "button--neutral",
+  "purple": "button--purple",
+  "pink-gradient": "button--pink-gradient",
+  "green-gradient": "button--green-gradient",
+  "dark": "button--dark",
+  "light": "button--light",
 };
 
 const VARIANT_THEMES = {
-  promo: ["purple", "gradient"],
-  overlay: ["dark", "light"],
-  social: ["dark", "light"],
+  "solid": ["primary", "secondary", "neutral", "purple"],
+  "outline": ["pink-gradient", "green-gradient"],
+  "ghost": ["dark", "light"],
 };
 
 export const Button = ({

@@ -16,13 +16,13 @@
 
 .metric-bar--all {
   .metric-bar__fill {
-    background: v.$gradient--primary;
+    background: v.$gradient--green;
   }
 }
 
 .metric-bar--week {
   .metric-bar__fill {
-    background: v.$gradient--secondary;
+    background: v.$gradient--orange;
   }
 }
 

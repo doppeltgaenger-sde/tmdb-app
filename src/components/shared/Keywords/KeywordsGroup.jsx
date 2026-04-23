@@ -23,8 +23,9 @@ export const KeywordsGroup = ({ className, title, keywords = [] }) => {
               key={keyword.id}
               as={Link} 
               to={`/`}
-              variant="keyword"
               size="sm"
+              variant="solid"
+              theme="neutral"
               aria-label={`Search movies by keyword: ${keyword.name}`}
             >
               {keyword.name}

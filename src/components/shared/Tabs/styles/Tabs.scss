@@ -13,7 +13,7 @@
 .tabs-dropdown--inverted {
   .tabs__item--active,
   .tabs-dropdown__item--active {
-    background: v.$gradient--primary;
+    background: v.$gradient--green;
 
     .tabs__label,
     .tabs-dropdown__label {
@@ -50,7 +50,7 @@
 
   .tabs__label,
   .tabs-dropdown__label {
-    background: v.$gradient--primary;
+    background: v.$gradient--green;
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -77,7 +77,7 @@
   border-color: v.$tertiary--100;
 
   .tabs__indicator {
-    background: v.$gradient--primary;
+    background: v.$gradient--green;
   }
 
   .tabs__item {
@@ -148,7 +148,7 @@
   flex-direction: column;
   align-items: center;
   min-height: fit-content;
-  background: v.$gradient--primary;
+  background: v.$gradient--green;
   border: 1px solid v.$primary--50;
   border-radius: 15px;
   opacity: 0;

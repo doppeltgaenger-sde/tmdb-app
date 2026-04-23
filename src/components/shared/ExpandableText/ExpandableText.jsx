@@ -52,7 +52,7 @@ export const ExpandableText = ({
             "expandable-text__button", 
             isExpanded && "expandable-text__button--expanded",
           ])}
-          variant="overlay"
+          variant="ghost"
           theme="dark"
           onClick={() => setIsExpanded(!isExpanded)}
           iconRight="chevron-down"
