@@ -136,7 +136,7 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
     const { data: details } = await apiClient.get(endpoint, { params });
     const posterUrl = `https://image.tmdb.org/t/p/w45${details.poster_path}`;
 
-    const [release_dates, contextColor] = await Promise.all([
+    const [releaseDates, contextColor] = await Promise.all([
       fetchReleaseDates(id, mediaType),
       fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`)
         .then(res => res.ok ? res.json() : null)
@@ -147,7 +147,7 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
 
     return {
       details,
-      releaseDates: release_dates,
+      releaseDates: releaseDates,
       contextColor: contextColor || { r: 20, g: 20, b: 20 },
     };
   } catch (e) {
