@@ -15,9 +15,11 @@ import {
   getTopCast,
   getRecommendations,
   getCollection,
+  getLibrary,
 } from "@utils";
 
 export const normalizeMediaDetails = ({ details: item, releaseDates, contextColor }) => {
+  const id = item.id;
   const name = item.title || item.name;
   const date = item.release_date || item.first_air_date;
   const fullDate = formatDate(date);
@@ -31,6 +33,7 @@ export const normalizeMediaDetails = ({ details: item, releaseDates, contextColo
   const runtime =
     item.runtime ||
     (Array.isArray(item.episode_run_time) ? item.episode_run_time[0] : null);
+
   const runtimeContent = formatRuntime(runtime);
 
   const country = item.origin_country?.[0] 
@@ -48,7 +51,8 @@ export const normalizeMediaDetails = ({ details: item, releaseDates, contextColo
 
   const status =  item.status || ""; 
   const type = item.type || "";
-  const networks = item.networks || [];
+  const company = item.production_companies || "";
+  const network = item.networks || "";
   const originalLanguage = formatFullLanguage(item.original_language);
   const budget = formatCurrency(item.budget) || "–";
   const revenue = formatCurrency(item.revenue) || "–";
@@ -63,9 +67,10 @@ export const normalizeMediaDetails = ({ details: item, releaseDates, contextColo
   const topCast = getTopCast(cast);
   const recommendations = getRecommendations(item.recommendations);
   const collection = getCollection(item.belongs_to_collection);
+  const library = getLibrary(item.images, item.videos, id, mediaType);
 
   return {
-    id: item.id,
+    id,
     name,
     fullDate: fullDate,
     yearDate: yearDate,
@@ -83,7 +88,8 @@ export const normalizeMediaDetails = ({ details: item, releaseDates, contextColo
     contextColor: contextColorTheme,
     status,
     type,
-    networks,
+    company,
+    network,
     originalLanguage,
     budget,
     revenue,
@@ -93,5 +99,6 @@ export const normalizeMediaDetails = ({ details: item, releaseDates, contextColo
     cast: topCast,
     recommendations,
     collection,
+    library,
   };
 };

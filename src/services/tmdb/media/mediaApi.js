@@ -130,7 +130,7 @@ export const fetchReleaseDates = async (id, mediaType = "movie") => {
 
 export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
   const endpoint = `/${mediaType}/${id}`;
-  const params = { append_to_response: "videos,credits,recommendations,keywords,external_ids" };
+  const params = { append_to_response: "videos,images,credits,recommendations,keywords,external_ids" };
 
   try {
     const { data: details } = await apiClient.get(endpoint, { params });
