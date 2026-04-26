@@ -31,7 +31,7 @@ const ICONS = {
     ),
   },
 
-  "trailer-overlay": {
+  "play-overlay": {
     format: "markup",
     viewbox: "0 0 32 32",
     markup: (

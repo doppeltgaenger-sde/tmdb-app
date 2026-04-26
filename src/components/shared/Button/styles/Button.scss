@@ -14,7 +14,6 @@
   font: 600 16px / 1 v.$source-sans;
   border: 1px solid transparent;
   border-radius: 6px;
-  // box-shadow: 0 4px 12px rgba(v.$neutral--100, 0.25);
   transition: v.$transition--base;
   overflow: hidden;
   cursor: pointer;
@@ -128,6 +127,7 @@
   background: transparent;
   color: v.$neutral--0;
   border: 1.5px solid v.$neutral--0;
+  box-shadow: 0 4px 12px rgba(v.$neutral--100, 0.25);
 
   &:hover,
   &:focus {
