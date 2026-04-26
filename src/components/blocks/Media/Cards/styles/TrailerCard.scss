@@ -41,12 +41,12 @@
   transition: v.$transition--base;
 }
 
-.trailer-card__placeholder {
+.trailer-card__placeholder-icon {
   width: 30%;
   fill: v.$neutral--50;
 }
 
-.trailer-card__overlay {
+.trailer-card__play-icon {
   position: absolute;
   inset: 50%;
   transform: translate(-50%, -50%);

@@ -10,18 +10,26 @@ export const TrailerModal = ({
   mediaId,
   mediaType,
   title,
+  videoKey: externalKey,
 }) => {
   const [trailerKey, setTrailerKey] = useState(null);
   const [isTrailerReady, setIsTrailerReady] = useState(false);
   const cacheRef = useRef({});
 
   useEffect(() => {
-    if (!isOpen || !mediaId) return;
+    if (!isOpen) return;
+
+    setIsTrailerReady(false);
+
+    if (externalKey) {
+      setTrailerKey(externalKey);
+      return;
+    }
+
+    if (!mediaId) return;
 
     let isActive = true;
-
     setTrailerKey(null);
-    setIsTrailerReady(false);
 
     if (cacheRef.current[mediaId]) {
       setTrailerKey(cacheRef.current[mediaId]);
@@ -30,7 +38,6 @@ export const TrailerModal = ({
 
     const loadTrailer = async () => {
       const key = await fetchTrailer(mediaId, mediaType);
-
       if (isActive) {
         cacheRef.current[mediaId] = key;
         setTrailerKey(key);
@@ -38,11 +45,8 @@ export const TrailerModal = ({
     };
 
     loadTrailer();
-
-    return () => {
-      isActive = false;
-    };
-  }, [isOpen, mediaId, mediaType]);
+    return () => { isActive = false; };
+  }, [isOpen, mediaId, mediaType, externalKey]);
 
   const shouldRenderIframe = Boolean(trailerKey);
 
@@ -52,26 +56,24 @@ export const TrailerModal = ({
         <h3 className="trailer-modal__title">
           {trailerKey ? title : "No trailer available"}
         </h3>
-
         <div className="trailer-modal__video">
           {shouldRenderIframe && !isTrailerReady && (
             <Loader className="trailer-modal__loader" />
           )}
-
-          {shouldRenderIframe && 
+          {shouldRenderIframe && (
             <iframe
               className={classNames([
                 "trailer-modal__iframe",
                 isTrailerReady && "trailer-modal__iframe--visible",
               ])}
-              src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1`}
+              src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1&autoplay=1`}
               title={title || "Trailer"}
               loading="lazy"
               onLoad={() => setIsTrailerReady(true)}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-          }
+          )}
         </div>
       </div>
     </Modal>

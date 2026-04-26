@@ -33,7 +33,7 @@ export const TrailerCard = memo(({
     if (showSkeleton) {
       return (
         <Icon
-          className="trailer-card__placeholder"
+          className="trailer-card__placeholder-icon"
           name="media-placeholder"
         />
       );
@@ -54,7 +54,7 @@ export const TrailerCard = memo(({
           decoding={isPriority ? "sync" : "async"}
         />
 
-        <Icon className="trailer-card__overlay" name="trailer-overlay" />
+        <Icon className="trailer-card__play-icon" name="play-overlay" />
       </>
     );
   };
@@ -62,8 +62,8 @@ export const TrailerCard = memo(({
   return (
     <div
       className="trailer-card"
-      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
+      onClick={handleClick}
     >
       <div className="trailer-card__backdrop">{renderBackdrop()}</div>
 

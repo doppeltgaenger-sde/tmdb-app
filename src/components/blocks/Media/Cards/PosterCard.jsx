@@ -35,7 +35,7 @@ export const PosterCard = memo(({
               ${IMAGE_BASE}${posterPath} 1x,
               ${IMAGE_BASE_2X}${posterPath} 2x
             `}
-            alt={name ? `${name} film poster` : "tmdb film poster"}
+            alt={name ? `${name} movie poster` : "tmdb movie poster"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}

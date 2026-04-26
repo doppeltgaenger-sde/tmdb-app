@@ -4,6 +4,7 @@ export { MediaCrew } from "./Crew/MediaCrew";
 export { MediaMeta } from "./Meta/MediaMeta";
 export { BackdropCard } from "./Cards/BackdropCard";
 export { CastCard } from "./Cards/CastCard";
+export { FrameCard } from "./Cards/FrameCard";
 export { PosterCard } from "./Cards/PosterCard";
 export { ReviewCard } from "./Cards/ReviewCard";
 export { TrailerCard } from "./Cards/TrailerCard";

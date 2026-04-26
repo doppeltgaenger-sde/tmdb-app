@@ -12,6 +12,7 @@ const MIN_LOADING_TIME = 500;
 const TRACK_VARIANTS = {
   default: { tabsVariant: "default" },
   trailers: { tabsVariant: "inverted", sliderVariant: "inverted" },
+  selection: { sliderVariant: "selection" },
 };
 
 export const MediaTrack = ({
@@ -157,7 +158,7 @@ export const MediaTrack = ({
       >
         <Slider 
           resetOnChange={activeTab}
-          variant={config.tabsVariant}
+          variant={config.sliderVariant}
           onScrollStateChange={onScrollStateChange}
         >
           {renderContent()}

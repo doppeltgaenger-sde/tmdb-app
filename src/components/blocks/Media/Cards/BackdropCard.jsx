@@ -35,7 +35,7 @@ export const BackdropCard = memo(({
               ${IMAGE_BASE}${backdropPath} 1x,
               ${IMAGE_BASE_2X}${backdropPath} 2x
             `}
-            alt={name ? `${name} film poster` : "tmdb film poster"}
+            alt={name ? `${name} movie poster` : "tmdb movie poster"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}
