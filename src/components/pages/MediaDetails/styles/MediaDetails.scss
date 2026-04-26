@@ -43,6 +43,11 @@
 
 .media-details__aside {
   @include m.break-reverse(768) {
+    min-width: 220px;
+    width: 220px;
+  }
+
+  @include m.break-reverse(992) {
     min-width: 260px;
     width: 260px;
   }

@@ -7,6 +7,7 @@ import { MediaReview, MediaCollectionBanner } from "@blocks";
 import { 
   MediaHero,
   MediaCast,
+  MediaLibrary,
   MediaRecommendations,
   MediaSocials, 
   MediaStats, 
@@ -59,6 +60,7 @@ export const MediaDetails = () => {
           <div className="media-details__main">
             <MediaCast {...data} />
             <MediaReview {...data} />
+            <MediaLibrary {...data} />
             <MediaCollectionBanner {...data} />
             <MediaRecommendations {...data} />
           </div>

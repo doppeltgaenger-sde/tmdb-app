@@ -70,10 +70,14 @@
 }
 
 .media-hero__title {
+  text-align: center;
+  text-wrap: balance;
   font: 700 24px / 1 v.$source-sans;
 
   @include m.break-reverse(768) {
     order: 1;
+    text-align: left;
+    text-wrap: unset;
     font-size: 36px;
   }
 }

@@ -81,7 +81,7 @@ export const HomeTrailers = () => {
 
     setActiveMedia({
       id: trailer.id,
-      mediaType: trailer.media_type,
+      mediaType: trailer.mediaType,
       title: trailer.name,
     });
 
