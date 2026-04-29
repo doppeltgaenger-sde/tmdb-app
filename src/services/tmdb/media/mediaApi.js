@@ -150,8 +150,8 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
       releaseDates: releaseDates,
       contextColor: contextColor || { r: 20, g: 20, b: 20 },
     };
-  } catch (e) {
-    console.error("fetchMediaFullDetailsApi Error:", e);
-    throw e;
+  } catch (error) {
+      console.error(`[API] Error fetching ${mediaType} details:`, error.message);
+    throw error;
   }
 };
