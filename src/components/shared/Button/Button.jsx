@@ -37,7 +37,7 @@ export const Button = ({
   className = "",
   size = "md",
   type = "button",
-  variant = "primary",
+  variant = "",
   theme = "",
   onClick,
   iconLeft,
