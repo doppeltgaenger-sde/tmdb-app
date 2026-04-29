@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
 
-export const useCountUp = (end, duration = 800) => {
-  const [value, setValue] = useState(0);
+export const useCountUp = (targetValue, duration = 800) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (typeof targetValue !== 'number' || isNaN(targetValue)) return;
+
     let startTime = null;
     let frameId;
 
-    const animate = (time) => {
-      if (!startTime) startTime = time;
+    const handleAnimate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
 
-      const progress = Math.min((time - startTime) / duration, 1);
+      const deltaTime = currentTime - startTime;
+      const progress = Math.min(deltaTime / duration, 1);
 
-      setValue(Math.floor(progress * end));
+      setCount(Math.floor(progress * targetValue));
 
       if (progress < 1) {
-        frameId = requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(handleAnimate);
       }
     };
 
-    frameId = requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(handleAnimate);
 
-    return () => cancelAnimationFrame(frameId);
-  }, [end, duration]);
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [targetValue, duration]);
 
-  return value;
+  return count;
 };
