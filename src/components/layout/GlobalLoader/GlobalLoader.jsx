@@ -4,7 +4,7 @@ import "./styles/GlobalLoader.scss";
 
 export const GlobalLoader = () => {
   const loadingCount = useSelector((state) => state.app.loadingCount);
-  const isAppInitialized = useSelector((state) => state.app.isAppInitialized);
+  const isInitialized = useSelector((state) => state.app.isInitialized);
 
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -12,7 +12,7 @@ export const GlobalLoader = () => {
   useEffect(() => {
     let timer;
 
-    if (!isAppInitialized && loadingCount > 0) {
+    if (!isInitialized && loadingCount > 0) {
       setVisible(true);
       setProgress(5);
 
@@ -32,7 +32,7 @@ export const GlobalLoader = () => {
     }
 
     return () => clearInterval(timer);
-  }, [loadingCount, isAppInitialized]);
+  }, [loadingCount, isInitialized]);
 
   if (!visible) return null;
 
