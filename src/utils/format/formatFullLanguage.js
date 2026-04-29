@@ -5,7 +5,7 @@ export const formatFullLanguage = (code) => {
 
   try {
     return languageNames.of(code);
-  } catch (e) {
+  } catch (error) {
     return code.toUpperCase();
   }
 };

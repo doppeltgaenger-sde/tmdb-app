@@ -1,3 +1,8 @@
 export { attachMediaType } from "./attachMediaType";
 export { normalizeMediaData } from "./normalizeMediaData";
-export { normalizeMediaDetails } from "./normalizeMediaDetails";
+export { 
+  normalizeMediaDetails, 
+  normalizeCriticalMediaDetails, 
+  normalizeContextMediaDetails,
+  normalizeExtendedMediaDetails,
+} from "./normalizeMediaDetails";
