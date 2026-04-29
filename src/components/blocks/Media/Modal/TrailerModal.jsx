@@ -66,7 +66,7 @@ export const TrailerModal = ({
                 "trailer-modal__iframe",
                 isTrailerReady && "trailer-modal__iframe--visible",
               ])}
-              src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1&autoplay=1`}
+              src={`https://www.youtube.com/embed/${trailerKey}?rel=0&modestbranding=1`}
               title={title || "Trailer"}
               loading="lazy"
               onLoad={() => setIsTrailerReady(true)}

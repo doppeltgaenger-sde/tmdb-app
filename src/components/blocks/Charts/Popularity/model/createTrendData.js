@@ -11,23 +11,23 @@ const CHART_PATTERNS = [
   [45, 55, 40, 60, 35, 65, 30, 70, 25, 75],
 ];
 
+const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", { 
+  month: "short", 
+  day: "numeric",
+  year: "numeric" 
+});
+
 export const createTrendData = (movieId) => {
   const id = parseInt(movieId) || 0;
   const patternIndex = id % CHART_PATTERNS.length;
   const selectedValues = CHART_PATTERNS[patternIndex];
-  
-  const dateFormatter = new Intl.DateTimeFormat("en-US", { 
-    month: "short", 
-    day: "numeric",
-    year: "numeric" 
-  });
 
   return selectedValues.map((value, i) => {
     const date = new Date();
     date.setDate(date.getDate() - (selectedValues.length - i - 1));
 
     return {
-      day: dateFormatter.format(date),
+      day: DATE_FORMATTER.format(date),
       popularity: value,
       ranked: Math.floor(100 / (value + 1)) + 1 
     };
