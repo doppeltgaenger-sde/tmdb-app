@@ -11,14 +11,21 @@ import {
   fetchMediaDetailsStart,
   fetchMediaDetailsSuccess,
   fetchMediaDetailsError,
+  updateMediaDetailsPartial,
 } from "@actions/mediaActions";
-import { normalizeMediaData, normalizeMediaDetails } from "@utils";
+import { 
+  normalizeMediaData, 
+  normalizeCriticalMediaDetails, 
+  normalizeContextMediaDetails,
+  normalizeExtendedMediaDetails,
+} from "@utils";
+import { pipelineFetch } from "./model/pipelineFetch";
 
 export const fetchMediaTrack = (track, tab, page = 1) => {
   return async (dispatch, getState) => {
     const state = getState();
     const trackState = state.media.mediaTracks[track]?.[tab];
-    const { isAppInitialized } = state.app;
+    const { isInitialized } = state.app;
 
     if (trackState?.loading) return;
 
@@ -26,7 +33,7 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
       return;
     }
 
-    if (!isAppInitialized) {
+    if (!isInitialized) {
       dispatch(startGlobalLoading());
     }
 
@@ -46,7 +53,7 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
     } catch (error) {
       dispatch(fetchMediaTrackError(track, tab, error.message));
     } finally {
-      if (!isAppInitialized) {
+      if (!isInitialized) {
         dispatch(stopGlobalLoading());
         dispatch(setAppInitialized(true));
       }
@@ -56,25 +63,47 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
 
 export const fetchMediaDetails = ({ mediaType, id }) => {
   return async (dispatch, getState) => {
+    await pipelineFetch({
+      dispatch,
+      getState,
+
+      checkCache: (state) => {
+        const details = state.media.mediaDetails?.[mediaType]?.[id];
+        return details?.loading || details?.isLoaded;
+      },
+
+      startAction: () => fetchMediaDetailsStart(mediaType, id),
+      successAction: (data) => fetchMediaDetailsSuccess(mediaType, id, data),
+      errorAction: (message) => fetchMediaDetailsError(mediaType, id, message),
+      partialAction: (partialData) => updateMediaDetailsPartial(mediaType, id, partialData),
+
+      fetchSource: () => fetchMediaDetailsApi({ mediaType, id }),
+      
+      normalizer: (response) => normalizeCriticalMediaDetails(response),
+
+      extraSteps: [
+        async (response) => normalizeContextMediaDetails(response),
+      ],
+    });
+  };
+};
+
+export const fetchMediaDetailsExtended = ({ mediaType, id }) => {
+  return async (dispatch, getState) => {
     const state = getState();
     const detailsState = state.media.mediaDetails?.[mediaType]?.[id];
+    
+    if (!detailsState?.data) return;
 
-    if (detailsState?.loading) return;
-    if (detailsState?.data) return;
+    if (detailsState.data.recommendations?.length > 0) return;
 
     try {
-      dispatch(fetchMediaDetailsStart(mediaType, id));
+      const response = await fetchMediaDetailsApi({ mediaType, id });
+      const extendedData = normalizeExtendedMediaDetails(response);
 
-      const response = await fetchMediaDetailsApi({
-        mediaType,
-        id,
-      });
-
-      const data = normalizeMediaDetails(response);
-
-      dispatch(fetchMediaDetailsSuccess(mediaType, id, data));
+      dispatch(updateMediaDetailsPartial(mediaType, id, extendedData));
     } catch (error) {
-      dispatch(fetchMediaDetailsError(mediaType, id, error.message));
+      console.error(`[Lazy Extended Load Error]:`, error.message);
     }
   };
 };
