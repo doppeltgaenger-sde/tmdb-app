@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   loadingCount: 0,
-  isAppInitialized: false,
+  isInitialized: false,
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -26,7 +26,7 @@ export const appReducer = (state = initialState, action) => {
     case SET_APP_INITIALIZED:
       return {
         ...state,
-        isAppInitialized: action.payload,
+        isInitialized: action.payload,
       };
 
     default:
