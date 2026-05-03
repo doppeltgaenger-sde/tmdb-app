@@ -4,7 +4,7 @@ export const useCountUp = (targetValue, duration = 800) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (typeof targetValue !== 'number' || isNaN(targetValue)) return;
+    if (typeof targetValue !== "number" || isNaN(targetValue)) return;
 
     let startTime = null;
     let frameId;
