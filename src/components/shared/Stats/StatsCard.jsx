@@ -12,8 +12,8 @@ export const StatsCard = ({ label, value }) => {
 
   if (!firstItem) return null;
 
-  const isNetwork = typeof firstItem === "object" && firstItem !== null;
-  const hasLogo = isNetwork && !!firstItem.logo_path;
+  const isProvider = typeof firstItem === "object" && firstItem !== null;
+  const hasLogo = isProvider && !!firstItem.logo_path;
 
   return (
     <div className="stats-card">
@@ -24,7 +24,7 @@ export const StatsCard = ({ label, value }) => {
           hasLogo && "stats-card__values--logo"
         ])}
       >
-        {isNetwork ? (
+        {isProvider ? (
           <Button
             className="stats-card__button"
             as={Link}
