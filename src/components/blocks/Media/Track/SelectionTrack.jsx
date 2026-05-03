@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useViewport } from "@hooks";
 import { classNames } from "@utils";
-import { CastCard } from "@blocks";
+import { CreditCard } from "@blocks";
 import { Slider } from "@shared";
 import "./styles/SelectionTrack.scss";
 
@@ -12,44 +12,41 @@ export const SelectionTrack = ({
   className,
   title,
   items = [],
-  CardComponent = CastCard,
+  CardComponent = CreditCard,
 }) => {
-  const [displayItems, setDisplayItems] = useState([]);
   const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const { isMobileLg, isTablet } = useViewport();
 
   const priorityThreshold = isMobileLg ? 3 : isTablet ? 5 : 8;
 
   useEffect(() => {
-    setDisplayItems(items);
     setVisibleCount(INITIAL_ITEMS);
-  }, [items]);
 
-  useEffect(() => {
-    if (!displayItems.length) return;
+    if (!items.length) return;
 
     let id;
+    const updateCount = () => setVisibleCount(FULL_ITEMS);
 
     if ("requestIdleCallback" in window) {
-      id = requestIdleCallback(() => setVisibleCount(FULL_ITEMS));
+      id = requestIdleCallback(updateCount);
     } else {
-      id = setTimeout(() => setVisibleCount(FULL_ITEMS), 200);
+      id = setTimeout(updateCount, 200);
     }
 
     return () => {
       if ("cancelIdleCallback" in window) cancelIdleCallback(id);
       else clearTimeout(id);
     };
-  }, [displayItems]);
+  }, [items.length]);
 
   const renderContent = () => {
-    if (!displayItems.length) {
+    if (!items.length) {
       return [...Array(INITIAL_ITEMS)].map((_, index) => (
         <CardComponent key={`skeleton-${index}`} isSkeleton />
       ));
     }
 
-    return displayItems.slice(0, visibleCount).map((item, index) => (
+    return items.slice(0, visibleCount).map((item, index) => (
       <CardComponent
         key={item.id || index}
         {...item}

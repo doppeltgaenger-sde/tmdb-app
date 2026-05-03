@@ -6,10 +6,12 @@ export const MediaCollectionBanner = ({ collection }) => {
   if (!collection) return null;
   
   const {
+    id,
     name,
     backdropPath,
   } = collection;
 
+  const linkTo = `/collection/${id}`;
   const backdropKeys = [backdropPath];
 
   return (
@@ -29,7 +31,7 @@ export const MediaCollectionBanner = ({ collection }) => {
       <Button
         className="media-collection-banner__button"
         as={Link} 
-        to={`/`}
+        to={linkTo}
         variant="outline"
         theme="green-gradient"
         aria-label={`${name}. View details.`}    

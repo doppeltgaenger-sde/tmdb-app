@@ -35,7 +35,7 @@ export const PosterCard = memo(({
               ${IMAGE_BASE}${posterPath} 1x,
               ${IMAGE_BASE_2X}${posterPath} 2x
             `}
-            alt={name ? `${name} movie poster` : "tmdb movie poster"}
+            alt={name ? `${name} media poster` : "tmdb media poster"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}
@@ -58,7 +58,7 @@ export const PosterCard = memo(({
         </h3>
 
         <p className="poster-card__date">
-          {isSkeleton ? "" : date}
+          {date}
         </p>
 
         <Average

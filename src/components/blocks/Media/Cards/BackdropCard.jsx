@@ -35,7 +35,7 @@ export const BackdropCard = memo(({
               ${IMAGE_BASE}${backdropPath} 1x,
               ${IMAGE_BASE_2X}${backdropPath} 2x
             `}
-            alt={name ? `${name} movie poster` : "tmdb movie poster"}
+            alt={name ? `${name} media backdrop` : "tmdb media backdrop"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}
@@ -58,7 +58,7 @@ export const BackdropCard = memo(({
         </h3>
 
         <p className="backdrop-card__date">
-          {isSkeleton ? "" : date}
+          {date}
         </p>
 
         <Average
