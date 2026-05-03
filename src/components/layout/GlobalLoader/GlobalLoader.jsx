@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import "./styles/GlobalLoader.scss";
 
 export const GlobalLoader = () => {
-  const loadingCount = useSelector((state) => state.app.loadingCount);
-  const isInitialized = useSelector((state) => state.app.isInitialized);
+  const loadingCount = useSelector((state) => state.configuration.loadingCount);
+  const isInitialized = useSelector((state) => state.configuration.isInitialized);
 
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);

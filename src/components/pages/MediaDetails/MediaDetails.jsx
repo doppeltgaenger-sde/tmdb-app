@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchMediaDetails, fetchMediaDetailsExtended } from "@thunk";
 import { useViewport } from "@hooks";
-import { MediaReview, MediaCollectionBanner } from "@blocks";
+import { 
+  MediaHero, 
+  MediaReview, 
+  MediaCollectionBanner 
+} from "@blocks";
 import { LazyBlock } from "@shared";
 import { 
-  MediaHero,
   MediaCast,
   MediaLibrary,
   MediaRecommendations,
@@ -25,7 +28,7 @@ export const MediaDetails = () => {
   const AsideTag = isMobileLg ? "div" : "aside";
 
   const detailsState = useSelector(
-    (state) => state.media.mediaDetails?.[mediaType]?.[id],
+    (state) => state.mediaDetails.mediaDetails?.[mediaType]?.[id],
   );
 
   const isInitialLoading = !detailsState || (detailsState.loading && !detailsState.data);
@@ -42,12 +45,17 @@ export const MediaDetails = () => {
     }
   }, [dispatch, mediaType, id]);
 
-  if (isInitialLoading) return <div className="media-details">Loading...</div>;
-  if (error) return <div className="media-details">Error...</div>;
+  if (isInitialLoading) return (
+    <div className="media-details">Loading...</div>
+  );
+
+  if (error) return (
+    <div className="media-details">Error...</div>
+  );
 
   return (
     <div className="media-details">
-      <MediaHero {...data} />
+      <MediaHero variant="details" {...data} />
 
       <div className="container">
         <div className="media-details__body">
