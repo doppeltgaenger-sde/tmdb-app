@@ -1,0 +1,1 @@
+export { getCollectionList } from "./getCollectionList";

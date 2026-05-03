@@ -1,6 +1,7 @@
 export * from "./array";
 export * from "./date";
 export * from "./className";
+export * from "./collection";
 export * from "./color";
 export * from "./format";
 export * from "./normalizer";
