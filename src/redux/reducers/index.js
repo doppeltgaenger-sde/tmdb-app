@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
-import { appReducer } from "./appReducer";
+import { configurationReducer } from "./configurationReducer";
+import { collectionDetailsReducer } from "./collectionDetailsReducer";
 import { mediaReducer } from "./mediaReducer";
+import { mediaDetailsReducer } from "./mediaDetailsReducer";
 
 export const rootReducer = combineReducers({
-  app: appReducer,
+  configuration: configurationReducer,
+  collectionDetails: collectionDetailsReducer,
   media: mediaReducer,
+  mediaDetails: mediaDetailsReducer,
 });

@@ -2,14 +2,16 @@ import {
   START_GLOBAL_LOADING,
   STOP_GLOBAL_LOADING,
   SET_APP_INITIALIZED,
-} from "@actions/appActions";
+  SET_GENRES,
+} from "@actions";
 
 const initialState = {
   loadingCount: 0,
   isInitialized: false,
+  genres: {},
 };
 
-export const appReducer = (state = initialState, action) => {
+export const configurationReducer = (state = initialState, action) => {
   switch (action.type) {
     case START_GLOBAL_LOADING:
       return {
@@ -27,6 +29,12 @@ export const appReducer = (state = initialState, action) => {
       return {
         ...state,
         isInitialized: action.payload,
+      };
+
+    case SET_GENRES:
+      return {
+        ...state,
+        genres: action.payload,
       };
 
     default:
