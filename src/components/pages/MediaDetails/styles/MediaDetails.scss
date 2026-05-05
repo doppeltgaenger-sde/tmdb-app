@@ -1,5 +1,21 @@
 @use "@styles/abstracts/mixins" as m;
 
+.media-details {
+  .slider--selection {
+    .slider__overlay--left {
+      @include m.break(767) {
+        left: -20px;
+      }
+    }
+
+    .slider__overlay--right {
+      @include m.break(767) {
+        right: -20px;
+      }
+    }
+  }
+}
+
 .media-details__body {
   display: flex;
   flex-direction: column;
@@ -24,20 +40,6 @@
   @include m.break-reverse(768) {
     min-width: 0;
     overflow: hidden;
-  }
-
-  .slider--selection {
-    .slider__overlay--left {
-      @include m.break(767) {
-        left: -20px;
-      }
-    }
-
-    .slider__overlay--right {
-      @include m.break(767) {
-        right: -20px;
-      }
-    }
   }
 }
 

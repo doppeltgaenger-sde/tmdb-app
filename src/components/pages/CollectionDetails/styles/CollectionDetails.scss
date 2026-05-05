@@ -1,3 +1,21 @@
+@use "@styles/abstracts/mixins" as m;
+
+.collection-details {
+  .slider--selection {
+    .slider__overlay--left {
+      @include m.break(767) {
+        left: -20px;
+      }
+    }
+
+    .slider__overlay--right {
+      @include m.break(767) {
+        right: -20px;
+      }
+    }
+  }
+}
+
 .collection-details__body {
   display: flex;
   flex-direction: column;

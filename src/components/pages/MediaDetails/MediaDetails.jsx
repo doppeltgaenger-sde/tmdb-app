@@ -55,7 +55,7 @@ export const MediaDetails = () => {
 
   return (
     <div className="media-details">
-      <MediaHero variant="details" {...data} />
+      <MediaHero variant="media" {...data} />
 
       <div className="container">
         <div className="media-details__body">
