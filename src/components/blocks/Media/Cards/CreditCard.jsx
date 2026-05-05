@@ -9,6 +9,7 @@ const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/w276_and_h350_face";
 export const CreditCard = memo(({ 
   name,
   character,
+  jobs,
   profilePath,
   isSkeleton,
   isPriority,
@@ -54,7 +55,7 @@ export const CreditCard = memo(({
         </h3>
 
         <p className="credit-card__role">
-          {character}
+          {character || jobs.join(", ")}
         </p>
       </div>
     </div>

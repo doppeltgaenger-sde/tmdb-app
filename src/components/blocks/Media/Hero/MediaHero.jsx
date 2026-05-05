@@ -134,7 +134,7 @@ export const MediaHero = ({
               <p className="media-hero__overview-description">{description}</p>
             </div>
 
-            {crew &&          
+            {variant === "media" && crew &&          
               <MediaCrew 
                 className="media-hero__crew"
                 crew={crew}
