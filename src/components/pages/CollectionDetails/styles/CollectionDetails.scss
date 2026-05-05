@@ -3,15 +3,11 @@
 .collection-details {
   .slider--selection {
     .slider__overlay--left {
-      @include m.break(767) {
-        left: -20px;
-      }
+      left: -20px;
     }
 
     .slider__overlay--right {
-      @include m.break(767) {
-        right: -20px;
-      }
+      right: -20px;
     }
   }
 }
