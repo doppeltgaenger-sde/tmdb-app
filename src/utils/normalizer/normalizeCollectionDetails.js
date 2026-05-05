@@ -3,7 +3,9 @@ import {
   normalizeColor, 
   getColorFromId,
   getGenreIds,
-  getAverage,
+  getCollectionAverage,
+  getCollectionTopCast,
+  getCollectionTopCrew,
   getCollectionList,
 } from "@utils";
 
@@ -14,7 +16,7 @@ export const normalizeCriticalCollectionDetails = ({ details: item, contextColor
     id,
     name: item.name || item.original_name,
     genreIds: getGenreIds(item?.parts) || [],
-    voteAverage: getAverage(item?.parts) || [],
+    voteAverage: getCollectionAverage(item?.parts) || [],
     description: item.overview || "No description available",
     posterPath: item.poster_path || item.backdrop_path,
     backdropPath: item.backdrop_path || item.poster_path,
@@ -24,11 +26,14 @@ export const normalizeCriticalCollectionDetails = ({ details: item, contextColor
       ? rgbToHsl(normalizeColor(contextColor)) 
       : getColorFromId(id),
     isColorLoaded: !!contextColor,
+
+    cast: getCollectionTopCast(item?.credits?.cast || []),
   };
 };
 
 export const normalizeContextCollectionDetails = ({ details: item }) => {
   return {
+    crew: getCollectionTopCrew(item?.credits?.crew || []),
     collectionList: getCollectionList(item?.parts) || [],
   };
 };

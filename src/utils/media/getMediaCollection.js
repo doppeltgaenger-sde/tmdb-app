@@ -1,4 +1,4 @@
-export const getCollection = (collection) => {
+export const getMediaCollection = (collection) => {
   if (!collection) return null;
 
   return {

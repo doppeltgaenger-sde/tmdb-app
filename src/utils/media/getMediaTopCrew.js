@@ -15,7 +15,7 @@ const TV_JOBS = [
   "Production"
 ];
 
-export const getTopCrew = (data, mediaType, limit = 4) => {
+export const getMediaTopCrew = (data, mediaType, limit = 4) => {
   const crew = data?.credits?.crew || [];
   const createdBy = data?.created_by || [];
   

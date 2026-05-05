@@ -1,4 +1,4 @@
-export const getAverage = (items = [], key = "vote_average") => {
+export const getCollectionAverage = (items = [], key = "vote_average") => {
   if (!items.length) return 0;
 
   const total = items.reduce((acc, item) => {

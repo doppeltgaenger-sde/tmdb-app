@@ -1,4 +1,4 @@
-export const getTopCast = (cast, limit = 20) => {
+export const getMediaTopCast = (cast, limit = 20) => {
   if (!cast) return [];
   
   return cast

@@ -4,7 +4,7 @@ import {
   formatRuntime, 
   formatGenresList,
   getCertification, 
-  getTopCrew, 
+  getMediaTopCrew, 
   normalizeColor, 
   rgbToHsl, 
   getColorFromId,
@@ -12,9 +12,9 @@ import {
   formatCurrency,
   formatSocials,
   buildRgb,
-  getTopCast,
+  getMediaTopCast,
   getRecommendations,
-  getCollection,
+  getMediaCollection,
   getLibrary,
 } from "@utils";
 
@@ -52,8 +52,8 @@ export const normalizeCriticalMediaDetails = ({ details: item, releaseDates, con
       : getColorFromId(id),
     isColorLoaded: !!contextColor,
 
-    crew: getTopCrew(item, mediaType),
-    cast: getTopCast(item.credits?.cast || []),
+    crew: getMediaTopCrew(item, mediaType),
+    cast: getMediaTopCast(item.credits?.cast || []),
   };
 };
 
@@ -76,7 +76,7 @@ export const normalizeContextMediaDetails = ({ details: item }) => {
 
 export const normalizeExtendedMediaDetails = ({ details: item, contextColor }) => {
   return {
-    collection: getCollection(item.belongs_to_collection),
+    collection: getMediaCollection(item.belongs_to_collection),
     recommendations: getRecommendations(item.recommendations),
     keywords: item.keywords?.keywords || item.keywords?.results || [],
     chartColor: buildRgb(contextColor) || "#0d253f",
