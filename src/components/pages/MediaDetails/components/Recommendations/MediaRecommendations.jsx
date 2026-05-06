@@ -1,4 +1,4 @@
-import { SelectionTrack, BackdropCard } from "@blocks";
+import { SelectionTrack, BackdropCard } from "@features";
 import "./styles/MediaRecommendations.scss";
 
 export const MediaRecommendations = ({ recommendations }) => {

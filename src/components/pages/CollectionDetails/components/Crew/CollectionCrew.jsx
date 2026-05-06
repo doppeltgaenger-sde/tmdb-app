@@ -1,9 +1,7 @@
-import { SelectionTrack } from "@blocks";
+import { SelectionTrack } from "@features";
 import "./styles/CollectionCrew.scss";
 
 export const CollectionCrew = ({ crew }) => {
-  console.log(crew);
-  
   return (
     <section className="collection-crew">
       <SelectionTrack

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCollectionDetails } from "@thunk";
 import { getGenresById, formatGenresList } from "@utils";
-import { MediaHero } from "@blocks";
+import { DetailsBackdropBanner } from "@features";
 import { 
   CollectionCast, 
   CollectionCrew, 
@@ -46,7 +46,7 @@ export const CollectionDetails = () => {
 
   return (
     <div className="collection-details">
-      <MediaHero 
+      <DetailsBackdropBanner 
         variant="collection" 
         genres={currentGenres} 
         {...data} 

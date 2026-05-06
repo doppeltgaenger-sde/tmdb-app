@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
-import { MediaTrack } from "@blocks";
+import { MultipleTrack } from "@features";
 import "./styles/HomeTrending.scss";
 
 export const HomeTrending = () => {
@@ -26,7 +26,7 @@ export const HomeTrending = () => {
     <section className="home-trending">
       <div className="container">
         <div className="home-trending__body">
-          <MediaTrack
+          <MultipleTrack
             title="Trending"
             items={data}
             tabs={[

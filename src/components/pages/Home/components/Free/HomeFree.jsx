@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
-import { MediaTrack } from "@blocks";
+import { MultipleTrack } from "@features";
 import "./styles/HomeFree.scss";
 
 export const HomeFree = () => {
@@ -26,7 +26,7 @@ export const HomeFree = () => {
     <section className="home-free">
       <div className="container">
         <div className="home-free__body">
-          <MediaTrack
+          <MultipleTrack
             title="Free To Watch"
             items={data}
             tabs={[

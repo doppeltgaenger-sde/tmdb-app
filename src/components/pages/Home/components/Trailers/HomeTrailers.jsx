@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
 import { useViewport } from "@hooks";
 import { classNames } from "@utils";
-import { MediaTrack, TrailerCard, TrailerModal } from "@blocks";
+import { MultipleTrack, TrailerCard, TrailerModal } from "@features";
 import "./styles/HomeTrailers.scss";
 
 const IMAGE_BASE_MB = "https://image.tmdb.org/t/p/w780";
@@ -92,7 +92,7 @@ export const HomeTrailers = () => {
     <section className="home-trailers">
       <div className="container">
         <div className="home-trailers__body">
-          <MediaTrack
+          <MultipleTrack
             title="Latest Trailers"
             items={data}
             tabs={[

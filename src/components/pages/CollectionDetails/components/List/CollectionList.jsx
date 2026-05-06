@@ -1,4 +1,4 @@
-import { MediaPlate } from "@blocks";
+import { DetailsPlate } from "@features";
 import "./styles/CollectionList.scss";
 
 export const CollectionList = ({ collectionList }) => {
@@ -8,10 +8,10 @@ export const CollectionList = ({ collectionList }) => {
     <section className="collection-list">
       <h2 className="collection-list__title">{collectionList.length} movies</h2>
 
-      <MediaPlate 
-      className="collection-list__items" 
-      variant="list"
-      plates={collectionList} 
+      <DetailsPlate 
+        className="collection-list__items" 
+        variant="list"
+        plates={collectionList} 
       />
     </section>
   );

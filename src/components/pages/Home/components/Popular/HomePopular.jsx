@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
-import { MediaTrack } from "@blocks";
+import { MultipleTrack } from "@features";
 import "./styles/HomePopular.scss";
 
 export const HomePopular = () => {
@@ -26,7 +26,7 @@ export const HomePopular = () => {
     <section className="home-popular">
       <div className="container">
         <div className="home-popular__body">
-          <MediaTrack
+          <MultipleTrack
             title="What's Popular"
             items={data}
             tabs={[

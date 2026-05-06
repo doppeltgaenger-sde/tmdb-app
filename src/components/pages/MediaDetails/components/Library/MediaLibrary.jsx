@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
-import { MediaTrack, FrameCard, TrailerModal } from "@blocks";
+import { MultipleTrack, FrameCard, TrailerModal } from "@features";
 import "./styles/MediaLibrary.scss";
 
 export const MediaLibrary = ({ library }) => {
@@ -36,7 +36,7 @@ export const MediaLibrary = ({ library }) => {
 
   return (
     <section className="media-library">
-      <MediaTrack
+      <MultipleTrack
         title="Media"
         items={data}
         tabs={[

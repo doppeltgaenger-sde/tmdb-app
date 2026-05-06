@@ -1,4 +1,4 @@
-import { SelectionTrack } from "@blocks";
+import { SelectionTrack } from "@features";
 import "./styles/CollectionCast.scss";
 
 export const CollectionCast = ({ cast }) => {

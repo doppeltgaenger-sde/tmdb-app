@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import { fetchMediaDetails, fetchMediaDetailsExtended } from "@thunk";
 import { useViewport } from "@hooks";
 import { 
-  MediaHero, 
+  DetailsBackdropBanner, 
+  DetailsCollectionBanner, 
   MediaReview, 
-  MediaCollectionBanner 
-} from "@blocks";
+} from "@features";
 import { LazyBlock } from "@shared";
 import { 
   MediaCast,
@@ -55,7 +55,7 @@ export const MediaDetails = () => {
 
   return (
     <div className="media-details">
-      <MediaHero variant="media" {...data} />
+      <DetailsBackdropBanner variant="media" {...data} />
 
       <div className="container">
         <div className="media-details__body">
@@ -65,7 +65,7 @@ export const MediaDetails = () => {
             <MediaLibrary {...data} />
 
             <LazyBlock onLoad={handleLoadExtended}>
-              <MediaCollectionBanner {...data} />
+              <DetailsCollectionBanner {...data} />
             </LazyBlock>
 
             <LazyBlock onLoad={handleLoadExtended}>
