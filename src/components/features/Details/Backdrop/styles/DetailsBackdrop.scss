@@ -1,0 +1,26 @@
+@use "@styles/abstracts/mixins" as m;
+
+.details-backdrop {
+  position: relative;
+}
+
+.details-backdrop__image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: calc(100vw / 3 + 40px);
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include m.break-reverse(768) {
+    z-index: inherit;
+    height: 100%;
+    background-position: calc(50vw - 510px) 0%;
+  }
+}
+
+.details-backdrop__overlay {
+  position: absolute;
+  inset: 0;
+}

@@ -1,0 +1,19 @@
+.details-crew {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  row-gap: 16px;
+}
+
+.details-crew__name,
+.details-crew__jobs {
+  white-space: nowrap;
+}
+
+.details-crew__name {
+  font-weight: 700;
+}
+
+.details-crew__jobs {
+  font-size: 14px;
+}

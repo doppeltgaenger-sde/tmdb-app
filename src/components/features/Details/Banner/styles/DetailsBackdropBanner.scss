@@ -1,0 +1,194 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.details-backdrop-banner {
+  position: relative;
+  border-color: black;
+  overflow: hidden;
+}
+
+.details-backdrop-banner--dark {
+  .details-meta__item {
+    &:before {
+      background: v.$neutral--100;
+    }
+  }
+
+  .details-meta__certification {
+    border-color: v.$neutral--100;
+  }
+}
+
+.details-backdrop-banner--collection {
+  .details-backdrop-banner__content {
+    @include m.break-reverse(768) {
+      justify-content: center;
+    }
+  }
+}
+
+.details-backdrop-banner__backdrop {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+}
+
+.details-backdrop-banner__body {
+  display: flex;
+  gap: 30px;
+  padding: calc(100vw / 3 + 40px) 0 20px;
+
+  @include m.break-reverse(768) {
+    padding: 30px 0;
+  }
+}
+
+.details-backdrop-banner__poster {
+  min-width: 250px;
+  max-width: 250px;
+  height: 375px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @include m.break-reverse(992) {
+    min-width: 300px;
+    max-width: 300px;
+    height: 450px;
+  }
+}
+
+.details-backdrop-banner__poster-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details-backdrop-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0 0;
+
+  @include m.break-reverse(768) {
+    align-items: flex-start;
+    gap: 20px;
+    padding: 0;
+  }
+}
+
+.details-backdrop-banner__title {
+  text-align: center;
+  text-wrap: balance;
+  font: 700 24px / 1 v.$source-sans;
+
+  @include m.break-reverse(768) {
+    order: 1;
+    text-align: left;
+    text-wrap: unset;
+    font-size: 36px;
+  }
+}
+
+.details-backdrop-banner__date {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.details-backdrop-banner__attractions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @include m.break-reverse(768) {
+    flex-direction: row;
+    order: 3;
+  }
+}
+
+.details-backdrop-banner__average-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.details-backdrop-banner__average-label {
+  font-size: 14px;
+  font-weight: 700;
+
+  @include m.break-reverse(768) {
+    font-size: 16px;
+  }
+}
+
+.details-backdrop-banner__play-button {
+  .button__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.details-backdrop-banner__meta {
+  position: relative;
+  padding: 16px 0;
+  width: 100%;
+
+  @include m.break-reverse(768) {
+    order: 2;
+    margin: -20px 0 0;
+    padding: 0;
+  }
+
+  &:before {
+    @include m.break(767) {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      inset: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% + 40px);
+      height: 100%;
+      backdrop-filter: brightness(0.8);
+    }
+  }
+}
+
+.details-backdrop-banner__tagline,
+.details-backdrop-banner__media-amount {
+  align-self: flex-start;
+  font: 400 italic 16px / 1 v.$source-sans;
+  opacity: 0.8;
+
+  @include m.break-reverse(768) {
+    order: 4;
+    font-size: 18px;
+  }
+}
+
+.details-backdrop-banner__overview {
+  @include m.break-reverse(768) {
+    order: 5;
+  }
+}
+
+.details-backdrop-banner__overview-title {
+  margin: 0 0 8px;
+  font: 600 18px / 1 v.$source-sans;
+
+  @include m.break-reverse(768) {
+    font-size: 20px;
+  }
+}
+
+.details-backdrop-banner__overview-description {
+  max-width: 900px;
+}
+
+.details-backdrop-banner__crew {
+  align-self: flex-start;
+
+  @include m.break-reverse(768) {
+    order: 6;
+    margin: 10px 0 0;
+  }
+}
