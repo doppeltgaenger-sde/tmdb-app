@@ -55,7 +55,7 @@ export const CreditCard = memo(({
         </h3>
 
         <p className="credit-card__role">
-          {character || jobs.join(", ")}
+          {character || jobs?.join(", ") || ""}
         </p>
       </div>
     </div>
