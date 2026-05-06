@@ -1,4 +1,4 @@
-export const bannerData = {
+export const signupBannerData = {
   title: "Join Today",
   cta: {
     label: "Sign Up",

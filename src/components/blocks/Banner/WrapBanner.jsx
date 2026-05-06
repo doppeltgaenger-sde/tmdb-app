@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useViewport } from "@hooks";
 import { Button } from "@shared";
-import { bannerData } from "./data/bannerData";
+import { wrapBannerData } from "./data/wrapBannerData";
 import "./styles/WrapBanner.scss";
 
 export const WrapBanner = () => {
@@ -15,7 +15,7 @@ export const WrapBanner = () => {
   }, [isMobileSm]);
 
   const displayedBannerData = useMemo(() => {
-    return bannerData.slice(0, MAX_ITEMS);
+    return wrapBannerData.slice(0, MAX_ITEMS);
   }, [MAX_ITEMS]);
 
   return (

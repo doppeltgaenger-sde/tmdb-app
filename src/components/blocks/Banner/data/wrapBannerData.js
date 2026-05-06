@@ -12,7 +12,7 @@ import wrapBannerMb4 from "../assets/wrap-banner-mb-4.webp";
 import wrapBannerMb5 from "../assets/wrap-banner-mb-5.webp";
 import wrapBannerMb6 from "../assets/wrap-banner-mb-6.webp";
 
-export const bannerData = [
+export const wrapBannerData = [
   {
     id: 1,
     desktop: {

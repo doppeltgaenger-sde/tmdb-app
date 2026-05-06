@@ -1,7 +1,7 @@
 import { useViewport } from "@hooks";
 import { parseInlineMarkup } from "@utils";
 import { Banner, Button } from "@shared";
-import { bannerData } from "./data/bannerData";
+import { signupBannerData } from "./data/signupBannerData";
 import "./styles/SignupBanner.scss";
 
 const backdropKeys = ["/lMnoYqPIAVL0YaLP5YjRy7iwaYv.jpg"];
@@ -12,7 +12,7 @@ export const SignupBanner = () => {
     cta: { label },
     desktop,
     mobile,
-  } = bannerData;
+  } = signupBannerData;
 
   const { isMobileLg } = useViewport();
   const { lead: desktopLead, features: desktopFeatures } = desktop;
