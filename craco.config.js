@@ -15,6 +15,7 @@ module.exports = {
       "@layout": path.resolve(__dirname, "src/components/layout"),
       "@base": path.resolve(__dirname, "src/components/base"),
       "@blocks": path.resolve(__dirname, "src/components/blocks"),
+      "@features": path.resolve(__dirname, "src/components/features"),
       "@pages": path.resolve(__dirname, "src/components/pages"),
       "@styles": path.resolve(__dirname, "src/styles"),
     },

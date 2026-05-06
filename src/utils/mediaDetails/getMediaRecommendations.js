@@ -1,6 +1,6 @@
 import { formatDate } from "@utils";
 
-export const getRecommendations = (recommendations, limit = 20) => {
+export const getMediaRecommendations = (recommendations, limit = 20) => {
   const recommendationsList = recommendations?.results;
   if (!recommendationsList) return [];
 

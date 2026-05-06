@@ -1,4 +1,4 @@
-export const getCertification = (releaseDates, country = "US") => {
+export const getMediaCertification = (releaseDates, country = "US") => {
   if (!releaseDates?.length) return "";
 
   const region = releaseDates.find((r) => r.iso_3166_1 === country);

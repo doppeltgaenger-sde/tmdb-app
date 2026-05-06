@@ -3,7 +3,7 @@ import {
   getYear,
   formatRuntime, 
   formatGenresList,
-  getCertification, 
+  getMediaCertification, 
   getMediaTopCrew, 
   normalizeColor, 
   rgbToHsl, 
@@ -13,9 +13,9 @@ import {
   formatSocials,
   buildRgb,
   getMediaTopCast,
-  getRecommendations,
+  getMediaRecommendations,
   getMediaCollection,
-  getLibrary,
+  getMediaLibrary,
 } from "@utils";
 
 export const normalizeCriticalMediaDetails = ({ details: item, releaseDates, contextColor }) => {
@@ -28,7 +28,7 @@ export const normalizeCriticalMediaDetails = ({ details: item, releaseDates, con
     mediaType,
     name: item.title || item.name,
     yearDate: getYear(date),
-    certification: getCertification(releaseDates, "US"),
+    certification: getMediaCertification(releaseDates, "US"),
     fullDate: formatDate(date),
     
     country: item.origin_country?.[0] 
@@ -62,7 +62,7 @@ export const normalizeContextMediaDetails = ({ details: item }) => {
   const mediaType = item.media_type || (item.title ? "movie" : "tv");
 
   return {
-    library: getLibrary(item.images, item.videos, id, mediaType),
+    library: getMediaLibrary(item.images, item.videos, id, mediaType),
     socials: formatSocials(item.external_ids, item.homepage),
     status: item.status || "", 
     type: item.type || "",
@@ -77,7 +77,7 @@ export const normalizeContextMediaDetails = ({ details: item }) => {
 export const normalizeExtendedMediaDetails = ({ details: item, contextColor }) => {
   return {
     collection: getMediaCollection(item.belongs_to_collection),
-    recommendations: getRecommendations(item.recommendations),
+    recommendations: getMediaRecommendations(item.recommendations),
     keywords: item.keywords?.keywords || item.keywords?.results || [],
     chartColor: buildRgb(contextColor) || "#0d253f",
   };

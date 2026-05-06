@@ -1,4 +1,4 @@
-export const getLibrary = (images, videos, mediaId, mediaType = "movie") => {
+export const getMediaLibrary = (images, videos, mediaId, mediaType = "movie") => {
   const backdrops = images?.backdrops || [];
   const posters = images?.posters || [];
   const videoResults = videos?.results || [];
