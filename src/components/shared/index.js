@@ -10,6 +10,7 @@ export * from "./LazyBlock/LazyBlock";
 export * from "./Loader/Loader";
 export * from "./MetricBar/MetricBar";
 export * from "./Modal/Modal";
+export * from "./Pagination/Pagination";
 export * from "./Slider/Slider";
 export * from "./Socials/SocialsGroup";
 export * from "./ScoreBage/ScoreBage";

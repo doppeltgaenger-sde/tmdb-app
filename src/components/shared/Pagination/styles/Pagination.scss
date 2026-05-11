@@ -1,0 +1,56 @@
+@use "@styles/abstracts/variables" as v;
+
+.pagination {
+  display: flex;
+  border: 1px solid v.$neutral--30;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.pagination__button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  font: 600 14px / 1 v.$source-sans;
+  background: v.$neutral--0;
+  border: none;
+  transition: v.$transition--base;
+  cursor: pointer;
+
+  &:not(.pagination__button--active) {
+    &:hover,
+    &:focus {
+      background: v.$neutral--10;
+    }
+  
+    &:active {
+      background: v.$neutral--30;
+    }
+  }
+
+  &:not(:first-of-type) {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      transform: translate(-50%, 0);
+      height: 100%;
+      background: v.$neutral--30;
+    }
+  }
+}
+
+.pagination__button--active {
+  background: v.$secondary--25;
+  color: v.$neutral--0;
+}
+
+.pagination__icon {
+  width: 14px;
+  height: 14px;
+}

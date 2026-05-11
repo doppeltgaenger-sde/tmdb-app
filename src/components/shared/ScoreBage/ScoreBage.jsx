@@ -12,17 +12,17 @@ export const ScoreBage = ({ className, score }) => {
   return (
     <div
       className={classNames([
-        "score-bage",
+        "score-badge",
         className,
       ])}
     >
-      <Icon className="score-bage__icon" name="score-star" />
+      <Icon className="score-badge__icon" name="score-star" />
 
       <p
         className={classNames([
           "icon", 
           iconPercentageClass, 
-          "score-bage__value"
+          "score-badge__value"
         ])}
       />
     </div>
