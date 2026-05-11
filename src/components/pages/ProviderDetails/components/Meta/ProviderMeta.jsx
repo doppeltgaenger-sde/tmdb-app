@@ -18,7 +18,7 @@ export const ProviderMeta = ({
         <div className="provider-meta__body">
           <div className="provider-meta__items">
             <div className="provider-meta__item">
-              <Icon className="provider-meta__icon" name="bage" />
+              <Icon className="provider-meta__icon" name="badge" />
               <span className="provider-meta__value">{name}</span>
             </div>
 

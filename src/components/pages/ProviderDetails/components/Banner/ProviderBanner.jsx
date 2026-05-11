@@ -7,7 +7,6 @@ const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/h100_filter(negate,000,6
 export const ProviderBanner = ({
   name,
   logoPath,
-  totalResults,
   title,
   children,
 }) => {

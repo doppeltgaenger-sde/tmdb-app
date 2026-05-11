@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { fetchProviderDetails } from "@thunk";
+import { Pagination } from "@shared";
 import { 
   ProviderBanner, 
   ProviderMeta, 
@@ -12,34 +13,39 @@ import "./styles/ProviderDetails.scss";
 export const ProviderDetails = ({ mediaType }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   const detailsState = useSelector(
     (state) => state.providerDetails.providerDetails?.[mediaType]?.[id]
   );
 
-  const isInitialLoading = !detailsState || (detailsState.loading && !detailsState.data);
   const data = detailsState?.data;
+  const isInitialLoading = !detailsState || (detailsState.loading && !detailsState.isLoaded);
   const error = detailsState?.error;
-  const titleContent = mediaType === "company" ? "movies" : "shows";
 
   useEffect(() => {
     if (id && mediaType) {
-      dispatch(fetchProviderDetails({ mediaType, id }));
+      dispatch(fetchProviderDetails({ mediaType, id, page: currentPage }));
     }
-  }, [dispatch, id, mediaType]);
+  }, [dispatch, id, mediaType, currentPage]);
 
-  const renderTitle = () => {
-    return (
-      <h2 className="provider-details__title">
-        {data?.totalResults} {titleContent}
-      </h2>
-    );
+  const handlePageChange = (newPage) => {
+    setSearchParams({ page: newPage });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const mediaLabel = mediaType === "company" ? "movies" : "shows";
+  const titleContent = `${data?.totalResultsFormatted || 0} ${mediaLabel}`;
+
+  const renderTitle = () => (
+    <h2 className="provider-details__title">{titleContent}</h2>
+  );
   
   if (isInitialLoading) return (
     <div className="provider-details">Loading...</div>
   );
-  
+
   if (error) return (
     <div className="provider-details">Error...</div>
   );
@@ -58,7 +64,13 @@ export const ProviderDetails = ({ mediaType }) => {
 
       <div className="container">
         <div className="provider-details__body">
-          <ProviderList {...data} />
+          <ProviderList mediaList={data?.mediaList} />
+          
+          <Pagination 
+            currentPage={currentPage}
+            totalPages={data?.totalPages || 0}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </div>

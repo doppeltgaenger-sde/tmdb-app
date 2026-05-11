@@ -1,7 +1,7 @@
 import { useViewport } from "@hooks";
 import { DetailsPlate } from "@features";
 
-export const ProviderList = ({ mediaList }) => {
+export const ProviderList = ({ mediaList = [] }) => {
   const { isMobileLg } = useViewport();
 
   if (!mediaList.length) return null;
