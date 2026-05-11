@@ -21,7 +21,6 @@ export const fetchCollectionDetailsApi = async ({ id }) => {
     ]);
 
     console.log({...details, partsCredits});
-    
 
     return {
       details: {
@@ -29,12 +28,12 @@ export const fetchCollectionDetailsApi = async ({ id }) => {
         credits: {
           cast: partsCredits.flatMap(p => p.cast),
           crew: partsCredits.flatMap(p => p.crew)
-        }
+        },
+        contextColor: contextColor || { r: 20, g: 20, b: 20 },
       },
-      contextColor: contextColor || { r: 20, g: 20, b: 20 },
     };
   } catch (error) {
-    console.error(`[API] Error fetching collection details:`, error.message);
+    console.error("[API] Error fetching collection details:", error.message);
     throw error;
   }
 };

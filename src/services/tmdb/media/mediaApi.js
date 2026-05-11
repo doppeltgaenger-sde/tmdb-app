@@ -50,10 +50,15 @@ export const fetchMediaApi = async ({ type, category, page = 1 }) => {
 
   if (category === CATEGORY.FREE) {
     endpoint = FREE_ENDPOINT_MAP[type];
-
     Object.assign(params, FREE_PARAMS);
 
-    return apiClient.get(endpoint, { params });
+    const response = await apiClient.get(endpoint, { params });
+
+    return {
+      data: {
+        results: attachMediaType(response.data.results, type),
+      },
+    };
   }
 
   if (category === CATEGORY.POPULAR) {
@@ -76,7 +81,13 @@ export const fetchMediaApi = async ({ type, category, page = 1 }) => {
   if (category === CATEGORY.TRENDING) {
     endpoint = TRENDING_ENDPOINT_MAP[type];
 
-    return apiClient.get(endpoint, { params });
+    const response = await apiClient.get(endpoint, { params });
+
+    return {
+      data: {
+        results: response.data.results,
+      },
+    };
   }
 
   if (category === CATEGORY.TRAILERS) {
