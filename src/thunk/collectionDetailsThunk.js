@@ -18,7 +18,7 @@ export const fetchCollectionDetails = ({ id }) => {
       getState,
 
       checkCache: (state) => {
-        const details = state.media.collectionDetails?.[id];
+        const details = state.collectionDetails.collectionDetails?.[id];
         return details?.loading || details?.isLoaded;
       },
 
@@ -26,13 +26,11 @@ export const fetchCollectionDetails = ({ id }) => {
       successAction: (data) => fetchCollectionDetailsSuccess(id, data),
       errorAction: (message) => fetchCollectionDetailsError(id, message),
       partialAction: (partialData) => updateCollectionDetailsPartial(id, partialData),
-
       fetchSource: () => fetchCollectionDetailsApi({ id }),
-      
       normalizer: (response) => normalizeCriticalCollectionDetails(response),
 
       extraSteps: [
-        async (response) => normalizeContextCollectionDetails(response),
+        (response) => normalizeContextCollectionDetails(response),
       ],
     });
   };

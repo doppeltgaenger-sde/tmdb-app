@@ -18,20 +18,24 @@ export const pipelineFetch = async ({
 
   try {
     const primaryResponse = await fetchSource();
-    const criticalData = normalizer(primaryResponse);
+    let finalData = normalizer(primaryResponse);
 
-    dispatch(successAction(criticalData));
-
-    extraSteps.forEach(async (step) => {
+    for (const step of extraSteps) {
       try {
         const partialData = await step(primaryResponse);
+        
         if (partialData) {
-          dispatch(partialAction(partialData));
+          finalData = {
+            ...finalData,
+            ...partialData,
+          };
         }
       } catch (stepError) {
         console.warn("[Pipeline Step Error]:", stepError);
       }
-    });
+    }
+
+    dispatch(successAction(finalData));
 
   } catch (error) {
     dispatch(errorAction(error.message));

@@ -17,25 +17,20 @@ export const fetchMediaTrack = (track, tab, page = 1) => {
 
     if (trackState?.loading) return;
 
-    if (trackState?.isLoaded && page === 1) {
-      return;
-    }
+    if (trackState?.isLoaded && page === 1) return;
 
-    if (!isInitialized) {
-      dispatch(startGlobalLoading());
-    }
+    if (!isInitialized) dispatch(startGlobalLoading());
 
     try {
       dispatch(fetchMediaTrackStart(track, tab));
 
-      const response = await fetchMediaApi({
+      const { data } = await fetchMediaApi({
         type: tab,
         category: track,
         page,
       });
 
-      const results = response?.data?.results || [];
-      const normalizedResults = results.map(normalizeMediaData);
+      const normalizedResults = (data.results || []).map(normalizeMediaData);
 
       dispatch(fetchMediaTrackSuccess(track, tab, normalizedResults));
     } catch (error) {
