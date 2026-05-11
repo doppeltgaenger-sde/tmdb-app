@@ -9,3 +9,4 @@ export {
   normalizeCriticalCollectionDetails, 
   normalizeContextCollectionDetails,
 } from "./normalizeCollectionDetails";
+export { normalizeProviderDetails } from "./normalizeProviderDetails";

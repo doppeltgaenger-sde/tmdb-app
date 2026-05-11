@@ -6,11 +6,12 @@ import {
   getCollectionAverage,
   getCollectionTopCast,
   getCollectionTopCrew,
-  getCollectionList,
+  getMediaList,
 } from "@utils";
 
-export const normalizeCriticalCollectionDetails = ({ details: item, contextColor }) => {
+export const normalizeCriticalCollectionDetails = ({ details: item }) => {
   const id = item.id;
+  const contextColor = item.contextColor;
 
   return {
     id,
@@ -34,12 +35,6 @@ export const normalizeCriticalCollectionDetails = ({ details: item, contextColor
 export const normalizeContextCollectionDetails = ({ details: item }) => {
   return {
     crew: getCollectionTopCrew(item?.credits?.crew || []),
-    collectionList: getCollectionList(item?.parts) || [],
-  };
-};
-
-export const normalizeExtendedCollectionDetails = ({ details: item, contextColor }) => {
-  return {
-
+    mediaList: getMediaList(item?.parts) || [],
   };
 };

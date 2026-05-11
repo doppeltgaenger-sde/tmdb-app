@@ -1,11 +1,11 @@
-export const getMediaCertification = (releaseDates, country = "US") => {
+export const getMediaCertification = (releaseDates, country = "US", mediaType = "movie") => {
   if (!releaseDates?.length) return "";
 
   const region = releaseDates.find((r) => r.iso_3166_1 === country);
 
   if (!region) return "";
 
-  const certification = region.release_dates?.find((r) => r.certification);
-
-  return certification?.certification || "";
+  return mediaType === "movie"
+    ? region.release_dates?.find((r) => r.certification)?.certification || ""
+    : region.rating || "";
 };

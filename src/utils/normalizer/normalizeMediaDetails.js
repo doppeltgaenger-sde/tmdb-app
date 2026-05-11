@@ -18,17 +18,19 @@ import {
   getMediaLibrary,
 } from "@utils";
 
-export const normalizeCriticalMediaDetails = ({ details: item, releaseDates, contextColor }) => {
+export const normalizeCriticalMediaDetails = ({ details: item }) => {
   const id = item.id;
   const date = item.release_date || item.first_air_date;
   const mediaType = item.media_type || (item.title ? "movie" : "tv");
+  const releaseDates = item.release_dates?.results || item.content_ratings?.results || [];
+  const contextColor = item.contextColor;
 
   return {
     id,
     mediaType,
     name: item.title || item.name,
     yearDate: getYear(date),
-    certification: getMediaCertification(releaseDates, "US"),
+    certification: getMediaCertification(releaseDates, "US", mediaType),
     fullDate: formatDate(date),
     
     country: item.origin_country?.[0] 
@@ -74,11 +76,11 @@ export const normalizeContextMediaDetails = ({ details: item }) => {
   };
 };
 
-export const normalizeExtendedMediaDetails = ({ details: item, contextColor }) => {
+export const normalizeExtendedMediaDetails = ({ details: item }) => {
   return {
     collection: getMediaCollection(item.belongs_to_collection),
     recommendations: getMediaRecommendations(item.recommendations),
     keywords: item.keywords?.keywords || item.keywords?.results || [],
-    chartColor: buildRgb(contextColor) || "#0d253f",
+    chartColor: buildRgb(item.contextColor) || "#0d253f",
   };
 };
