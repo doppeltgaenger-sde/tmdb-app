@@ -1,17 +1,16 @@
 import { DetailsPlate } from "@features";
-import "./styles/CollectionList.scss";
 
-export const CollectionList = ({ collectionList }) => {
-  if (!collectionList.length) return null;
+export const CollectionList = ({ mediaList }) => {
+  if (!mediaList.length) return null;
 
   return (
     <section className="collection-list">
-      <h2 className="collection-list__title">{collectionList.length} movies</h2>
+      <h2 className="collection-list__title">{mediaList.length} movies</h2>
 
       <DetailsPlate 
         className="collection-list__items" 
         variant="list"
-        plates={collectionList} 
+        plates={mediaList} 
       />
     </section>
   );

@@ -6,6 +6,7 @@ import {
   Home, 
   MediaDetails, 
   CollectionDetails, 
+  ProviderDetails,
 } from "@pages";
 
 export const MainContent = () => {
@@ -19,8 +20,10 @@ export const MainContent = () => {
     <main>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:mediaType/:id" element={<MediaDetails />} />
         <Route path="/collection/:id" element={<CollectionDetails />} />
+        <Route path="/company/:id" element={<ProviderDetails mediaType="company" />} />
+        <Route path="/network/:id" element={<ProviderDetails mediaType="network" />} />
+        <Route path="/:mediaType/:id" element={<MediaDetails />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </main>

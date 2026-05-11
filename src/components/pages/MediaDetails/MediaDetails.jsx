@@ -1,7 +1,7 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchMediaDetails, fetchMediaDetailsExtended } from "@thunk";
+import { fetchMediaDetails } from "@thunk";
 import { useViewport } from "@hooks";
 import { 
   DetailsBackdropBanner, 
@@ -35,10 +35,6 @@ export const MediaDetails = () => {
   const data = detailsState?.data;
   const error = detailsState?.error;
 
-  const handleLoadExtended = useCallback(() => {
-    dispatch(fetchMediaDetailsExtended({ mediaType, id }));
-  }, [dispatch, mediaType, id]);
-
   useEffect(() => {
     if (mediaType && id) {
       dispatch(fetchMediaDetails({ mediaType, id }));
@@ -64,11 +60,11 @@ export const MediaDetails = () => {
             <MediaReview {...data} />
             <MediaLibrary {...data} />
 
-            <LazyBlock onLoad={handleLoadExtended}>
+            <LazyBlock>
               <DetailsCollectionBanner {...data} />
             </LazyBlock>
 
-            <LazyBlock onLoad={handleLoadExtended}>
+            <LazyBlock>
               <MediaRecommendations {...data} />
             </LazyBlock>
           </div>
@@ -77,11 +73,11 @@ export const MediaDetails = () => {
             <MediaSocials {...data} />
             <MediaStats {...data} />
 
-            <LazyBlock onLoad={handleLoadExtended} rootMargin="200px">
+            <LazyBlock rootMargin="200px">
               <MediaKeywords {...data} />
             </LazyBlock>
             
-            <LazyBlock onLoad={handleLoadExtended} rootMargin="200px">
+            <LazyBlock rootMargin="200px">
               <MediaChart {...data} />
             </LazyBlock>
           </AsideTag>
