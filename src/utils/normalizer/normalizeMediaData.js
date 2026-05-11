@@ -2,7 +2,7 @@ import { formatDate } from "@utils";
 
 export const normalizeMediaData = (item) => {
   const name = item.title || item.name;
-  const date = item.release_date || item.first_air_date;
+  const date = item.release_date || item.first_air_date || "No date available";
   const backdrop = item.backdrop_path || item.poster_path;
   const poster = item.poster_path || item.backdrop_path;
   const description = item.overview || "No description available";

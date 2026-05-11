@@ -1,17 +1,18 @@
 import { getMediaList, formatNumber } from "@utils";
 
 export const normalizeProviderDetails = ({ details: item }) => {
-  const id = item.id;
-
   return {
-    id,
+    id: item.id,
     name: item.name,
     country: item.origin_country,
     office: item.headquarters,
     logoPath: item.logo_path,
     homepage: item.homepage,
-    mediaList: getMediaList(item.providerMedia) || [],
-    totalResults: formatNumber(item.totalResults),
     mediaType: item.mediaType,
+    mediaList: getMediaList(item.providerMedia) || [],
+    page: item.page,
+    totalPages: item.totalPages,
+    totalResultsCount: item.totalResults, 
+    totalResultsFormatted: formatNumber(item.totalResults),
   };
 };
