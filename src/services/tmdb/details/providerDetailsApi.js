@@ -9,20 +9,20 @@ export const fetchProviderDetailsApi = async ({ id, mediaType = "movie", page = 
   try {
     const { data: details } = await apiClient.get(endpoint);
 
-    const [providerMedia] = await Promise.all([
-      apiClient.get(`/discover/${mediaType}`, {
-        params: {
-          [queryKey]: id,
-          page,
-          sort_by: "popularity.desc",
-        },
-      }).then(res => res.data),
-    ]);
+    const providerMedia = await apiClient.get(`/discover/${mediaType}`, {
+      params: {
+        [queryKey]: id,
+        page,
+        sort_by: "popularity.desc",
+      },
+    }).then(res => res.data);
 
     console.log({
       ...details,
       mediaType,
       providerMedia: attachMediaType(providerMedia.results, mediaType) || [],
+      page: providerMedia.page,
+      totalPages: providerMedia.total_pages || 0,
       totalResults: providerMedia.total_results || 0,
     });
 
@@ -31,6 +31,8 @@ export const fetchProviderDetailsApi = async ({ id, mediaType = "movie", page = 
         ...details,
         mediaType,
         providerMedia: attachMediaType(providerMedia.results, mediaType) || [],
+        page: providerMedia.page,
+        totalPages: providerMedia.total_pages || 0,
         totalResults: providerMedia.total_results || 0,
       },
     };

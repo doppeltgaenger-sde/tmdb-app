@@ -14,27 +14,25 @@ export const fetchProviderDetails = ({ mediaType, id, page = 1 }) => {
       getState,
 
       checkCache: (state) => {
-        if (page > 1) return false;
-
         const details = state.providerDetails.providerDetails?.[mediaType]?.[id];
-        return details?.loading || (details?.isLoaded && !!details?.data);
+        
+        if (details?.loading) return true;
+
+        const isSamePage = details?.data?.page === page;
+
+        return details?.isLoaded && isSamePage;
       },
 
-      startAction: page === 1 
-        ? () => fetchProviderDetailsStart(mediaType, id) 
-        : null,
-
+      startAction: () => fetchProviderDetailsStart(mediaType, id),
       successAction: (data) => fetchProviderDetailsSuccess(mediaType, id, data),
       errorAction: (message) => fetchProviderDetailsError(mediaType, id, message),
-      partialAction: null,
-
+      
       fetchSource: () => {
         const discoverType = mediaType === "company" ? "movie" : "tv";
         return fetchProviderDetailsApi({ id, mediaType: discoverType, page });
       },
       
       normalizer: (response) => normalizeProviderDetails(response),
-      extraSteps: [],
     });
   };
 };

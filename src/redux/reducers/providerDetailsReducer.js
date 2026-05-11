@@ -14,7 +14,7 @@ const initialState = {
 export const providerDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROVIDER_DETAILS_START: {
-      const { mediaType, id } = action.payload; // Теперь ждем оба параметра
+      const { mediaType, id } = action.payload;
       const prevState = state.providerDetails[mediaType]?.[id];
 
       return {
@@ -24,7 +24,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
           [mediaType]: {
             ...state.providerDetails[mediaType],
             [id]: {
-              data: prevState?.data || null,
+              ...prevState,
               loading: true,
               isLoaded: prevState?.isLoaded || false,
               error: null,
@@ -44,7 +44,9 @@ export const providerDetailsReducer = (state = initialState, action) => {
           [mediaType]: {
             ...state.providerDetails[mediaType],
             [id]: {
-              data,
+              data: {
+                ...data,
+              },
               loading: false,
               isLoaded: true,
               error: null,
@@ -64,7 +66,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
           [mediaType]: {
             ...state.providerDetails[mediaType],
             [id]: {
-              data: null,
+              ...state.providerDetails[mediaType][id],
               loading: false,
               error,
               isLoaded: true,
