@@ -33,6 +33,11 @@
   object-fit: cover;
 }
 
+.plate-card__placeholder {
+  width: 50%;
+  fill: v.$neutral--50;
+}
+
 .plate-card__content {
   padding: 12px;
 }

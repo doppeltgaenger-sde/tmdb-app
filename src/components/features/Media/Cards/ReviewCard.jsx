@@ -53,7 +53,7 @@ export const ReviewCard = memo(({
           </p>
 
           <ScoreBage 
-            className="review-card__score-bage"
+            className="review-card__score-badge"
             score={score}
           />
         </div>
