@@ -1,0 +1,11 @@
+@use "@styles/abstracts/variables" as v;
+
+.provider-list__items {
+  opacity: 1;
+  transition: v.$transition--long;
+}
+
+.provider-list__items--fading {
+  opacity: 0.3;
+  pointer-events: none;
+}

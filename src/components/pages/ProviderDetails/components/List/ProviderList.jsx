@@ -1,7 +1,9 @@
 import { useViewport } from "@hooks";
 import { DetailsPlate } from "@features";
+import { classNames } from "@utils";
+import "./styles/ProviderList.scss"
 
-export const ProviderList = ({ mediaList = [] }) => {
+export const ProviderList = ({ mediaList = [], pageLoading }) => {
   const { isMobileLg } = useViewport();
 
   if (!mediaList.length) return null;
@@ -9,7 +11,10 @@ export const ProviderList = ({ mediaList = [] }) => {
   return (
     <section className="provider-list">
       <DetailsPlate 
-        className="provider-list__items" 
+        className={classNames([
+          "provider-list__items",
+          pageLoading && "provider-list__items--fading",
+        ])} 
         variant={isMobileLg ? "list" : "grid"}
         columns={!isMobileLg && "2"}
         plates={mediaList} 

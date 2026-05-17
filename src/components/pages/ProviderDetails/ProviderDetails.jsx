@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchProviderDetails } from "@thunk";
@@ -9,6 +9,8 @@ import {
   ProviderList 
 } from "./components";
 import "./styles/ProviderDetails.scss";
+
+const MIN_LOADING_TIME = 500;
 
 export const ProviderDetails = ({ mediaType }) => {
   const { id } = useParams();
@@ -22,7 +24,41 @@ export const ProviderDetails = ({ mediaType }) => {
 
   const data = detailsState?.data;
   const isInitialLoading = !detailsState || (detailsState.loading && !detailsState.isLoaded);
+  const pageLoading = detailsState?.pageLoading || false;
   const error = detailsState?.error;
+  const [bufferedMediaList, setBufferedMediaList] = useState([]);
+  const [isFadingOut, setIsFadingOut] = useState(false);
+  const loadingStartTimeRef = useRef(null);
+
+  useEffect(() => {
+    if (pageLoading) {
+      setIsFadingOut(true);
+      loadingStartTimeRef.current = Date.now();
+    }
+  }, [pageLoading]);
+
+  useEffect(() => {
+    if (!pageLoading && isFadingOut && data?.mediaList) {
+      const timePassed = Date.now() - loadingStartTimeRef.current;
+      const remainingTime = Math.max(0, MIN_LOADING_TIME - timePassed);
+
+      const timeoutId = setTimeout(() => {
+        setBufferedMediaList(data.mediaList);
+        
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setIsFadingOut(false);
+          });
+        });
+      }, remainingTime);
+
+      return () => clearTimeout(timeoutId);
+    } 
+    
+    if (!pageLoading && !isFadingOut && data?.mediaList) {
+      setBufferedMediaList(data.mediaList);
+    }
+  }, [pageLoading, isFadingOut, data?.mediaList]);
 
   useEffect(() => {
     if (id && mediaType) {
@@ -64,7 +100,10 @@ export const ProviderDetails = ({ mediaType }) => {
 
       <div className="container">
         <div className="provider-details__body">
-          <ProviderList mediaList={data?.mediaList} />
+          <ProviderList 
+            mediaList={bufferedMediaList} 
+            pageLoading={isFadingOut || pageLoading} 
+          />
           
           <Pagination 
             currentPage={currentPage}
