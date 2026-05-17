@@ -23,8 +23,8 @@ export const fetchProviderDetails = ({ mediaType, id, page = 1 }) => {
         return details?.isLoaded && isSamePage;
       },
 
-      startAction: () => fetchProviderDetailsStart(mediaType, id),
-      successAction: (data) => fetchProviderDetailsSuccess(mediaType, id, data),
+      startAction: () => fetchProviderDetailsStart(mediaType, id, page),
+      successAction: (data) => fetchProviderDetailsSuccess(mediaType, id, data, page),
       errorAction: (message) => fetchProviderDetailsError(mediaType, id, message),
       
       fetchSource: () => {

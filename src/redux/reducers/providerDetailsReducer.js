@@ -14,8 +14,9 @@ const initialState = {
 export const providerDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROVIDER_DETAILS_START: {
-      const { mediaType, id } = action.payload;
+      const { mediaType, id, page } = action.payload;
       const prevState = state.providerDetails[mediaType]?.[id];
+      const isPageChange = page > 1;
 
       return {
         ...state,
@@ -25,7 +26,8 @@ export const providerDetailsReducer = (state = initialState, action) => {
             ...state.providerDetails[mediaType],
             [id]: {
               ...prevState,
-              loading: true,
+              loading: !isPageChange,
+              pageLoading: isPageChange,
               isLoaded: prevState?.isLoaded || false,
               error: null,
             },
@@ -48,6 +50,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
                 ...data,
               },
               loading: false,
+              pageLoading: false,
               isLoaded: true,
               error: null,
             },
@@ -68,6 +71,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
             [id]: {
               ...state.providerDetails[mediaType][id],
               loading: false,
+              pageLoading: false,
               error,
               isLoaded: true,
             },
