@@ -8,6 +8,7 @@ import {
   normalizeColor, 
   rgbToHsl, 
   getColorFromId,
+  getMediaProviders,
   formatFullLanguage,
   formatCurrency,
   formatSocials,
@@ -41,7 +42,7 @@ export const normalizeCriticalMediaDetails = ({ details: item }) => {
       item.runtime || (Array.isArray(item.episode_run_time) ? item.episode_run_time[0] : null)
     ),
 
-    genres: formatGenresList(item.genres?.map((g) => g.name) || []),
+    genres: formatGenresList((item?.genres || []).map((g) => g?.name).filter(Boolean)),
     voteAverage: item.vote_average,
     trailerId: id,
     tagline: item.tagline || "",
@@ -68,8 +69,8 @@ export const normalizeContextMediaDetails = ({ details: item }) => {
     socials: formatSocials(item.external_ids, item.homepage),
     status: item.status || "", 
     type: item.type || "",
-    company: item.production_companies || "",
-    network: item.networks || "",
+    companies: getMediaProviders(item.production_companies, "company"),
+    networks: getMediaProviders(item.networks, "network"),
     originalLanguage: formatFullLanguage(item.original_language),
     budget: formatCurrency(item.budget) || "–",
     revenue: formatCurrency(item.revenue) || "–",
