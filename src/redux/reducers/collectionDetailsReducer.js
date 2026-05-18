@@ -46,15 +46,16 @@ export const collectionDetailsReducer = (state = initialState, action) => {
 
     case FETCH_COLLECTION_DETAILS_ERROR: {
       const { id, error } = action.payload;
+      const prevState = state.collectionDetails?.[id];
       return {
         ...state,
         collectionDetails: {
           ...state.collectionDetails,
           [id]: {
-            data: null,
+            data: prevState?.data || null,
             loading: false,
             error,
-            isLoaded: true,
+            isLoaded: prevState?.isLoaded || false,
           },
         },
       };

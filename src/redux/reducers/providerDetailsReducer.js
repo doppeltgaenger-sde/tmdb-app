@@ -15,7 +15,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROVIDER_DETAILS_START: {
       const { mediaType, id, page } = action.payload;
-      const prevState = state.providerDetails[mediaType]?.[id];
+      const prevState = state.providerDetails?.[mediaType]?.[id];
       const isPageChange = page > 1;
 
       return {
@@ -23,7 +23,7 @@ export const providerDetailsReducer = (state = initialState, action) => {
         providerDetails: {
           ...state.providerDetails,
           [mediaType]: {
-            ...state.providerDetails[mediaType],
+            ...(state.providerDetails?.[mediaType] || {}),
             [id]: {
               ...prevState,
               loading: !isPageChange,
@@ -38,14 +38,16 @@ export const providerDetailsReducer = (state = initialState, action) => {
 
     case FETCH_PROVIDER_DETAILS_SUCCESS: {
       const { mediaType, id, data } = action.payload;
+      const prevState = state.providerDetails?.[mediaType]?.[id];
 
       return {
         ...state,
         providerDetails: {
           ...state.providerDetails,
           [mediaType]: {
-            ...state.providerDetails[mediaType],
+            ...(state.providerDetails?.[mediaType] || {}),
             [id]: {
+              ...prevState,
               data: {
                 ...data,
               },
@@ -61,19 +63,20 @@ export const providerDetailsReducer = (state = initialState, action) => {
 
     case FETCH_PROVIDER_DETAILS_ERROR: {
       const { mediaType, id, error } = action.payload;
+      const prevState = state.providerDetails?.[mediaType]?.[id];
 
       return {
         ...state,
         providerDetails: {
           ...state.providerDetails,
           [mediaType]: {
-            ...state.providerDetails[mediaType],
+            ...(state.providerDetails?.[mediaType] || {}),
             [id]: {
-              ...state.providerDetails[mediaType][id],
+              ...prevState,
               loading: false,
               pageLoading: false,
               error,
-              isLoaded: true,
+              isLoaded: prevState?.isLoaded || false,
             },
           },
         },

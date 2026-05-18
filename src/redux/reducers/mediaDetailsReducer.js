@@ -16,13 +16,14 @@ export const mediaDetailsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_MEDIA_DETAILS_START: {
       const { mediaType, id } = action.payload;
-      const prevState = state.mediaDetails[mediaType]?.[id];
+      const prevState = state.mediaDetails?.[mediaType]?.[id];
+
       return {
         ...state,
         mediaDetails: {
           ...state.mediaDetails,
           [mediaType]: {
-            ...state.mediaDetails[mediaType],
+            ...(state.mediaDetails?.[mediaType] || {}),
             [id]: {
               data: prevState?.data || null,
               loading: true,
@@ -36,13 +37,16 @@ export const mediaDetailsReducer = (state = initialState, action) => {
 
     case FETCH_MEDIA_DETAILS_SUCCESS: {
       const { mediaType, id, data } = action.payload;
+      const prevState = state.mediaDetails?.[mediaType]?.[id];
+
       return {
         ...state,
         mediaDetails: {
           ...state.mediaDetails,
           [mediaType]: {
-            ...state.mediaDetails[mediaType],
+            ...(state.mediaDetails?.[mediaType] || {}),
             [id]: {
+              ...prevState,
               data,
               loading: false,
               error: null,
@@ -55,17 +59,19 @@ export const mediaDetailsReducer = (state = initialState, action) => {
 
     case FETCH_MEDIA_DETAILS_ERROR: {
       const { mediaType, id, error } = action.payload;
+      const prevState = state.mediaDetails?.[mediaType]?.[id];
+
       return {
         ...state,
         mediaDetails: {
           ...state.mediaDetails,
           [mediaType]: {
-            ...state.mediaDetails[mediaType],
+            ...(state.mediaDetails?.[mediaType] || {}),
             [id]: {
-              data: null,
+              data: prevState?.data || null,
               loading: false,
               error,
-              isLoaded: true,
+              isLoaded: prevState?.isLoaded || false,
             },
           },
         },
@@ -74,7 +80,7 @@ export const mediaDetailsReducer = (state = initialState, action) => {
 
     case UPDATE_MEDIA_DETAILS_PARTIAL: {
       const { mediaType, id, partialData } = action.payload;
-      const currentMedia = state.mediaDetails[mediaType]?.[id];
+      const currentMedia = state.mediaDetails?.[mediaType]?.[id];
 
       if (!currentMedia || !currentMedia.data) return state;
 
@@ -83,7 +89,7 @@ export const mediaDetailsReducer = (state = initialState, action) => {
         mediaDetails: {
           ...state.mediaDetails,
           [mediaType]: {
-            ...state.mediaDetails[mediaType],
+            ...(state.mediaDetails?.[mediaType] || {}),
             [id]: {
               ...currentMedia,
               data: {
