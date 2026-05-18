@@ -8,7 +8,7 @@ import {
   DetailsCollectionBanner, 
   MediaReview, 
 } from "@features";
-import { LazyBlock } from "@shared";
+import { LazyBlock, Loader } from "@shared";
 import { 
   MediaCast,
   MediaLibrary,
@@ -42,7 +42,12 @@ export const MediaDetails = () => {
   }, [dispatch, mediaType, id]);
 
   if (isInitialLoading) return (
-    <div className="media-details">Loading...</div>
+    <div className="media-details">
+      <Loader 
+        className="media-details__loader"
+        theme="primary"
+      />
+    </div>
   );
 
   if (error) return (
@@ -56,29 +61,38 @@ export const MediaDetails = () => {
       <div className="container">
         <div className="media-details__body">
           <div className="media-details__main">
-            <MediaCast {...data} />
-            <MediaReview {...data} />
-            <MediaLibrary {...data} />
+            <MediaCast cast={data?.cast} />
+            <MediaReview id={data?.id} />
+            <MediaLibrary library={data?.library} />
 
             <LazyBlock>
-              <DetailsCollectionBanner {...data} />
+              <DetailsCollectionBanner collection={data?.collection} />
             </LazyBlock>
 
             <LazyBlock>
-              <MediaRecommendations {...data} />
+              <MediaRecommendations recommendations={data?.recommendations} />
             </LazyBlock>
           </div>
 
           <AsideTag className="media-details__aside">
-            <MediaSocials {...data} />
-            <MediaStats {...data} />
+            <MediaSocials socials={data?.socials} />
+            <MediaStats 
+              mediaType={mediaType}
+              status={data?.status} 
+              type={data?.type} 
+              companies={data?.companies} 
+              networks={data?.networks} 
+              originalLanguage={data?.originalLanguage}
+              budget={data?.budget}
+              revenue={data?.revenue}
+            />
 
             <LazyBlock rootMargin="200px">
-              <MediaKeywords {...data} />
+              <MediaKeywords keywords={data?.keywords} />
             </LazyBlock>
             
             <LazyBlock rootMargin="200px">
-              <MediaChart {...data} />
+              <MediaChart chartColor={data?.chartColor} />
             </LazyBlock>
           </AsideTag>
         </div>

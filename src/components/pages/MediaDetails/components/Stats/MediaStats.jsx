@@ -3,8 +3,8 @@ import { StatsGroup } from "@shared";
 export const MediaStats = ({
   mediaType,
   status,
-  company,
-  network,
+  companies,
+  networks,
   type,
   originalLanguage,
   budget,
@@ -19,14 +19,14 @@ export const MediaStats = ({
     ...(mediaType === "movie" ? [
       {
         label: "Company",
-        value: company,
+        value: companies,
       },
     ] : []),
     
     ...(mediaType === "tv" ? [
       {
         label: "Network",
-        value: network,
+        value: networks,
       },
       {
         label: "Type",

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchProviderDetails } from "@thunk";
-import { Pagination } from "@shared";
+import { Pagination, Loader } from "@shared";
 import { 
   ProviderBanner, 
   ProviderMeta, 
@@ -79,7 +79,12 @@ export const ProviderDetails = ({ mediaType }) => {
   );
   
   if (isInitialLoading) return (
-    <div className="provider-details">Loading...</div>
+    <div className="provider-details">
+      <Loader 
+        className="provider-details__loader"
+        theme="primary"
+      />
+    </div>
   );
 
   if (error) return (

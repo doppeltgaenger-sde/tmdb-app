@@ -9,6 +9,13 @@
   padding: 30px 0;
 }
 
+.provider-details__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .provider-details__title {
   margin: 0;
   color: v.$neutral--0;

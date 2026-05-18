@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchCollectionDetails } from "@thunk";
 import { getGenresById, formatGenresList } from "@utils";
 import { DetailsBackdropBanner } from "@features";
+import { Loader } from "@shared";
 import { 
   CollectionCast, 
   CollectionCrew, 
@@ -15,7 +16,8 @@ export const CollectionDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const allGenres = useSelector((state) => state.configuration.genres);
+  const allGenres = useSelector((state) => state.configuration?.genres || []);
+
   const detailsState = useSelector(
     (state) => state.collectionDetails.collectionDetails?.[id],
   );
@@ -25,7 +27,8 @@ export const CollectionDetails = () => {
   const error = detailsState?.error;
 
   const currentGenres = useMemo(() => {
-    const genresArray = getGenresById(data?.genreIds, allGenres);
+    if (!data?.genreIds) return "";
+    const genresArray = getGenresById(data.genreIds, allGenres);
   
     return formatGenresList(genresArray);
   }, [data?.genreIds, allGenres]);
@@ -37,11 +40,16 @@ export const CollectionDetails = () => {
   }, [dispatch, id]);
 
   if (isInitialLoading) return (
-    <div className="collection-details">Loading...</div>
+    <div className="collection-details">
+      <Loader 
+        className="collection-details__loader"
+        theme="primary"
+      />
+    </div>
   );
 
   if (error) return (
-    <div className="collection-details">Error...</div>
+    <div className="collection-details collection-details--error">Error...</div>
   );
 
   return (
@@ -54,9 +62,9 @@ export const CollectionDetails = () => {
 
       <div className="container">
         <div className="collection-details__body">
-          <CollectionCast {...data} />
-          <CollectionCrew {...data} />
-          <CollectionList {...data} />
+          <CollectionCast cast={data?.cast} />
+          <CollectionCrew crew={data?.crew} />
+          <CollectionList mediaList={data?.mediaList} />
         </div>
       </div>
     </div>
