@@ -58,7 +58,10 @@ export const TrailerModal = ({
         </h3>
         <div className="trailer-modal__video">
           {shouldRenderIframe && !isTrailerReady && (
-            <Loader className="trailer-modal__loader" />
+            <Loader 
+              className="trailer-modal__loader" 
+              theme="light"
+            />
           )}
           {shouldRenderIframe && (
             <iframe
