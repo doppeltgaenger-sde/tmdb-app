@@ -4,14 +4,14 @@
   font-weight: 600;
 }
 
-.stats-card__values--logo {
+.stats-card__values--providers {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 4px 0;
 }
 
-.stats-card__logo {
+.stats-card__provider {
   height: 26px;
 
   @include m.break-reverse(768) {
