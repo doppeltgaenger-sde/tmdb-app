@@ -10,15 +10,16 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
 
   try {
     const { data: details } = await apiClient.get(endpoint, { params });
-    const posterUrl = `https://image.tmdb.org/t/p/w45${details.poster_path}`;
+    
+    let contextColor = null;
 
-    const [contextColor] = await Promise.all([
-      fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`)
+    if (details?.poster_path) {
+      const posterUrl = `https://image.tmdb.org/t/p/w45${details.poster_path}`;
+      
+      contextColor = await fetch(`/api/color?url=${encodeURIComponent(posterUrl)}`)
         .then(res => res.ok ? res.json() : null)
-        .catch(() => null)
-    ]);
-
-    console.log(details);
+        .catch(() => null);
+    }
 
     return {
       details: {
@@ -27,7 +28,7 @@ export const fetchMediaDetailsApi = async ({ mediaType, id }) => {
       },
     };
   } catch (error) {
-      console.error(`[API] Error fetching ${mediaType} details:`, error.message);
+    console.error(`[API] Error fetching ${mediaType} details:`, error.message);
     throw error;
   }
 };
