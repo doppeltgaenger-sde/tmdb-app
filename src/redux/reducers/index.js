@@ -4,6 +4,7 @@ import { collectionDetailsReducer } from "./collectionDetailsReducer";
 import { mediaReducer } from "./mediaReducer";
 import { mediaDetailsReducer } from "./mediaDetailsReducer";
 import { providerDetailsReducer } from "./providerDetailsReducer";
+import { peopleReducer } from "./peopleReducer";
 
 export const rootReducer = combineReducers({
   configuration: configurationReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   media: mediaReducer,
   mediaDetails: mediaDetailsReducer,
   providerDetails: providerDetailsReducer,
+  people: peopleReducer,
 });
