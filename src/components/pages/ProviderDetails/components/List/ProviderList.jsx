@@ -1,5 +1,5 @@
 import { useViewport } from "@hooks";
-import { DetailsPlate } from "@features";
+import { Plate } from "@layout";
 import { classNames } from "@utils";
 import "./styles/ProviderList.scss"
 
@@ -10,7 +10,7 @@ export const ProviderList = ({ mediaList = [], pageLoading }) => {
 
   return (
     <section className="provider-list">
-      <DetailsPlate 
+      <Plate 
         className={classNames([
           "provider-list__items",
           pageLoading && "provider-list__items--fading",

@@ -56,7 +56,7 @@ export const ProviderDetails = ({ mediaType }) => {
     } 
     
     if (!pageLoading && !isFadingOut && data?.mediaList) {
-      setBufferedMediaList(data.mediaList);
+      setBufferedMediaList(data?.mediaList);
     }
   }, [pageLoading, isFadingOut, data?.mediaList]);
 

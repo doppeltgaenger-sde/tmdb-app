@@ -1,0 +1,15 @@
+@use "@styles/abstracts/variables" as v;
+
+.people-list {
+  width: 100%;
+}
+
+.people-list__items {
+  opacity: 1;
+  transition: v.$transition--long;
+}
+
+.people-list__items--fading {
+  opacity: 0.3;
+  pointer-events: none;
+}

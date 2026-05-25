@@ -1,4 +1,4 @@
-import { DetailsPlate } from "@features";
+import { Plate } from "@layout";
 
 export const CollectionList = ({ mediaList }) => {
   if (!mediaList.length) return null;
@@ -7,7 +7,7 @@ export const CollectionList = ({ mediaList }) => {
     <section className="collection-list">
       <h2 className="collection-list__title">{mediaList.length} movies</h2>
 
-      <DetailsPlate 
+      <Plate 
         className="collection-list__items" 
         variant="list"
         plates={mediaList} 
