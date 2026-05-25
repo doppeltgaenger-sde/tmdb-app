@@ -1,11 +1,11 @@
 export { BackdropCard } from "./Cards/BackdropCard";
-export { CreditCard } from "./Cards/CreditCard";
 export { FrameCard } from "./Cards/FrameCard";
-export { PlateCard } from "./Cards/PlateCard";
 export { PosterCard } from "./Cards/PosterCard";
+export { ProfileCard } from "./Cards/ProfileCard";
 export { ReviewCard } from "./Cards/ReviewCard";
 export { TrailerCard } from "./Cards/TrailerCard";
 export { TrailerModal } from "./Modal/TrailerModal";
 export { MediaReview } from "./Review/MediaReview";
 export { MultipleTrack } from "./Track/MultipleTrack";
 export { SelectionTrack } from "./Track/SelectionTrack";
+export { WideCard } from "./Cards/WideCard";

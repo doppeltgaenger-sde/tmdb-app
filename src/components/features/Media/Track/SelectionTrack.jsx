@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useViewport } from "@hooks";
 import { classNames } from "@utils";
-import { CreditCard } from "@features";
+import { ProfileCard } from "@features";
 import { Slider } from "@shared";
 import "./styles/SelectionTrack.scss";
 
@@ -12,7 +12,7 @@ export const SelectionTrack = ({
   className,
   title,
   items = [],
-  CardComponent = CreditCard,
+  CardComponent = ProfileCard,
 }) => {
   const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
   const { isMobileLg, isTablet } = useViewport();
@@ -42,13 +42,17 @@ export const SelectionTrack = ({
   const renderContent = () => {
     if (!items.length) {
       return [...Array(INITIAL_ITEMS)].map((_, index) => (
-        <CardComponent key={`skeleton-${index}`} isSkeleton />
+        <CardComponent 
+          key={`skeleton-${index}`} 
+          isSkeleton 
+        />
       ));
     }
 
     return items.slice(0, visibleCount).map((item, index) => (
       <CardComponent
-        key={item.id || index}
+        key={item.id || index}           
+        variant="fixed"
         {...item}
         isPriority={index < priorityThreshold}
       />

@@ -1,12 +1,12 @@
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { Button, Icon, Average } from "@shared";
-import "./styles/PlateCard.scss";
+import "./styles/WideCard.scss";
 
 const IMAGE_BASE = "https://media.themoviedb.org/t/p/w94_and_h141_face";
 const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/w188_and_h282_face";
 
-export const PlateCard = memo(({ 
+export const WideCard = memo(({ 
   id,
   mediaType = "movie",
   posterPath, 
@@ -21,16 +21,16 @@ export const PlateCard = memo(({
   const linkTo = `/${mediaType}/${id}`;
 
   return (
-    <div className="plate-card">
-      <div className="plate-card__poster">
+    <div className="wide-card">
+      <div className="wide-card__poster">
         {showSkeleton ? (
           <Icon
-            className="plate-card__placeholder"
+            className="wide-card__placeholder"
             name="media-placeholder"
           />
         ) : (
           <img
-            className="plate-card__poster-image"
+            className="wide-card__poster-image"
             src={`${IMAGE_BASE}${posterPath}`}
             srcSet={`
               ${IMAGE_BASE}${posterPath} 1x,
@@ -44,17 +44,17 @@ export const PlateCard = memo(({
         )}
       </div>
 
-      <div className="plate-card__content">
-        <div className="plate-card__title-block">
+      <div className="wide-card__content">
+        <div className="wide-card__title-block">
           <Average
-            className="plate-card__average"
+            className="wide-card__average"
             value={voteAverage}
             isSkeleton={isSkeleton}
           />
 
-          <h3 className="plate-card__name">
+          <h3 className="wide-card__name">
             <Button 
-              className="plate-card__button" 
+              className="wide-card__button" 
               as={Link} 
               to={linkTo}
               variant="ghost"
@@ -65,10 +65,10 @@ export const PlateCard = memo(({
             </Button>
           </h3>
 
-          <p className="plate-card__date">{date}</p>
+          <p className="wide-card__date">{date}</p>
         </div>
 
-        <p className="plate-card__description">{description}</p>
+        <p className="wide-card__description">{description}</p>
       </div>
     </div>
   );
