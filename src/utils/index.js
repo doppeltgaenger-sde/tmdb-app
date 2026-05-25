@@ -7,4 +7,5 @@ export * from "./format";
 export * from "./media";
 export * from "./mediaDetails";
 export * from "./normalizer";
+export * from "./people";
 export * from "./string";
