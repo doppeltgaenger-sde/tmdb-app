@@ -4,3 +4,4 @@ export * from "./details/mediaDetailsApi";
 export * from "./details/providerDetailsApi";
 export * from "./media/mediaApi";
 export * from "./media/trailerApi";
+export * from "./people/peopleApi";

@@ -20,8 +20,6 @@ export const fetchCollectionDetailsApi = async ({ id }) => {
         .catch(() => null)
     ]);
 
-    console.log({...details, partsCredits});
-
     return {
       details: {
         ...details,
