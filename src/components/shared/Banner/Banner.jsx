@@ -38,7 +38,7 @@ export const Banner = ({
         <img
           className="banner__background"
           src={imageSrc}
-          alt="tmdb banner background"
+          alt="TMDB banner background"
           loading="lazy"
           decoding="async"
         />

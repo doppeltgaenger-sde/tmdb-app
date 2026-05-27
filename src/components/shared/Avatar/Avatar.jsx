@@ -42,7 +42,7 @@ export const Avatar = memo(({
         <img
           className="avatar__image"
           src={src}
-          alt={name || "tmdb user avatar"}
+          alt={name || "TMDB user avatar"}
           onError={handleError}
           loading="lazy"
         />

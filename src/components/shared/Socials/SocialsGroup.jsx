@@ -16,7 +16,6 @@ export const SocialsGroup = ({ className, socials = [] }) => {
           as={Link} 
           to={social.url}
           target="_blank"
-          size="sm"
           variant="ghost"
           theme="dark"
           aria-label={`Visit our official ${social.name}`}
