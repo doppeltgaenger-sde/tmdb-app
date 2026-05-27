@@ -45,6 +45,11 @@ $source-sans: "Source Sans 3", sans-serif;
 $barlow: "Barlow";
 $consensus: "Consensus";
 
+/*----- sizes ----- */
+$headerHeight: 64px;
+
 /*----- transition ----- */
 $transition--base: all 0.3s ease;
 $transition--long: all 0.5s ease;
+$transition--short: all 0.15s ease;
+$transition--spring: all 0.3s cubic-bezier(0.32, 0.94, 0.6, 1);
