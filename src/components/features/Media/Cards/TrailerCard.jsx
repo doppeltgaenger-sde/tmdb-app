@@ -48,7 +48,7 @@ export const TrailerCard = memo(({
             ${IMAGE_BASE}${backdropPath} 1x,
             ${IMAGE_BASE_2X}${backdropPath} 2x
           `}
-          alt={name ? `${name} trailer backdrop` : "tmdb trailer backdrop"}
+          alt={name ? `${name} trailer backdrop` : "TMDB trailer backdrop"}
           loading={isPriority ? "eager" : "lazy"}
           fetchPriority={isPriority ? "high" : "low"}
           decoding={isPriority ? "sync" : "async"}

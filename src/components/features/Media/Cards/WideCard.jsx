@@ -36,7 +36,7 @@ export const WideCard = memo(({
               ${IMAGE_BASE}${posterPath} 1x,
               ${IMAGE_BASE_2X}${posterPath} 2x
             `}
-            alt={name ? `${name} media poster` : "tmdb media poster"}
+            alt={name ? `${name} media poster` : "TMDB media poster"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}

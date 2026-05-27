@@ -44,7 +44,7 @@ export const ProfileCard = memo(({
         {showSkeleton ? (
           <Icon
             className="profile-card__placeholder"
-            name="cast-placeholder"
+            name="profile-placeholder"
           />
         ) : (
           <img
@@ -54,7 +54,7 @@ export const ProfileCard = memo(({
               ${base}${profilePath} 1x,
               ${base2x}${profilePath} 2x
             `}
-            alt={name ? `${name} profile` : "tmdb actor profile"}
+            alt={name ? `${name} profile` : "TMDB person profile"}
             loading={isPriority ? "eager" : "lazy"}
             fetchPriority={isPriority ? "high" : "low"}
             decoding={isPriority ? "sync" : "async"}
