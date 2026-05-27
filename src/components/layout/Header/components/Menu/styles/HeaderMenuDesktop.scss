@@ -1,0 +1,68 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.header-menu-desktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  @include m.break-reverse(992) {
+    gap: 32px;
+  }
+}
+
+.header-menu-desktop__item {
+  position: relative;
+
+  &:hover {
+    .header-menu-desktop__dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.header-menu-desktop__button {
+  padding: 8px 0;
+}
+
+.header-menu-desktop__button--trigger {
+  &:hover,
+  &:focus {
+    color: v.$neutral--0;
+  }
+}
+
+.header-menu-desktop__dropdown {
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  left: 0;
+  transform: translate(-16px, -1px);
+  padding: 4px 0;
+  min-width: 135px;
+  background: v.$neutral--0;
+  border: 1px solid v.$neutral--10;
+  border-radius: 6px;
+  opacity: 0;
+  box-shadow: 0 2px 8px rgba(v.$neutral--100, 0.1);
+  transition: v.$transition--base;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.header-menu-desktop__dropdown-button {
+  justify-content: flex-start;
+  padding: 4px 16px;
+  min-width: 100%;
+  font: 400 14px / 1.5 v.$source-sans;
+
+  &:hover,
+  &:focus {
+    background: v.$neutral--20 !important;
+  }
+
+  &:active {
+    background: v.$neutral--30 !important;
+  }
+}

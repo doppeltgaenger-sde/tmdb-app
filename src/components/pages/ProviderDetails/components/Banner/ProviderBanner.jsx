@@ -24,7 +24,7 @@ export const ProviderBanner = ({
                 ${IMAGE_BASE}${logoPath} 1x,
                 ${IMAGE_BASE_2X}${logoPath} 2x
               `}
-              alt={name ? `${name} provider logo` : "tmdb provider logo"}
+              alt={name ? `${name} provider logo` : "TMDB provider logo"}
               loading="eager"
               fetchPriority="high"
               decoding="sync"

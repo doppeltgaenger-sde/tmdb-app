@@ -1,0 +1,9 @@
+@use "@styles/abstracts/mixins" as m;
+
+.header-logo__image {
+  height: 40px;
+
+  @include m.break-reverse(768) {
+    height: 20px;
+  }
+}

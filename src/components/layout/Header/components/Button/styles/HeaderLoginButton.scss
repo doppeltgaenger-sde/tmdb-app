@@ -1,0 +1,10 @@
+@use "@styles/abstracts/variables" as v;
+
+.header-login-button {
+  color: v.$neutral--0;
+}
+
+.header-login-button__icon {
+  width: 24px;
+  height: 24px;
+}

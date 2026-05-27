@@ -1,0 +1,33 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: v.$primary--75;
+}
+
+.header__body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: v.$headerHeight;
+}
+
+.header__left,
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include m.break-reverse(768) {
+    gap: 24px;
+  }
+
+  @include m.break-reverse(992) {
+    gap: 32px;
+  }
+}
