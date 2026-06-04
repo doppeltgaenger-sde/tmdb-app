@@ -1,3 +1,4 @@
+@use "@styles/abstracts/variables" as v;
 @use "@styles/abstracts/mixins" as m;
 
 .container {
@@ -18,4 +19,8 @@
 .highlight-text {
   font-style: italic;
   opacity: 0.7;
+}
+
+.underline-text {
+  border-bottom: 1px solid v.$red--50;
 }

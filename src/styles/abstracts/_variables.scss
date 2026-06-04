@@ -14,9 +14,10 @@ $neutral--10: #e9ecef;
 $neutral--0: #fff;
 
 $primary--100: #081c22;
-$primary--75: #0d253f;
-$primary--50: #073844;
-$primary--25: #133a63;
+$primary--80: #0a1526;
+$primary--60: #0d253f;
+$primary--40: #073844;
+$primary--20: #133a63;
 $primary--0: #9aa5b1;
 
 $secondary--100: #017da1;
@@ -33,17 +34,22 @@ $purple--50: #805be7;
 $purple--25: #9a7ff0;
 $purple--0: #b7aee0;
 
-$pink: #efafbb;
+$red--100: #32112c;
+$red--75: #a10030;
+$red--50: #d40242;
+$red--25: #d93b63;
+$red--0: #efafbb;
+
 $orange: #fdc170;
-$red: #d93b63;
 
 $gradient--green: linear-gradient(90deg, $tertiary--0 0%, $tertiary--100 100%);
-$gradient--orange: linear-gradient(90deg, $orange 0%, $red 100%);
+$gradient--orange: linear-gradient(90deg, $orange 0%, $red--25 100%);
 
 /*----- font-families ----- */
 $source-sans: "Source Sans 3", sans-serif;
 $barlow: "Barlow";
 $consensus: "Consensus";
+$shrikhand: "Shrikhand";
 
 /*----- sizes ----- */
 $headerHeight: 64px;
