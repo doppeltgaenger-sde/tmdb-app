@@ -1,6 +1,6 @@
 @use "@styles/abstracts/mixins" as m;
 
-.stats-group__list {
+.stats-group--list {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -8,4 +8,22 @@
   @include m.break-reverse(768) {
     gap: 16px;
   }
+}
+
+.stats-group--grid {
+  display: grid;
+  column-gap: 40px;
+  row-gap: 8px;
+}
+
+.stats-group--column-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.stats-group--column-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stats-group--column-4 {
+  grid-template-columns: repeat(4, 1fr);
 }

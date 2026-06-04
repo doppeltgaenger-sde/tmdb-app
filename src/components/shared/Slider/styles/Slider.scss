@@ -3,11 +3,11 @@
 
 .slider--inverted {
   .slider__overlay--left {
-    background: linear-gradient(90deg, rgba(v.$primary--75, 0.9), transparent);
+    background: linear-gradient(90deg, rgba(v.$primary--60, 0.9), transparent);
   }
 
   .slider__overlay--right {
-    background: linear-gradient(270deg, rgba(v.$primary--75, 0.9), transparent);
+    background: linear-gradient(270deg, rgba(v.$primary--60, 0.9), transparent);
   }
 }
 

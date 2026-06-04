@@ -1,5 +1,17 @@
 @use "@styles/abstracts/mixins" as m;
 
+.stats-card {
+  display: flex;
+}
+
+.stats-card--straight {
+  flex-direction: column;
+}
+
+.stats-card--reverse {
+  flex-direction: column-reverse;
+}
+
 .stats-card__label {
   font-weight: 600;
 }

@@ -3,10 +3,15 @@ import { classNames } from "@utils";
 import { Button } from "@shared";
 import "./styles/StatsCard.scss";
 
+const VARIANTS = {
+  "straight": "stats-card--straight",
+  "reverse": "stats-card--reverse",
+}
+
 const IMAGE_BASE = "https://media.themoviedb.org/t/p/h30";
 const IMAGE_BASE_2X = "https://media.themoviedb.org/t/p/h60";
 
-export const StatsCard = ({ label, value }) => {
+export const StatsCard = ({ label, value, variant }) => {
   const items = Array.isArray(value) ? value : (value ? [value] : []);
 
   if (!items.length) return null;
@@ -14,8 +19,14 @@ export const StatsCard = ({ label, value }) => {
   const isProvider = typeof items[0] === "object" && items[0] !== null;
 
   return (
-    <div className="stats-card">
+    <div
+      className={classNames([
+        "stats-card",
+        VARIANTS[variant],
+      ])}
+    >
       <p className="stats-card__label">{label}</p>
+
       <div
         className={classNames([
           "stats-card__values",

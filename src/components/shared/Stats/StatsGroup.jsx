@@ -2,29 +2,50 @@ import { classNames } from "@utils";
 import { StatsCard } from "@shared";
 import "./styles/StatsGroup.scss";
 
-export const StatsGroup = ({ className, title, stats = [] }) => {
+const VARIANTS = {
+  "list": "stats-group--list",
+  "grid": "stats-group--grid",
+};
+
+const COLUMNS = {
+  "2": "stats-group--column-2",
+  "3": "stats-group--column-3",
+  "4": "stats-group--column-4",
+};
+
+const VARIANT_COLUMNS = {
+  "grid": ["2", "3", "4"]
+}
+
+export const StatsGroup = ({ 
+  className, 
+  stats = [],
+  variant = "list", 
+  columns,
+  direction = "straight",
+}) => {
   if (!stats.length) return null;
 
+  const isValidColumns = VARIANT_COLUMNS[variant]?.includes(columns);
+  const columnsClass = isValidColumns ? COLUMNS[columns] : "";
+
   return (
-    <section
+    <div
       className={classNames([
         "stats-group", 
+        VARIANTS[variant],
+        columnsClass, 
         className,
       ])}
     >
-      {title &&    
-        <h3 className="stats-group__title">{title}</h3>
-      }
-
-      <div className="stats-group__list">
-        {stats.map((stat) => (
-          <StatsCard 
-            key={stat.label}
-            label={stat.label}
-            value={stat.value}
-          />
-        ))}
-      </div>
-    </section>
+      {stats.map((stat) => (
+        <StatsCard 
+          key={stat.label}
+          label={stat.label}
+          value={stat.value}
+          variant={direction}
+        />
+      ))}
+    </div>
   );
 };

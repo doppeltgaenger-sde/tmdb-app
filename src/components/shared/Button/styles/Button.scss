@@ -49,14 +49,31 @@
   }
 }
 
+.button--xl {
+  height: 40px;
+  font-weight: 700;
+
+  @include m.break-reverse(576) {
+    font-size: 18px;
+  }
+
+  @include m.break-reverse(768) {
+    height: 44px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 20px;
+  }
+}
+
 /*----- solid ----- */
 .button--primary {
-  background: v.$primary--75;
+  background: v.$primary--60;
   color: v.$neutral--0;
 
   &:hover,
   &:focus {
-    background: v.$primary--25;
+    background: v.$primary--20;
   }
 
   &:active {
@@ -122,6 +139,24 @@
   }
 }
 
+.button--red {
+  background: v.$red--50;
+  color: v.$neutral--0;
+
+  &:hover,
+  &:focus {
+    background: v.$red--25;
+  }
+
+  &:active {
+    background: v.$red--75;
+  }
+
+  &:disabled {
+    background: v.$red--0;
+  }
+}
+
 /*----- outline ----- */
 .button--outline {
   background: transparent;
@@ -156,7 +191,7 @@
 
 .button--pink-gradient {
   &:before {
-    background: linear-gradient(90deg, v.$purple--25 0%, v.$pink 65%);
+    background: linear-gradient(90deg, v.$purple--25 0%, v.$red--0 65%);
   }
 }
 

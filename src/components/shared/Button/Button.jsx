@@ -7,6 +7,7 @@ const SIZES = {
   "sm": "button--sm",
   "md": "button--md",
   "lg": "button--lg",
+  "xl": "button--xl",
 };
 
 const VARIANTS = {
@@ -20,6 +21,7 @@ const THEMES = {
   "secondary": "button--secondary",
   "neutral": "button--neutral",
   "purple": "button--purple",
+  "red": "button--red",
   "pink-gradient": "button--pink-gradient",
   "green-gradient": "button--green-gradient",
   "dark": "button--dark",
@@ -27,7 +29,7 @@ const THEMES = {
 };
 
 const VARIANT_THEMES = {
-  "solid": ["primary", "secondary", "neutral", "purple"],
+  "solid": ["primary", "secondary", "neutral", "purple", "red"],
   "outline": ["pink-gradient", "green-gradient"],
   "ghost": ["dark", "light"],
 };

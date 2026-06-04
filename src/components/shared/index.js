@@ -1,5 +1,6 @@
 export * from "./Avatar/Avatar";
 export * from "./Average/Average";
+export * from "./Background/BackgroundPipes";
 export * from "./Banner/Banner";
 export * from "./Button/Button";
 export * from "./Charts/ChartTooltip";

@@ -5,7 +5,7 @@ import "./styles/KeywordsGroup.scss";
 
 export const KeywordsGroup = ({ className, title, keywords = [] }) => {
   return (
-    <section
+    <div
       className={classNames([
         "keywords-group", 
         className,
@@ -16,7 +16,7 @@ export const KeywordsGroup = ({ className, title, keywords = [] }) => {
       }
 
       {keywords.length ? (
-        <div className="keywords-group__list">
+        <div className="keywords-group__items">
           {keywords.map((keyword) => (
             <Button
               className="keywords-group__item"
@@ -37,6 +37,6 @@ export const KeywordsGroup = ({ className, title, keywords = [] }) => {
           No keywords have been added.
         </p>
       )}
-    </section>
+    </div>
   );
 };
