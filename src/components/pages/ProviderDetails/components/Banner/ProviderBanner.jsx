@@ -1,4 +1,5 @@
 import { useViewport } from "@hooks";
+import { BackgroundPipes } from "@shared";
 import "./styles/ProviderBanner.scss";
 
 const IMAGE_BASE = "https://media.themoviedb.org/t/p/h50_filter(negate,000,666)";
@@ -14,6 +15,8 @@ export const ProviderBanner = ({
   
   return (
     <section className="provider-banner">
+      <BackgroundPipes />
+
       <div className="container">
         <div className="provider-banner__body">
           <div className="provider-banner__logo">

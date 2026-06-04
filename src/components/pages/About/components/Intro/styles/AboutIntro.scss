@@ -1,0 +1,45 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.about-intro {
+  position: relative;
+  padding: 0 0 64px;
+
+  @include m.break-reverse(576) {
+    padding: 0 0 96px;
+  }
+
+  @include m.break-reverse(768) {
+    padding: 0 0 128px;
+  }
+
+  @include m.break-reverse(992) {
+    padding: 0 0 160px;
+  }
+}
+
+.about-intro__title {
+  font: 400 64px / 1.25 v.$shrikhand;
+
+  @include m.break-reverse(576) {
+    font-size: 96px;
+  }
+
+  @include m.break-reverse(768) {
+    font-size: 128px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 160px;
+  }
+}
+
+.about-intro__backdrop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-44%, 27%);
+  width: 125%;
+  aspect-ratio: 3 / 1;
+  background: url("../assets/intro-backdrop.webp") 50% / cover no-repeat;
+}

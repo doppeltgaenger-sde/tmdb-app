@@ -1,0 +1,102 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.about-stats {
+  padding: 40px 0;
+
+  @include m.break-reverse(768) {
+    padding: 60px 0;
+  }
+}
+
+.about-stats__body {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0 auto;
+  max-width: 1000px;
+
+  @include m.break-reverse(576) {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.about-stats__title {
+  margin: 0 0 4px;
+  font: 700 24px / 1.25 v.$source-sans;
+
+  @include m.break-reverse(576) {
+    font-size: 28px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 32px;
+  }
+}
+
+.about-stats__subtitle {
+  margin: 0 0 16px;
+}
+
+.about-stats__stats-group {
+  justify-content: flex-start;
+  margin: 0 0 32px;
+
+  @include m.break-reverse(576) {
+    justify-content: unset;
+  }
+
+  .stats-card__value {
+    font-size: 18px;
+    font-weight: 600;
+
+    @include m.break-reverse(576) {
+      font-size: 20px;
+    }
+
+    @include m.break-reverse(992) {
+      font-size: 24px;
+    }
+  }
+
+  .stats-card__label {
+    font-weight: 300;
+  }
+}
+
+.about-stats__cta-button {
+  margin: 0 auto;
+  min-width: 100px;
+
+  @include m.break-reverse(576) {
+    margin: 0 auto 0 0;
+    min-width: 110px;
+  }
+
+  @include m.break-reverse(992) {
+    min-width: 120px;
+  }
+}
+
+.about-stats__backdrop {
+  align-self: center;
+  min-width: 240px;
+  max-width: 240px;
+  aspect-ratio: 6 / 7;
+  background: url("../assets/stats-backdrop.webp") 50% / cover no-repeat;
+
+  @include m.break-reverse(576) {
+    align-self: flex-start;
+  }
+
+  @include m.break-reverse(768) {
+    min-width: 280px;
+    max-width: 280px;
+  }
+
+  @include m.break-reverse(992) {
+    min-width: 320px;
+    max-width: 320px;
+  }
+}

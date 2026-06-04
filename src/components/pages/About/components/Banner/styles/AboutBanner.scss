@@ -1,0 +1,49 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.about-banner {
+  position: relative;
+  padding: 40px 0;
+  background: radial-gradient(at 25% top, v.$red--100 0%, v.$primary--80 40%);
+  color: v.$neutral--0;
+
+  @include m.break-reverse(768) {
+    padding: 60px 0;
+  }
+}
+
+.about-banner__backdround {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -22%);
+  width: 100%;
+  aspect-ratio: 1.1 / 1;
+  background: url("../assets/background-pipes.svg") 50% / cover no-repeat;
+}
+
+.about-banner__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin: 0 auto;
+  max-width: 825px;
+
+  @include m.break-reverse(768) {
+    gap: 60px;
+  }
+}
+
+.about-banner__cta-button {
+  min-width: 100px;
+
+  @include m.break-reverse(576) {
+    min-width: 110px;
+  }
+
+  @include m.break-reverse(992) {
+    min-width: 120px;
+  }
+}

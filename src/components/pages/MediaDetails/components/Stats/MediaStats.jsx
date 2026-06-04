@@ -52,9 +52,12 @@ export const MediaStats = ({
   ].filter(Boolean);
 
   return (
-    <StatsGroup
-      className="media-stats"
-      stats={stats}
-    />
+    <section className="media-stats">
+      <StatsGroup
+        stats={stats}
+        variant="list"
+        direction="straight"
+      />
+    </section>
   );
 };

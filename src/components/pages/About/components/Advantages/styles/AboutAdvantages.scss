@@ -1,0 +1,81 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.about-advantages {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  @include m.break-reverse(768) {
+    gap: 30px;
+  }
+}
+
+.about-advantages__title {
+  font: 700 24px / 1.25 v.$source-sans;
+
+  @include m.break-reverse(576) {
+    font-size: 28px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 32px;
+  }
+}
+
+.about-advantages__items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 16px;
+  list-style: none;   
+  counter-reset: advantage-count;
+
+  @include m.break-reverse(576) {
+    font-size: 18px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 20px;
+  }
+}
+
+.about-advantages__item {
+  position: relative;
+  padding: 0 0 0 40px;
+  counter-increment: advantage-count;
+
+  @include m.break-reverse(576) {
+    padding: 0 0 0 48px;
+  }
+
+  @include m.break-reverse(992) {
+    padding: 0 0 0 64px;
+  }
+
+  &:before {
+    content: counter(advantage-count);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, -6%);
+    font: 700 40px / 1 v.$source-sans;
+    color: v.$red--50;
+    opacity: 0.7;
+
+    @include m.break-reverse(576) {
+      font-size: 48px;
+    }
+
+    @include m.break-reverse(992) {
+      font-size: 60px;
+    }
+  }
+}
+
+.about-advantages__button {
+  display: inline-flex;
+  font-size: inherit;
+  color: v.$secondary--25;
+}
