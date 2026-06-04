@@ -13,7 +13,7 @@ import { ChartTooltip } from "@shared";
 import { createTrendData } from "./model/createTrendData";
 import "./styles/PopularityChart.scss";
 
-export const PopularityChart = ({ id, color }) => {
+export const PopularityChart = ({ id, color, title }) => {
   const data = useMemo(() => createTrendData(id), [id]);
   const { isTablet, isMobileLg } = useViewport();
 
@@ -27,7 +27,9 @@ export const PopularityChart = ({ id, color }) => {
 
   return (
     <div className="popularity-chart">
-      <h3 className="popularity-chart__title">Popularity Trend</h3>
+      {title &&
+        <h3 className="popularity-chart__title">{title}</h3>
+      }
       
       <ResponsiveContainer 
         className="popularity-chart__container" 
