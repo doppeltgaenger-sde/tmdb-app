@@ -26,7 +26,10 @@ export const AboutStats = () => {
 			<div className="container">
 				<div className="about-stats__body">
 					<div className="about-stats__content">
-						<h2 className="about-stats__title">Stats</h2>
+						<h2 className="about-stats__title">
+              Stats
+            </h2>
+
 						<p className="about-stats__subtitle">
 							We all love them. Here's a few that we find interesting.
 						</p>

@@ -1,0 +1,84 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+  font-style: italic;
+
+  @include m.break-reverse(576) {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  @include m.break-reverse(768) {
+    gap: 30px;
+  }
+}
+
+.testimonial-card__logo {
+  min-width: 160px;
+  max-width: 160px;
+  aspect-ratio: 1 / 1;
+
+  @include m.break-reverse(576) {
+    min-width: 190px;
+    max-width: 190px;
+  }
+
+  @include m.break-reverse(768) {
+    min-width: 220px;
+    max-width: 220px;
+  }
+
+  @include m.break-reverse(992) {
+    min-width: 280px;
+    max-width: 280px;
+  }
+}
+
+.testimonial-card__logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+
+  @include m.break-reverse(576) {
+    text-align: left;
+  }
+}
+
+.testimonial-card__testimonial-text {
+  padding: 0 0 16px;
+  font-size: 18px;
+  border-bottom: 1px solid v.$neutral--30;
+
+  @include m.break-reverse(576) {
+    font-size: 20px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 24px;
+  }
+}
+
+.testimonial-card__customer {
+  font-size: 16px;
+  font-weight: 300;
+
+  @include m.break-reverse(576) {
+    font-size: 18px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 20px;
+  }
+}

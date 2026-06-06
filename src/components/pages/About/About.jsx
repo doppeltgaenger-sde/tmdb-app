@@ -3,6 +3,7 @@ import {
   AboutIntro,
   AboutLead, 
   AboutAdvantages,
+  AboutTestimonials,
   AboutStats, 
 } from "./components";
 
@@ -15,6 +16,7 @@ export const About = () => {
         <AboutAdvantages />
       </AboutBanner>
 
+      <AboutTestimonials />
       <AboutStats />
     </div>
   );
