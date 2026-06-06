@@ -11,6 +11,14 @@
   }
 }
 
+.slider--dots {
+  .slider__item {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 100%; 
+  }
+}
+
 .slider__overlay {
   position: absolute;
   z-index: 1;
@@ -35,6 +43,27 @@
 
 .slider__overlay--visible {
   opacity: 1;
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 0;
+}
+
+.slider__dot {
+  width: 12px;
+  height: 12px;
+  background: v.$neutral--30;
+  border-radius: 50%;
+  transition: v.$transition--base;
+  cursor: pointer;
+}
+
+.slider__dot--active {
+  background: v.$red--50;
 }
 
 .slider__body {
