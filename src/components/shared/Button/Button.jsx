@@ -86,7 +86,11 @@ Button.propTypes = {
   children: PropTypes.node,
   onClick: PropTypes.func,
   className: PropTypes.string,
-  variant: PropTypes.string,
-  size: PropTypes.string,
+  type: PropTypes.oneOf(["button", "submit", "reset"]),
+  size: PropTypes.oneOf(Object.keys(SIZES)),
+  variant: PropTypes.oneOf(Object.keys(VARIANTS)),
+  theme: PropTypes.oneOf(Object.keys(THEMES)),
   disabled: PropTypes.bool,
+  iconLeft: PropTypes.string,
+  iconRight: PropTypes.string,
 };

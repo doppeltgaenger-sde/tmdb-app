@@ -1,8 +1,8 @@
 import { classNames } from "@utils";
 import { Icon } from "@shared";
-import "./styles/ScoreBage.scss"
+import "./styles/ScoreBadge.scss"
 
-export const ScoreBage = ({ className, score }) => {
+export const ScoreBadge = ({ className, score }) => {
   const normalizedValue = Number(score) || 0;
 
   const iconPercentageClass = normalizedValue

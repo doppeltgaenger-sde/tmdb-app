@@ -7,7 +7,7 @@ export const SocialsGroup = ({ className, socials = [] }) => {
   if (!socials.length) return null;
 
   return (
-    <section className={classNames([ "socials-group", className ])}>
+    <div className={classNames([ "socials-group", className ])}>
       {socials.map((social) => (
 
         <Button
@@ -23,6 +23,6 @@ export const SocialsGroup = ({ className, socials = [] }) => {
           <Icon className="button__icon socials-group__icon" name={social.name} />
         </Button>
       ))}
-    </section>
+    </div>
   );
 };
