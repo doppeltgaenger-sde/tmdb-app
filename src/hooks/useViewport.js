@@ -51,7 +51,14 @@ export const useViewport = () => {
   const context = useContext(ViewportContext);
 
   if (!context) {
-    return { width: 0, height: 0, isMobileSm: false, isDesktop: true };
+    return { 
+      width: 0, 
+      height: 0, 
+      isMobileSm: false, 
+      isMobileLg: false, 
+      isTablet: false, 
+      isDesktop: true 
+    };
   }
 
   const { width } = context;

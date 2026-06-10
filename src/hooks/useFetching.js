@@ -10,7 +10,7 @@ export const useFetching = (callback) => {
       setError(null);
       await callback(...args);
     } catch (errorInstance) {
-      setError(errorInstance.message || "Что-то пошло не так");
+      setError(errorInstance.message || "Something get wrong...");
     } finally {
       setIsLoading(false);
     }
