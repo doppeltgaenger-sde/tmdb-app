@@ -11,6 +11,10 @@ const SOCIALS_CONFIG = {
     name: "instagram", 
     baseUrl: "https://instagram.com/" 
   },
+  tiktok_id: { 
+    name: "tiktok", 
+    baseUrl: "https://tiktok.com/@" 
+  },
 };
 
 export const formatSocials = (externalIds, homepage) => {

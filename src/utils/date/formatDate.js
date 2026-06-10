@@ -1,6 +1,6 @@
 const defaultFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
-  day: "2-digit",
+  day: "numeric",
   year: "numeric",
 });
 

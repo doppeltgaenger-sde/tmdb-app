@@ -8,4 +8,5 @@ export * from "./media";
 export * from "./mediaDetails";
 export * from "./normalizer";
 export * from "./people";
+export * from "./profileDetails";
 export * from "./string";

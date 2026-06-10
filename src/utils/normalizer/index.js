@@ -10,4 +10,8 @@ export {
   normalizeContextCollectionDetails,
 } from "./normalizeCollectionDetails";
 export { normalizePeopleData } from "./normalizePeopleData";
+export { 
+  normalizeCriticalProfileDetails, 
+  normalizeContextProfileDetails,
+} from "./normalizeProfileDetails";
 export { normalizeProviderDetails } from "./normalizeProviderDetails";
