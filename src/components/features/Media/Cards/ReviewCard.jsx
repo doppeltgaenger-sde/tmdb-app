@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { 
   Avatar, 
   Button, 
-  ScoreBage, 
+  ScoreBadge, 
   ExpandableText, 
 } from "@shared";
 import "./styles/ReviewCard.scss"
@@ -52,7 +52,7 @@ export const ReviewCard = memo(({
             Written on {date}
           </p>
 
-          <ScoreBage 
+          <ScoreBadge 
             className="review-card__score-badge"
             score={score}
           />

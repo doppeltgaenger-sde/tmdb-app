@@ -22,6 +22,7 @@ const IMAGE_BASE = {
 
 export const ProfileCard = memo(({ 
   variant = "fixed",
+  id,
   name,
   character,
   jobs,
@@ -67,7 +68,7 @@ export const ProfileCard = memo(({
           <Button 
             className="profile-card__button" 
             as={Link} 
-            to={`/`}
+            to={`/person/${id}`}
             variant="ghost"
             theme="dark"
             aria-label={`${name}. View profile.`}
