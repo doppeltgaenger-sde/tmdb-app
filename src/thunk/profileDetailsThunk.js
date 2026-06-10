@@ -8,7 +8,6 @@ import {
 import { 
   normalizeCriticalProfileDetails, 
   normalizeContextProfileDetails,
-  normalizeExtendedMediaDetails,
 } from "@utils";
 import { pipelineFetch } from "./model/pipelineFetch";
 
@@ -32,7 +31,6 @@ export const fetchProfileDetails = ({ id }) => {
 
       extraSteps: [
         (response) => normalizeContextProfileDetails(response),
-        // (response) => normalizeExtendedMediaDetails(response),
       ],
     });
   };
