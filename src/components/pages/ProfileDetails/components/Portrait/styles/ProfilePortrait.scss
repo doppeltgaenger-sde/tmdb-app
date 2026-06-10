@@ -1,0 +1,23 @@
+@use "@styles/abstracts/mixins" as m;
+
+.profile-portrait {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+
+  @include m.break(767) {
+    align-self: center;
+    margin: 0 0 10px;
+  }
+}
+
+.profile-portrait__placeholder {
+  width: 50%;
+}
+
+.profile-portrait__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

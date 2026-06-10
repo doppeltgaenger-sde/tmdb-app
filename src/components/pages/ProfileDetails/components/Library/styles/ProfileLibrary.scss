@@ -1,0 +1,10 @@
+@use "@styles/abstracts/variables" as v;
+
+.profile-library {
+  position: relative;
+
+  .selection-track__title {
+    margin: 0 0 8px;
+    font: 600 20px / 1 v.$source-sans;
+  }
+}

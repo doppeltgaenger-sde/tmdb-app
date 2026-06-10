@@ -1,0 +1,12 @@
+@use "@styles/abstracts/variables" as v;
+
+.profile-biography__title {
+  margin: 0 0 8px;
+  font: 600 20px / 1 v.$source-sans;
+}
+
+.profile-biography__text {
+  &:not(:last-of-type) {
+    margin: 0 0 20px;
+  }
+}

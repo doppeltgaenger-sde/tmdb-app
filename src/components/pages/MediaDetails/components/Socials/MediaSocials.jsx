@@ -2,9 +2,8 @@ import { SocialsGroup } from "@shared";
 
 export const MediaSocials = ({ socials }) => {
   return (
-    <SocialsGroup
-      className="media-socials"
-      socials={socials}
-    />
+    <section className="media-socials">
+      <SocialsGroup socials={socials} />
+    </section>
   );
 };
