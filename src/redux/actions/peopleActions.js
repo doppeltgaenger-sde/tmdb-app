@@ -12,7 +12,7 @@ export const fetchPeopleSuccess = (page, data) => ({
   payload: { data, page },
 });
 
-export const fetchPeopleError = (error) => ({
+export const fetchPeopleError = (page, error) => ({
   type: FETCH_PEOPLE_ERROR,
-  payload: { error },
+  payload: { page, error },
 });
