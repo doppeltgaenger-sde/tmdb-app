@@ -6,11 +6,11 @@ import "./styles/HeaderMenuMobile.scss";
 import { MENU_ITEMS } from "./data/menuItems";
 
 export const HeaderMenuMobile = ({ isOpen, onClose }) => {
-  const [activeSubmenu, inSetActiveSubmenu] = useState(null);
+  const [activeSubmenu, isSetActiveSubmenu] = useState(null);
 
   useEffect(() => {
     if (!isOpen) {
-      inSetActiveSubmenu(null);
+      isSetActiveSubmenu(null);
     }
   }, [isOpen]);
 
@@ -38,12 +38,12 @@ export const HeaderMenuMobile = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  const inToggleSubmenu = (label) => {
-    inSetActiveSubmenu((prev) => (prev === label ? null : label));
+  const isToggleSubmenu = (label) => {
+    isSetActiveSubmenu((prev) => (prev === label ? null : label));
   };
 
   const handleTriggerClick = (label) => {
-    inToggleSubmenu(label);
+    isToggleSubmenu(label);
   };
 
   const renderMenu = () => {
