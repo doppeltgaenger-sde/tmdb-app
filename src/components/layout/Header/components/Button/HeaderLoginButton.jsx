@@ -19,7 +19,7 @@ export const HeaderLoginButton = () => {
         to="/"
         variant="ghost"
         theme="light"
-        aria-label="Join TMDB official site"
+        aria-label="Join TMDB community"
       > 
         {buttonContent}
       </Button>

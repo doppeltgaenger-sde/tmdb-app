@@ -7,6 +7,7 @@ export const HeaderSearchButton = () => {
         className="header-search-button"
         variant="ghost"
         theme="light"
+        aria-label="Search TMDB media"
       >
         <Icon className="header-search-button__icon" name="search" />
       </Button>

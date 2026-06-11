@@ -13,6 +13,7 @@ export const HeaderMenuButton = ({ isOpen, onClick }) => {
       theme="light"
       onClick={onClick}
       aria-expanded={isOpen}
+      aria-label="Toggle navigation menu"
     > 
       <Icon 
         className="header-menu-button__icon header-menu-button__icon--top" 
