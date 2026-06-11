@@ -1,3 +1,4 @@
+import { useDocumentTitle } from "@hooks";
 import { 
   AboutBanner,
   AboutIntro,
@@ -8,6 +9,8 @@ import {
 } from "./components";
 
 export const About = () => {
+  useDocumentTitle("About TMDB");
+
   return (
     <div className="about">
       <AboutBanner>

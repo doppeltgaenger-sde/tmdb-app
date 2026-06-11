@@ -15,6 +15,7 @@ export const AboutBanner = ({ children }) => {
             variant="solid"
             theme="red"
             size="xl"
+            ariaLabel="Join TMDB community"
           >
             Join Us
           </Button>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProfileDetails } from "@thunk";
-import { useViewport } from "@hooks";
+import { useViewport, useDocumentTitle } from "@hooks";
 import { LazyBlock, Loader } from "@shared";
 import { 
   ProfilePortrait,
@@ -33,6 +33,8 @@ export const ProfileDetails = () => {
       dispatch(fetchProfileDetails({ id }));
     }
   }, [dispatch, id]);
+
+  useDocumentTitle(data?.title || data?.name);
 
   if (isInitialLoading) return (
     <div className="profile-details">

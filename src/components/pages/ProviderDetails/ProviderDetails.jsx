@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { fetchProviderDetails } from "@thunk";
+import { useDocumentTitle } from "@hooks";
 import { Pagination, Loader } from "@shared";
 import { 
   ProviderBanner, 
@@ -70,6 +71,8 @@ export const ProviderDetails = ({ mediaType }) => {
     setSearchParams({ page: newPage });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useDocumentTitle(data?.title || data?.name);
 
   const mediaLabel = mediaType === "company" ? "movies" : "shows";
   const titleContent = `${data?.totalResultsFormatted || 0} ${mediaLabel}`;

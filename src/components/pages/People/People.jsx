@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { fetchPeople } from "@thunk";
+import { useDocumentTitle } from "@hooks";
 import { Pagination, Loader } from "@shared";
 import { PeopleList } from "./components";
 import "./styles/People.scss";
@@ -68,6 +69,8 @@ export const People = () => {
     setSearchParams({ page: newPage });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  useDocumentTitle("Popular People");
 
   const showLoader = isInitialLoading || (data?.peopleList && bufferedPeopleList.length === 0);
 

@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCollectionDetails } from "@thunk";
+import { useDocumentTitle } from "@hooks";
 import { getGenresById, formatGenresList } from "@utils";
 import { DetailsBackdropBanner } from "@features";
 import { Loader } from "@shared";
@@ -38,6 +39,8 @@ export const CollectionDetails = () => {
       dispatch(fetchCollectionDetails({ id }));
     }
   }, [dispatch, id]);
+
+  useDocumentTitle(data?.title || data?.name);
 
   if (isInitialLoading) return (
     <div className="collection-details">
