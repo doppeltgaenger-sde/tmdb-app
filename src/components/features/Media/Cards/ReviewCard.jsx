@@ -42,7 +42,7 @@ export const ReviewCard = memo(({
               to={`/`}
               variant="ghost"
               theme="dark"
-              aria-label={`View ${username}'s profile`}
+              aria-label={`${username}. View profile`}
             >
               {username}
             </Button>
