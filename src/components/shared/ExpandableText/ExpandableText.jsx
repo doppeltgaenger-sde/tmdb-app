@@ -56,6 +56,7 @@ export const ExpandableText = ({
           theme="dark"
           onClick={() => setIsExpanded(!isExpanded)}
           iconRight="chevron-down"
+          ariaLabel={isExpanded ? "Hide" : "Read the rest"}
         >
           {isExpanded ? "Hide" : "Read the rest"}
         </Button>

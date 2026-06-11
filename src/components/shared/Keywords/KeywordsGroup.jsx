@@ -26,7 +26,7 @@ export const KeywordsGroup = ({ className, title, keywords = [] }) => {
               size="sm"
               variant="solid"
               theme="neutral"
-              aria-label={`Search movies by keyword: ${keyword.name}`}
+              aria-label={`Search TMDB media by keyword: ${keyword.name}`}
             >
               {keyword.name}
             </Button>
