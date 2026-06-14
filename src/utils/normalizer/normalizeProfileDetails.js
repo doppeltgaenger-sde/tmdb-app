@@ -1,12 +1,16 @@
 import { 
   getProfileLibrary,
+  getProfileFilmography,
   formatSocials,
   getProfileBirthDate,
   getProfileDeathDate,
 } from "@utils";
 
 export const normalizeCriticalProfileDetails = ({ details: item }) => {
-  console.log(item );
+  const cast = item.combined_credits?.cast || [];
+  const crew = item.combined_credits?.crew || [];
+
+  console.log(item);
   
   return {
     name: item.name || item.also_known_as,
@@ -16,7 +20,8 @@ export const normalizeCriticalProfileDetails = ({ details: item }) => {
       : ["No biography has been added."],
 
     profilePath: item.profile_path,
-    library: getProfileLibrary(item.combined_credits?.cast || [])
+    library: getProfileLibrary(cast, crew),
+    filmography: getProfileFilmography(cast, crew),
   };
 };
 
