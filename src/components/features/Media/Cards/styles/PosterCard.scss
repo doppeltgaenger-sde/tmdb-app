@@ -48,6 +48,7 @@
 .poster-card__button {
   position: static;
   display: -webkit-box;
+  text-align: left;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   font-weight: 700;
@@ -61,7 +62,7 @@
   }
 
   .button__content {
-    white-space: wrap;
+    white-space: unset;
   }
 }
 

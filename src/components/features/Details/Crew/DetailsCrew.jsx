@@ -17,7 +17,7 @@ export const DetailsCrew = ({ className, crew = [], theme }) => {
               <Button 
                 className="details-crew__button" 
                 as={Link} 
-                to={`/`}
+                to={`/person/${person.id}`}
                 variant="ghost"
                 theme={theme}
                 aria-label={`${person.name}}, ${personJob}`}

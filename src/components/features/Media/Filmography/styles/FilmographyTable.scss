@@ -1,0 +1,8 @@
+@use "@styles/abstracts/variables" as v;
+
+.filmography-table {
+  border: 1px solid v.$neutral--10;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(v.$neutral--100, 0.1);
+  overflow: hidden;
+}

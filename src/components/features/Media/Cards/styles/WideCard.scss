@@ -60,6 +60,7 @@
   position: static;
   display: -webkit-box;
   grid-area: 1 / 2 / 2 / 3;
+  text-align: left;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   font-weight: 700;
@@ -72,7 +73,7 @@
   }
 
   .button__content {
-    white-space: wrap;
+    white-space: unset;
   }
 }
 

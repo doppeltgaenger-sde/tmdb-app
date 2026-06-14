@@ -105,7 +105,7 @@ export const DetailsBackdropBanner = ({
                   theme={theme}
                   iconLeft="play"
                   onClick={openModal}
-                  ariaLabel={`Play trailer for ${name}`}
+                  aria-label={`Play trailer for ${name}`}
                 >
                   Play Trailer
                 </Button>

@@ -1,0 +1,26 @@
+@use "@styles/abstracts/variables" as v;
+
+.filmography-row {
+  display: flex;
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid v.$neutral--10;
+  }
+}
+
+.filmography-row__title {
+  padding: 12px;
+  min-width: 64px;
+  max-width: 64px;
+  text-align: center;
+  font: 600 16px / 1.5 v.$source-sans;
+  border-right: 1px solid v.$neutral--10;
+}
+
+.filmography-row__items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  width: 100%;
+}

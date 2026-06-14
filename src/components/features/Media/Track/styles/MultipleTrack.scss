@@ -5,26 +5,6 @@
   .multiple-track__title {
     color: v.$neutral--0;
   }
-
-  .slider__button {
-    height: v.$backdrop-height--trailer;
-  }
-
-  .slider__button--prev {
-    background: linear-gradient(
-      270deg,
-      v.$neutral--100,
-      rgba(v.$neutral--100, 0)
-    );
-  }
-
-  .slider__button--next {
-    background: linear-gradient(
-      90deg,
-      v.$neutral--100,
-      rgba(v.$neutral--100, 0)
-    );
-  }
 }
 
 .multiple-track__title-block {
