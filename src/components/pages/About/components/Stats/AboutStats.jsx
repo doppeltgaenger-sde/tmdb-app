@@ -47,7 +47,7 @@ export const AboutStats = () => {
 							variant="solid"
 							theme="red"
 							size="xl"
-              ariaLabel="Join TMDB community"
+              aria-label="Join TMDB community"
 						>
 							Join Us
 						</Button>

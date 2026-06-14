@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { fetchPeople } from "@thunk";
 import { useDocumentTitle } from "@hooks";
-import { Pagination, Loader } from "@shared";
+import { Pagination, PageLoader } from "@shared";
 import { PeopleList } from "./components";
 import "./styles/People.scss";
 
@@ -76,7 +76,7 @@ export const People = () => {
 
   if (showLoader) return (
     <div className="people">
-      <Loader className="people__loader" theme="primary" />
+      <PageLoader className="people__loader" />
     </div>
   );
 

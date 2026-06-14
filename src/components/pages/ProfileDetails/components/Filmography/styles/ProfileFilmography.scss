@@ -1,0 +1,6 @@
+@use "@styles/abstracts/variables" as v;
+
+.profile-filmography__title {
+  margin: 0 0 8px;
+  font: 600 20px / 1 v.$source-sans;
+}

@@ -5,7 +5,7 @@ import { fetchCollectionDetails } from "@thunk";
 import { useDocumentTitle } from "@hooks";
 import { getGenresById, formatGenresList } from "@utils";
 import { DetailsBackdropBanner } from "@features";
-import { Loader } from "@shared";
+import { PageLoader } from "@shared";
 import { 
   CollectionCast, 
   CollectionCrew, 
@@ -44,10 +44,7 @@ export const CollectionDetails = () => {
 
   if (isInitialLoading) return (
     <div className="collection-details">
-      <Loader 
-        className="collection-details__loader"
-        theme="primary"
-      />
+      <PageLoader className="collection-details__loader" />
     </div>
   );
 

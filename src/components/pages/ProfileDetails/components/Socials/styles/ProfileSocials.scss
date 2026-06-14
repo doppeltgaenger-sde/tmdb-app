@@ -1,10 +1,6 @@
 @use "@styles/abstracts/mixins" as m;
 
 .profile-socials {
-  @include m.break(767) {
-    margin: 0 0 20px;
-  }
-
   .socials-group {
     @include m.break(767) {
       justify-content: center;

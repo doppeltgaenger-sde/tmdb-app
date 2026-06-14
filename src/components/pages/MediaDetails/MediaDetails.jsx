@@ -8,7 +8,7 @@ import {
   DetailsCollectionBanner, 
   MediaReview, 
 } from "@features";
-import { LazyBlock, Loader } from "@shared";
+import { LazyBlock, PageLoader } from "@shared";
 import { 
   MediaCast,
   MediaLibrary,
@@ -45,10 +45,7 @@ export const MediaDetails = () => {
 
   if (isInitialLoading) return (
     <div className="media-details">
-      <Loader 
-        className="media-details__loader"
-        theme="primary"
-      />
+      <PageLoader className="media-details__loader" />
     </div>
   );
 

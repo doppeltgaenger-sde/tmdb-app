@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProfileDetails } from "@thunk";
 import { useViewport, useDocumentTitle } from "@hooks";
-import { LazyBlock, Loader } from "@shared";
+import { LazyBlock, PageLoader } from "@shared";
 import { 
   ProfilePortrait,
   ProfileBiography,
   ProfileLibrary,
   ProfileSocials,
   ProfileStats, 
+  ProfileFilmography,
 } from "./components";
 import "./styles/ProfileDetails.scss";
 
@@ -34,14 +35,12 @@ export const ProfileDetails = () => {
     }
   }, [dispatch, id]);
 
+  const hasSocials = data?.socials && Object.values(data.socials).some(Boolean);
   useDocumentTitle(data?.title || data?.name);
 
   if (isInitialLoading) return (
     <div className="profile-details">
-      <Loader 
-        className="profile-details__loader"
-        theme="primary"
-      />
+      <PageLoader className="profile-details__loader" />
     </div>
   );
 
@@ -65,9 +64,11 @@ export const ProfileDetails = () => {
               <h1 className="profile-details__title">{data?.name}</h1>
             }
 
-            <LazyBlock rootMargin="200px">
-              <ProfileSocials socials={data?.socials} />
-            </LazyBlock>
+            {hasSocials &&           
+              <LazyBlock rootMargin="200px">
+                <ProfileSocials socials={data?.socials} />
+              </LazyBlock>
+            }
 
             <LazyBlock rootMargin="200px">
               <ProfileStats 
@@ -88,6 +89,10 @@ export const ProfileDetails = () => {
 
             <ProfileBiography biography={data?.biography} />
             <ProfileLibrary library={data?.library} />
+
+            <LazyBlock rootMargin="200px">
+              <ProfileFilmography filmography={data?.filmography} />
+            </LazyBlock>
           </div>
         </div>
       </div>

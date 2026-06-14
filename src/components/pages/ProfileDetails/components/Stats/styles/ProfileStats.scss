@@ -1,4 +1,11 @@
 @use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.profile-stats {
+  @include m.break(767) {
+    margin: 20px 0 0;
+  }
+}
 
 .profile-stats__title {
   margin: 0 0 8px;
