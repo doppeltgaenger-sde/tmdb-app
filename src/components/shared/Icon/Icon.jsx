@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { classNames } from "@utils";
-import ICONS from "./icons";
+import ICONS from "./data/icons";
 
 export const Icon = ({ 
   className = "", 

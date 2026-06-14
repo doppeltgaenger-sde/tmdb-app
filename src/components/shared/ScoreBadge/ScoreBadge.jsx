@@ -2,8 +2,8 @@ import { classNames } from "@utils";
 import { Icon } from "@shared";
 import "./styles/ScoreBadge.scss"
 
-export const ScoreBadge = ({ className, score }) => {
-  const normalizedValue = Number(score) || 0;
+export const ScoreBadge = ({ className, value }) => {
+  const normalizedValue = Number(value) || 0;
 
   const iconPercentageClass = normalizedValue
     ? `icon-r${normalizedValue}`

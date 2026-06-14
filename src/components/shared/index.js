@@ -8,6 +8,7 @@ export * from "./ExpandableText/ExpandableText";
 export * from "./Icon/Icon";
 export * from "./Keywords/KeywordsGroup";
 export * from "./LazyBlock/LazyBlock";
+export * from "./Loader/PageLoader";
 export * from "./Loader/Loader";
 export * from "./MetricBar/MetricBar";
 export * from "./Modal/Modal";
