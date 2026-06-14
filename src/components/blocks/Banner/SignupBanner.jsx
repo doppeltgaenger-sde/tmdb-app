@@ -39,7 +39,7 @@ const renderDesktopContent = (lead, label, features) => {
           className="signup-banner__cta-button"
           variant="solid"
           theme="purple"
-          ariaLabel="Sign up for TMDB account"
+          aria-label="Sign up for TMDB account"
         >
           {label}
         </Button>
@@ -73,7 +73,7 @@ const renderMobileContent = (lead, features, label) => {
         className="signup-banner__cta-button"
         variant="solid"
         theme="purple"
-        ariaLabel="Sign up for TMDB account"
+        aria-label="Sign up for TMDB account"
       >
         {label}
       </Button>
