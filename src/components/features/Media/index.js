@@ -5,6 +5,7 @@ export { ProfileCard } from "./Cards/ProfileCard";
 export { ReviewCard } from "./Cards/ReviewCard";
 export { TrailerCard } from "./Cards/TrailerCard";
 export { WideCard } from "./Cards/WideCard";
+export { MediaModal } from "./Modal/MediaModal";
 export { TrailerModal } from "./Modal/TrailerModal";
 export { MediaReview } from "./Review/MediaReview";
 export { FilmographyCell } from "./Filmography/FilmographyCell";

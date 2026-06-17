@@ -61,9 +61,8 @@
   }
 }
 
-.filmography-cell__episodes-button {
+.filmography-cell__episodes {
   grid-area: 3 / 1 / 4 / 2; 
-  line-height: 1.5;
 
   @include m.break-reverse(576) {
     justify-self: flex-end;

@@ -56,10 +56,13 @@
   grid-area: 1 / 1 / 3 / 2;
 }
 
+.wide-card__name {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
 .wide-card__button {
   position: static;
   display: -webkit-box;
-  grid-area: 1 / 2 / 2 / 3;
   text-align: left;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

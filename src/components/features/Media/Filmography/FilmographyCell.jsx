@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { Link } from "react-router-dom";
+import { useState, memo } from "react";
+import { MediaModal } from "@features";
 import { Button } from "@shared";
 import "./styles/FilmographyCell.scss";
 
@@ -9,9 +9,27 @@ export const FilmographyCell = memo(({
   name, 
   date,
   roles,
+  posterPath, 
+  backdropPath,
+  voteAverage,
   episodesCount,
+  genreIds,
+  description,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const isSeries = mediaType === "tv" && episodesCount > 0;
+
+  const media = {
+    id,
+    mediaType,
+    name,
+    date,
+    posterPath,
+    backdropPath,
+    voteAverage,
+    episodesCount,
+    description,
+  };
 
   return (
     <div className="filmography-cell">
@@ -20,6 +38,7 @@ export const FilmographyCell = memo(({
           className="filmography-cell__name-button" 
           variant="ghost"
           theme="dark"
+          onClick={() => setIsModalOpen(true)}
           aria-label={`${name}, ${date}. View details.`}
         >
           {name}
@@ -31,17 +50,14 @@ export const FilmographyCell = memo(({
       </p>
 
       {isSeries && 
-        <Button 
-          className="filmography-cell__episodes-button" 
-          as={Link} 
-          to={`/`}
-          variant="ghost"
-          theme="dark"
-          aria-label={`${episodesCount} episodes of ${name}. View details.`}
-        >
-          {episodesCount} episodes
-        </Button>
+        <p className="filmography-cell__episodes">{episodesCount} episodes</p>
       }
+
+      <MediaModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        {...media}
+      />
     </div>
   );
 });
