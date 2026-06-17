@@ -3,12 +3,12 @@ import { classNames } from "@utils";
 import { Button, Icon } from "@shared"
 import "./styles/SocialsGroup.scss";
 
-export const SocialsGroup = ({ className, socials = [] }) => {
-  if (!socials.length) return null;
+export const SocialsGroup = ({ className, items = [] }) => {
+  if (!items.length) return null;
 
   return (
     <div className={classNames([ "socials-group", className ])}>
-      {socials.map((social) => (
+      {items.map((social) => (
 
         <Button
           className="socials-group__item"

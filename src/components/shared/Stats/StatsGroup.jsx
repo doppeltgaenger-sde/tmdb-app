@@ -19,12 +19,12 @@ const VARIANT_COLUMNS = {
 
 export const StatsGroup = ({ 
   className, 
-  stats = [],
+  items = [],
   variant = "list", 
   columns,
   direction = "straight",
 }) => {
-  if (!stats.length) return null;
+  if (!items.length) return null;
 
   const isValidColumns = VARIANT_COLUMNS[variant]?.includes(columns);
   const columnsClass = isValidColumns ? COLUMNS[columns] : "";
@@ -38,7 +38,7 @@ export const StatsGroup = ({
         className,
       ])}
     >
-      {stats.map((stat) => (
+      {items.map((stat) => (
         <StatsCard 
           key={stat.label}
           label={stat.label}
