@@ -42,7 +42,7 @@ export const ProfileStats = ({
 
       <StatsGroup
         title="Personal Info"
-        stats={stats}
+        items={stats}
         variant="list"
         direction="straight"
       />

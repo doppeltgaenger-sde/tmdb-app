@@ -54,7 +54,7 @@ export const MediaStats = ({
   return (
     <section className="media-stats">
       <StatsGroup
-        stats={stats}
+        items={stats}
         variant="list"
         direction="straight"
       />

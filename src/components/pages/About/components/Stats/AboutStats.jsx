@@ -36,7 +36,7 @@ export const AboutStats = () => {
 							
 						<StatsGroup
 							className="about-stats__stats-group"
-							stats={displayedStatsData}
+							items={displayedStatsData}
               variant="grid" 
               columns={getColumns()}
               direction="reverse"
