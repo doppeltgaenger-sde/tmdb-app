@@ -5,6 +5,7 @@ import { useInView } from "@hooks";
 import "./styles/LeaderboardCard.scss";
 
 export const LeaderboardCard = memo(({ 
+  id,
   username, 
   color, 
   avatar, 
@@ -14,6 +15,7 @@ export const LeaderboardCard = memo(({
 }) => {
   const { editsAllTime, editsThisWeek } = stats;
   const { ref, isInView } = useInView();
+  const linkTo = `/user/${id}`;
 
   return (
     <div ref={ref} className="leaderboard-card">
@@ -30,7 +32,7 @@ export const LeaderboardCard = memo(({
           <Button 
             className="leaderboard-card__button" 
             as={Link} 
-            to={`/`}
+            to={linkTo}
             variant="ghost"
             theme="dark"
             aria-label={`${username}. View profile`}

@@ -10,12 +10,12 @@ import {
   CartesianGrid,
 } from "recharts";
 import { ChartTooltip } from "@shared";
-import { createTrendData } from "./model/createTrendData";
+import { createPopularityData } from "./model/createPopularityData";
 import "./styles/PopularityChart.scss";
 
 export const PopularityChart = ({ id, color, title }) => {
-  const data = useMemo(() => createTrendData(id), [id]);
-  const { isTablet, isMobileLg } = useViewport();
+  const data = useMemo(() => createPopularityData(id), [id]);
+  const { isTablet } = useViewport();
 
   const formatXAxis = (tickItem, index) => {
     if (index === data.length - 1) {
@@ -33,10 +33,10 @@ export const PopularityChart = ({ id, color, title }) => {
       
       <ResponsiveContainer 
         className="popularity-chart__container" 
-        aspect={isMobileLg ? 3.5 : 2.5}
+        aspect={2.5}
       >
         <AreaChart
-          className="popularity-chart__body"
+          className="popularity-chart__content"
           data={data}
           margin={{ top: 4, right: 10, left: -34, bottom: 4 }}
         >

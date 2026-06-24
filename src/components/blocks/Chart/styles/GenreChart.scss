@@ -1,0 +1,76 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.genre-chart {
+  * {
+    outline: none !important;
+
+    &:focus-visible {
+      outline: none !important;
+    }
+  }
+
+  .recharts-surface {
+    cursor: pointer;
+  }
+
+  .recharts-tooltip-wrapper {
+    z-index: 10;
+  }
+
+  .chart-tooltip {
+    min-width: unset;
+  }
+}
+
+.genre-chart__title {
+  margin: 0 0 12px;
+  font: 600 18px / 1 v.$source-sans;
+}
+
+.genre-chart__body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.genre-chart__container {
+  width: 120px !important;
+
+  @include m.break-reverse(576) {
+    width: 30% !important;
+  }
+
+  & > div {
+    width: fit-content !important;
+    height: fit-content !important;
+  }
+}
+
+.genre-chart__legend {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(3, auto);
+  column-gap: 8px;
+}
+
+.genre-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.genre-chart__legend-color {
+  width: 16px;
+  height: 16px;
+
+  @include m.break-reverse(576) {
+    width: 12px;
+    height: 12px;
+  }
+
+  @include m.break-reverse(768) {
+    width: 16px;
+    height: 16px;
+  }
+}

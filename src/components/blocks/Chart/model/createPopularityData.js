@@ -17,7 +17,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   year: "numeric" 
 });
 
-export const createTrendData = (movieId) => {
+export const createPopularityData = (movieId) => {
   const id = parseInt(movieId) || 0;
   const patternIndex = id % CHART_PATTERNS.length;
   const selectedValues = CHART_PATTERNS[patternIndex];

@@ -1,0 +1,37 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.rating-chart {
+  * {
+    outline: none !important;
+
+    &:focus-visible {
+      outline: none !important;
+    }
+  }
+
+  .recharts-surface {
+    cursor: pointer;
+  }
+
+  .chart-tooltip {
+    min-width: 95px;
+  }
+}
+
+.rating-chart__title {
+  margin: 0 0 12px;
+  font: 600 18px / 1 v.$source-sans;
+}
+
+.rating-chart__container {
+  & > div {
+    width: fit-content !important;
+    height: fit-content !important;
+  }
+}
+
+.rating-chart__content {
+  width: 100% !important;
+  height: 100% !important;
+}
