@@ -13,6 +13,10 @@
   max-width: 48px;
   min-height: 48px;
   max-height: 48px;
+
+  .avatar__initials {
+    font-size: 16px;
+  }
 }
 
 .avatar--md {
@@ -20,6 +24,10 @@
   max-width: 56px;
   min-height: 56px;
   max-height: 56px;
+
+  .avatar__initials {
+    font-size: 18px;
+  }
 }
 
 .avatar--lg {
@@ -27,6 +35,10 @@
   max-width: 80px;
   min-height: 80px;
   max-height: 80px;
+
+  .avatar__initials {
+    font-size: 24px;
+  }
 }
 
 .avatar--xl {
@@ -34,6 +46,10 @@
   max-width: 150px;
   min-height: 150px;
   max-height: 150px;
+
+  .avatar__initials {
+    font-size: 48px;
+  }
 }
 
 .avatar__initials {
