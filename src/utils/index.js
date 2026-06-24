@@ -1,4 +1,5 @@
 export * from "./array";
+export * from "./chart";
 export * from "./date";
 export * from "./className";
 export * from "./collectionDetails";

@@ -10,8 +10,6 @@ export const normalizeCriticalProfileDetails = ({ details: item }) => {
   const cast = item.combined_credits?.cast || [];
   const crew = item.combined_credits?.crew || [];
 
-  console.log(item);
-  
   return {
     name: item.name || item.also_known_as,
 
