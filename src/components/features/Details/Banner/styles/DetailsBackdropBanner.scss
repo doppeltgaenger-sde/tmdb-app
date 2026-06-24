@@ -3,14 +3,13 @@
 
 .details-backdrop-banner {
   position: relative;
-  border-color: black;
   overflow: hidden;
 }
 
 .details-backdrop-banner--dark {
   .details-meta__item {
     &:before {
-      background: v.$neutral--100;
+      background: v.$neutral--100 !important;
     }
   }
 

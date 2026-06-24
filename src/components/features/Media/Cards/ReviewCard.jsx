@@ -35,7 +35,7 @@ export const ReviewCard = memo(({
         />
 
         <div className="review-card__meta">
-          <h3 className="review-card__title">
+          <h3 className="review-card__username">
             <Button 
               className="review-card__button" 
               as={Link} 
