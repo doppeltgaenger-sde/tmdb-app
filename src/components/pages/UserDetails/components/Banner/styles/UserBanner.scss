@@ -1,0 +1,101 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.user-banner {
+  position: relative;
+  background: radial-gradient(
+    at 30% top, 
+    v.$primary--50 0%, 
+    v.$primary--60 70%
+  );
+  overflow: hidden;
+}
+
+.user-banner__body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 0;
+  min-height: 230px;
+
+  @include m.break-reverse(768) {
+    align-items: flex-start;
+    gap: 10px;
+    padding: 40px 0 40px 190px;
+  }
+}
+
+.user-banner__header-block {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-banner__avatar {
+  @include m.break-reverse(768) {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+  }
+}
+
+.user-banner__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  @include m.break-reverse(768) {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 8px;
+  }
+}
+
+.user-banner__username {
+  font: 700 28px / 1 v.$source-sans;
+  color: v.$neutral--0;
+
+  @include m.break-reverse(768) {
+    font-size: 32px;
+  }
+}
+
+.user-banner__timestamp {
+  font: 500 16px / 1.25 v.$source-sans;
+  color: rgba(v.$neutral--0, 0.7);
+
+  @include m.break-reverse(768) {
+    font-size: 18px;
+  }
+}
+
+.user-banner__score-block {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  @include m.break-reverse(768) {
+    gap: 56px;
+  }
+}
+
+.user-banner__average-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.user-banner__average-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: v.$neutral--0;
+
+  @include m.break-reverse(768) {
+    font-size: 16px;
+  }
+}

@@ -5,9 +5,10 @@
   position: relative;
   background: radial-gradient(
     at 30% top, 
-    rgba(v.$primary--40, 1) 0%, 
-    rgba(v.$primary--60, 1) 70%
+    v.$primary--40 0%, 
+    v.$primary--60 70%
   );
+  overflow: hidden;
 }
 
 .provider-banner__body {

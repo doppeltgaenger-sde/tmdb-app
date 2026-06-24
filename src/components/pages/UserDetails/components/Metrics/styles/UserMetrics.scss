@@ -1,0 +1,40 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.user-metrics {
+  display: flex;
+  gap: 7.5%;
+
+  @include m.break-reverse(768) {
+    gap: 12.5%;
+  }
+
+  @include m.break-reverse(992) {
+    gap: 15%;
+  }
+}
+
+.user-metrics__item {
+  white-space: nowrap;
+}
+
+.user-metrics__label {
+  margin: 0 0 12px;
+  font: 600 18px / 1 v.$source-sans;
+}
+
+.user-metrics__value {
+  font: 700 40px / 1 v.$source-sans;
+
+  @include m.break-reverse(576) {
+    font-size: 48px;
+  }
+
+  @include m.break-reverse(992) {
+    font-size: 56px;
+  }
+}
+
+.user-metrics__suffix {
+  font-size: 85%;
+}

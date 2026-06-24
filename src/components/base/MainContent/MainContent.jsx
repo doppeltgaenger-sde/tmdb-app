@@ -11,6 +11,7 @@ import {
   ProviderDetails,
   People,
   About,
+  UserDetails,
 } from "@pages";
 
 export const MainContent = () => {
@@ -29,6 +30,7 @@ export const MainContent = () => {
           <Route path="/collection/:id" element={<CollectionDetails />} />
           <Route path="/people" element={<People />} />
           <Route path="/about" element={<About />} />
+          <Route path="/user/:id" element={<UserDetails />} />
           <Route path="/person/:id" element={<ProfileDetails />} />
           <Route path="/company/:id" element={<ProviderDetails mediaType="company" />} />
           <Route path="/network/:id" element={<ProviderDetails mediaType="network" />} />

@@ -48,8 +48,6 @@ export const ProfileDetails = () => {
     <div className="profile-details">Error...</div>
   );
 
-  console.log(data);
-
   return (
     <div className="profile-details">
       <div className="container">
