@@ -22,6 +22,20 @@
   max-height: 56px;
 }
 
+.avatar--lg {
+  min-width: 80px;
+  max-width: 80px;
+  min-height: 80px;
+  max-height: 80px;
+}
+
+.avatar--xl {
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 150px;
+  max-height: 150px;
+}
+
 .avatar__initials {
   font-size: 18px;
   color: v.$neutral--0;

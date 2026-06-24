@@ -21,11 +21,26 @@
 }
 
 .chart-tooltip__title {
+  display: flex;
+  align-items: center;
+  gap: 2px;
   font-size: 15px;
 
   @include m.break-reverse(768) {
     font-size: 17px;
   }
+}
+
+.chart-tooltip__title-icon {
+  margin: -1px 0 0;
+  width: 16px;
+  height: 16px;
+}
+
+.score-badge__icon {
+  margin: -1px 0 0;
+  width: 16px;
+  height: 16px;
 }
 
 .chart-tooltip__content {
