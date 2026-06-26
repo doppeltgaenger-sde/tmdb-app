@@ -1,3 +1,4 @@
+export * from "./Activity/UserActivity";
 export * from "./Banner/UserBanner";
 export * from "./Chart/UserGenreChart";
 export * from "./Chart/UserRatingChart";

@@ -1,17 +1,21 @@
 import { useParams } from "react-router-dom";
 import { processedUsers } from "@services";
+import { useDocumentTitle } from "@hooks";
 import { 
   UserBanner,
   UserStats,
   UserMetrics,
   UserRatingChart, 
   UserGenreChart,
+  UserActivity,
 } from "./components";
 import "./styles/UserDetails.scss";
 
 export const UserDetails = () => {
   const { id } = useParams();
   const data = processedUsers.find((item) => item.id === id);
+
+  useDocumentTitle(data?.username);
 
   if (!data) return (
     <div className="user-details">Error...</div>
@@ -35,6 +39,8 @@ export const UserDetails = () => {
               color={data?.color}
             />
           </UserStats>
+
+          <UserActivity activities={data?.activities} />
         </div>
       </div>
     </div>

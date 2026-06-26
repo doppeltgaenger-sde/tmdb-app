@@ -1,5 +1,17 @@
 @use "@styles/abstracts/mixins" as m;
 
+.user-details {
+  .slider--selection {
+    .slider__overlay--left {
+      left: -20px;
+    }
+
+    .slider__overlay--right {
+      right: -20px;
+    }
+  }
+}
+
 .user-details__body {
   display: flex;
   flex-direction: column;
