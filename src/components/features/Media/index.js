@@ -1,3 +1,4 @@
+export { ActivityCard } from "./Cards/ActivityCard";
 export { BackdropCard } from "./Cards/BackdropCard";
 export { FrameCard } from "./Cards/FrameCard";
 export { PosterCard } from "./Cards/PosterCard";

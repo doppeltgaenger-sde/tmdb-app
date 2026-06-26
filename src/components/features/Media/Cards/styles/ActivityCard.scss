@@ -1,0 +1,71 @@
+@use "@styles/abstracts/variables" as v;
+
+.activity-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  width: 250px;
+  height: 210px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  transition: v.$transition--base;
+  cursor: pointer;
+
+  &:hover {
+    border-color: v.$neutral--10;
+    box-shadow: 0 2px 8px rgba(v.$neutral--100, 0.1);
+  }
+}
+
+.activity-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 140px;
+  max-height: 140px;
+  background: v.$neutral--10;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.activity-card__media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.activity-card__placeholder {
+  width: 30%;
+  fill: v.$neutral--50;
+}
+
+.activity-card__content {
+  padding: 8px 8px 12px;
+}
+
+.activity-card__button {
+  position: static;
+  display: -webkit-box;
+  text-align: left;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-weight: 700;
+  line-height: 1.5;
+
+  &:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  .button__content {
+    white-space: unset;
+  }
+}
+
+.activity-card__edits {
+  color: rgba(v.$neutral--100, 0.6);
+}
