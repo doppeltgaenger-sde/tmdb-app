@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchMediaDetails } from "@thunk";
 import { useViewport, useDocumentTitle } from "@hooks";
 import { 
@@ -24,6 +24,7 @@ export const MediaDetails = () => {
   const { mediaType, id } = useParams();
   const { isMobileLg } = useViewport();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const AsideTag = isMobileLg ? "div" : "aside";
 
@@ -41,16 +42,18 @@ export const MediaDetails = () => {
     }
   }, [dispatch, mediaType, id]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, error, navigate]);
+
   useDocumentTitle(data?.title || data?.name);
 
   if (isInitialLoading) return (
     <div className="media-details">
       <PageLoader className="media-details__loader" />
     </div>
-  );
-
-  if (error) return (
-    <div className="media-details">Error...</div>
   );
 
   return (

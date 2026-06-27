@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { fetchPeople } from "@thunk";
 import { useDocumentTitle } from "@hooks";
 import { Pagination, PageLoader } from "@shared";
@@ -11,6 +11,7 @@ const MIN_LOADING_TIME = 400;
 
 export const People = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -65,6 +66,12 @@ export const People = () => {
     dispatch(fetchPeople({ page: currentPage }));
   }, [dispatch, currentPage]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, error, navigate]);
+
   const handlePageChange = (newPage) => {
     setSearchParams({ page: newPage });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -78,10 +85,6 @@ export const People = () => {
     <div className="people">
       <PageLoader className="people__loader" />
     </div>
-  );
-
-  if (error) return (
-    <div className="people">Error: {error}</div>
   );
 
   return (

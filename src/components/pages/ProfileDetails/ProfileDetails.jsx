@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchProfileDetails } from "@thunk";
 import { useViewport, useDocumentTitle } from "@hooks";
 import { LazyBlock, PageLoader } from "@shared";
@@ -18,6 +18,7 @@ export const ProfileDetails = () => {
   const { id } = useParams();
   const { isMobileLg } = useViewport();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const AsideTag = isMobileLg ? "div" : "aside";
 
@@ -35,6 +36,12 @@ export const ProfileDetails = () => {
     }
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, error, navigate]);
+
   const hasSocials = data?.socials && Object.values(data.socials).some(Boolean);
   useDocumentTitle(data?.title || data?.name);
 
@@ -42,10 +49,6 @@ export const ProfileDetails = () => {
     <div className="profile-details">
       <PageLoader className="profile-details__loader" />
     </div>
-  );
-
-  if (error) return (
-    <div className="profile-details">Error...</div>
   );
 
   return (

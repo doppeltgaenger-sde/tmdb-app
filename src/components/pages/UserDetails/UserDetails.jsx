@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { processedUsers } from "@services";
 import { useDocumentTitle } from "@hooks";
 import { 
@@ -13,13 +14,16 @@ import "./styles/UserDetails.scss";
 
 export const UserDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const data = processedUsers.find((item) => item.id === id);
 
-  useDocumentTitle(data?.username);
+  useEffect(() => {
+    if (!data) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, navigate]);
 
-  if (!data) return (
-    <div className="user-details">Error...</div>
-  );
+  useDocumentTitle(data?.username);
 
   return (
     <div className="user-details">

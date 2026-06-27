@@ -1,6 +1,7 @@
 export * from "./About/About";
 export * from "./Home/Home";
 export * from "./CollectionDetails/CollectionDetails";
+export * from "./ErrorPage/ErrorPage";
 export * from "./MediaDetails/MediaDetails";
 export * from "./People/People";
 export * from "./ProfileDetails/ProfileDetails";

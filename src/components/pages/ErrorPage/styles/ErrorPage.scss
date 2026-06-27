@@ -1,0 +1,25 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.error-page {
+  .wrap-banner__body {
+    align-items: center;
+    min-height: calc(100svh - v.$headerHeight);
+  }
+
+  .wrap-banner__title {
+    font: 400 64px / 1 v.$barlow;
+
+    @include m.break-reverse(576) {
+      font-size: 96px;
+    }
+
+    @include m.break-reverse(768) {
+      font-size: 128px;
+    }
+
+    @include m.break-reverse(992) {
+      font-size: 160px;
+    }
+  }
+}

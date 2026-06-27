@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { fetchProviderDetails } from "@thunk";
 import { useDocumentTitle } from "@hooks";
 import { Pagination, PageLoader } from "@shared";
@@ -16,6 +16,7 @@ const MIN_LOADING_TIME = 500;
 export const ProviderDetails = ({ mediaType }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -67,6 +68,12 @@ export const ProviderDetails = ({ mediaType }) => {
     }
   }, [dispatch, id, mediaType, currentPage]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, error, navigate]);
+
   const handlePageChange = (newPage) => {
     setSearchParams({ page: newPage });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -85,10 +92,6 @@ export const ProviderDetails = ({ mediaType }) => {
     <div className="provider-details">
       <PageLoader className="provider-details__loader" />
     </div>
-  );
-
-  if (error) return (
-    <div className="provider-details">Error...</div>
   );
 
   return (

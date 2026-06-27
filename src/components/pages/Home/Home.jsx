@@ -1,13 +1,10 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
-import { 
-  WrapBanner, 
-  SignupBanner, 
-  Leaderboard,
-} from "@blocks";
+import { SignupBanner, Leaderboard } from "@blocks";
 import { LazyBlock } from "@shared";
 import {
+  HomeHero,
   HomeTrending,
   HomeTrailers,
   HomePopular,
@@ -27,7 +24,7 @@ export const Home = () => {
 
   return (
     <div className="home">
-      <WrapBanner />
+      <HomeHero />
 
       <LazyBlock onLoad={() => onLoadContent("trendingTrack", "today")}>
         <HomeTrending />

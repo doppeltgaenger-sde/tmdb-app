@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { initAppConfiguration } from "@thunk";
 import { Header } from "@layout";
 import { 
@@ -12,6 +12,7 @@ import {
   People,
   About,
   UserDetails,
+  ErrorPage,
 } from "@pages";
 
 export const MainContent = () => {
@@ -35,7 +36,7 @@ export const MainContent = () => {
           <Route path="/company/:id" element={<ProviderDetails mediaType="company" />} />
           <Route path="/network/:id" element={<ProviderDetails mediaType="network" />} />
           <Route path="/:mediaType/:id" element={<MediaDetails />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
     </>

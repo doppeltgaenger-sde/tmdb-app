@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { fetchCollectionDetails } from "@thunk";
 import { useDocumentTitle } from "@hooks";
 import { getGenresById, formatGenresList } from "@utils";
@@ -16,6 +16,7 @@ import "./styles/CollectionDetails.scss";
 export const CollectionDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const allGenres = useSelector((state) => state.configuration?.genres || []);
 
@@ -40,16 +41,18 @@ export const CollectionDetails = () => {
     }
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (error) {
+      navigate("/404", { replace: true });
+    }
+  }, [data, error, navigate]);
+
   useDocumentTitle(data?.title || data?.name);
 
   if (isInitialLoading) return (
     <div className="collection-details">
       <PageLoader className="collection-details__loader" />
     </div>
-  );
-
-  if (error) return (
-    <div className="collection-details collection-details--error">Error...</div>
   );
 
   return (
