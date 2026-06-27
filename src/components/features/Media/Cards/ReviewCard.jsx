@@ -9,6 +9,7 @@ import {
 import "./styles/ReviewCard.scss"
 
 export const ReviewCard = memo(({
+  id,
   username, 
   color,
   avatar,
@@ -21,6 +22,7 @@ export const ReviewCard = memo(({
     content,
   } = review;
 
+  const linkTo = `/user/${id}`;
   const paragraphs = content.split("\n\n");
 
   return (
@@ -39,7 +41,7 @@ export const ReviewCard = memo(({
             <Button 
               className="review-card__button" 
               as={Link} 
-              to={`/`}
+              to={linkTo}
               variant="ghost"
               theme="dark"
               aria-label={`${username}. View profile`}

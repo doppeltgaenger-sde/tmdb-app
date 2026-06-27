@@ -23,7 +23,12 @@ export const DetailsBackdrop = ({
     : null;
 
   return (
-    <div className={classNames(["details-backdrop", className])}>
+    <div 
+      className={classNames([
+        "details-backdrop", 
+        className,
+      ])}
+    >
       <div
         className="details-backdrop__image"
         style={imageUrl ? { backgroundImage: `url(${imageUrl})` } : undefined}

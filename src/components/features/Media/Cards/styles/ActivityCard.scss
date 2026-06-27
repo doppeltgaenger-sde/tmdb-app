@@ -66,6 +66,13 @@
   }
 }
 
+.activity-card__attractions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-card__date,
 .activity-card__edits {
   color: rgba(v.$neutral--100, 0.6);
 }

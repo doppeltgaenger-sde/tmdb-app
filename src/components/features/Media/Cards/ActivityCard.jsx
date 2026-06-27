@@ -75,9 +75,15 @@ export const ActivityCard = memo(({
           </Button>
         </h3>
 
-        <p className="activity-card__edits">
-          {editsCount || 0} edits
-        </p>
+        <div className="activity-card__attractions">
+          <p className="activity-card__date">
+            {date}
+          </p>
+
+          <p className="activity-card__edits">
+            {editsCount || 0} edits
+          </p>
+        </div>
       </div>
     </div>
   );
