@@ -1,11 +1,20 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useViewport } from "@hooks";
+import { classNames } from "@utils";
 import { Button } from "@shared";
 import { wrapBannerData } from "./data/wrapBannerData";
 import "./styles/WrapBanner.scss";
 
-export const WrapBanner = () => {
+export const WrapBanner = ({
+  className,
+  title,
+  subtitle,
+  linkContent,
+  linkAriaLabel,
+  linkTo,
+  linkTarget = "",
+}) => {
   const { isMobileSm } = useViewport();
 
   const MAX_ITEMS = isMobileSm ? 6 : 5;
@@ -19,30 +28,29 @@ export const WrapBanner = () => {
   }, [MAX_ITEMS]);
 
   return (
-    <section className="wrap-banner">
+    <section
+      className={classNames([
+        "wrap-banner", 
+        className,
+      ])}
+    >
       <div className="container">
         <div className="wrap-banner__body">
-          <h1 className="wrap-banner__title">
-            <span className="block-text">That's a</span>
-            <span className="block-text">Wrap 2025</span>
-          </h1>
-
-          <p className="wrap-banner__subtitle">
-            The best (and worst) of the year from TMDB.
-          </p>
+          <h1 className="wrap-banner__title">{title}</h1>
+          <p className="wrap-banner__subtitle">{subtitle}</p>
 
           <Button
             className="wrap-banner__button"
             as={Link} 
-            to="https://www.themoviedb.org/2025"
-            target="_blank"
+            to={linkTo}
+            target={linkTarget}
             size="lg"
             variant="outline"
             theme="pink-gradient"
             iconRight="arrow-right"
-            aria-label="TMDB 2025 Year in Review"
+            aria-label={linkAriaLabel}
           >
-            Check it out
+            {linkContent}
           </Button>
         </div>
       </div>
