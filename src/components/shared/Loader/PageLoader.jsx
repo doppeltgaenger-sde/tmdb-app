@@ -1,6 +1,6 @@
 import { classNames } from "@utils";
 import "./styles/PageLoader.scss";
-import tmdbLogo from "./assets/tmdb-logo--full.svg";
+import tmdbLogo from "@assets/tmdb-logo--full.svg";
 
 export const PageLoader = ({ className }) => {
   return (

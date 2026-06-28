@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { initAppConfiguration } from "@thunk";
-import { Header } from "@layout";
+import { Header, Footer } from "@layout";
 import { 
   Home, 
   MediaDetails, 
@@ -39,6 +39,7 @@ export const MainContent = () => {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 };
