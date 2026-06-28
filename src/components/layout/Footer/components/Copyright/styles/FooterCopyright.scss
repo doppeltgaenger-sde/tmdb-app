@@ -1,0 +1,17 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font: 600 14px / 1 v.$source-sans;
+
+  @include m.break-reverse(576) {
+    justify-content: center;
+  }
+}
+
+.footer-copyright__button {
+  font-size: 14px;
+}

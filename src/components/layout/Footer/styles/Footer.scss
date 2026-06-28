@@ -1,0 +1,55 @@
+@use "@styles/abstracts/variables" as v;
+@use "@styles/abstracts/mixins" as m;
+
+.footer {
+  background: v.$primary--60;
+}
+
+.footer__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 40px 0 0;
+  color: v.$neutral--0;
+
+  @include m.break-reverse(768) {
+    gap: 32px;
+  }
+}
+
+.footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include m.break-reverse(576) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  @include m.break-reverse(768) {
+    gap: 56px;
+  }
+
+  @include m.break-reverse(992) {
+    gap: 72px;
+  }
+}
+
+.footer__bottom {
+  position: relative;
+  padding: 16px 0;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 40px);
+    height: 100%;
+    backdrop-filter: brightness(1.1);
+  }
+}

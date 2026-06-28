@@ -1,0 +1,30 @@
+@use "@styles/abstracts/mixins" as m;
+
+.footer-menu {
+  display: flex;
+  gap: 8%;
+
+  @include m.break-reverse(576) {
+    gap: 40px;
+  }
+
+  @include m.break-reverse(768) {
+    gap: 56px;
+  }
+
+  @include m.break-reverse(992) {
+    gap: 72px;
+  }
+}
+
+.footer-menu__label {
+  margin: 0 0 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.footer-menu__dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

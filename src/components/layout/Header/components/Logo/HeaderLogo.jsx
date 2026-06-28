@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useViewport } from "@hooks";
 import { Button } from "@shared";
 import "./styles/HeaderLogo.scss";
-import tmdbLogoDt from "./assets/tmdb-logo--short.svg";
-import tmdbLogoMb from "./assets/tmdb-logo--full.svg";
+import tmdbLogoDt from "@assets/tmdb-logo--short.svg";
+import tmdbLogoMb from "@assets/tmdb-logo--full.svg";
 
 export const HeaderLogo = () => {
   const { isMobileLg } = useViewport();
