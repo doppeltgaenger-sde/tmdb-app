@@ -5,9 +5,7 @@ import "./styles/FooterCopyright.scss";
 export const FooterCopyright = () => {
   return (
     <p className="footer-copyright">
-      <span className="footer-copyright__content">
-        2026 © Powered by
-      </span>
+      <span className="footer-copyright__content">2026 © Powered by</span>
 
       <Button
         className="footer-copyright__button"

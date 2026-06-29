@@ -6,6 +6,7 @@
   align-items: center;
   gap: 2px;
   font: 600 14px / 1 v.$source-sans;
+  color: v.$neutral--0;
 
   @include m.break-reverse(576) {
     justify-content: center;

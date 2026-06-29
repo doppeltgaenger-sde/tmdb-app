@@ -1,13 +1,7 @@
-@use "@styles/abstracts/mixins" as m;
+.footer-logo {
+  filter: grayscale(80%);
+}
 
 .footer-logo__image {
   height: 20px;
-
-  @include m.break-reverse(576) {
-    height: 72px;
-  }
-
-  @include m.break-reverse(768) {
-    height: 88px;
-  }
 }
