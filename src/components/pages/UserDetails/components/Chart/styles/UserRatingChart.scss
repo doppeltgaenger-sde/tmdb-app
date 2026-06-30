@@ -1,0 +1,15 @@
+@use "@styles/abstracts/mixins" as m;
+
+.user-rating-chart {
+  @include m.break-reverse(576) {
+    width: calc((100% - 6vw) / 2);
+  }
+
+  @include m.break-reverse(992) {
+    width: calc((100% - 12vw - 280px) / 2);
+  }
+
+  @include m.break-reverse(1440) {
+    width: calc((100% - 16vw - 280px) / 2);
+  }
+}

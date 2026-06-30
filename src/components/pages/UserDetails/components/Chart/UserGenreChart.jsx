@@ -1,4 +1,5 @@
 import { GenreChart } from "@blocks";
+import "./styles/UserGenreChart.scss";
 
 export const UserGenreChart = ({ data, color }) => {
   return (

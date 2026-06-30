@@ -5,15 +5,18 @@
 }
 
 .user-stats__body {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
 
   @include m.break-reverse(576) {
-    grid-template-columns: repeat(2, 1fr);
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 6vw;
   }
 
-  @include m.break-reverse(992) {
-    grid-template-columns: repeat(3, 1fr);
+  @include m.break-reverse(1440) {
+    column-gap: 8vw;
   }
 }

@@ -1,4 +1,5 @@
 import { RatingChart } from "@blocks";
+import "./styles/UserRatingChart.scss";
 
 export const UserRatingChart = ({ data, color }) => {
   return (
