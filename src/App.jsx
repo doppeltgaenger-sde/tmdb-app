@@ -3,8 +3,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { ViewportProvider } from "@hooks";
 import { store } from "@store";
-import { GlobalLoader } from "@layout";
 import { MainContent } from "@base";
+import { GlobalLoader } from "@shared";
 import "@styles/index.scss";
 
 function App() {
