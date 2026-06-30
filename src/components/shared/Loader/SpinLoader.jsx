@@ -1,25 +1,25 @@
 import { classNames } from "@utils";
-import "./styles/Loader.scss";
+import "./styles/SpinLoader.scss";
 
 const THEMES = {
-  "light": "loader--light",
-  "primary": "loader--primary",
+  "light": "spin-loader--light",
+  "primary": "spin-loader--primary",
 };
 
-export const Loader = ({ 
+export const SpinLoader = ({ 
   className = "", 
   theme = "",
 }) => {
   return (
     <div 
       className={classNames([
-        "loader", 
+        "spin-loader", 
         THEMES[theme],
         className
       ])}
     
     >
-      <div className="loader__spinner" />
+      <div className="spin-loader__circle" />
     </div>
   );
 };

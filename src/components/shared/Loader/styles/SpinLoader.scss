@@ -1,27 +1,27 @@
 @use "@styles/abstracts/variables" as v;
 @use "@styles/abstracts/keyframes";
 
-.loader {
+.spin-loader {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.loader--primary {
-  .loader__spinner {
+.spin-loader--primary {
+  .spin-loader__circle {
     border-color: rgba(v.$primary--60, 0.15);
     border-top-color: v.$primary--60;
   }
 }
 
-.loader--light {
-  .loader__spinner {
+.spin-loader--light {
+  .spin-loader__circle {
     border-color: rgba(v.$neutral--0, 0.15);
     border-top-color: v.$neutral--0;
   }
 }
 
-.loader__spinner {
+.spin-loader__circle {
   width: 48px;
   height: 48px;
   border: 6px solid transparent;
