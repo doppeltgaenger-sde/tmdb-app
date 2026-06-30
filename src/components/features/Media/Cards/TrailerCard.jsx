@@ -1,20 +1,26 @@
 import { memo, useCallback } from "react";
-import { Icon } from "@shared";
+import { Link } from "react-router-dom";
+import { Button, Icon } from "@shared";
 import "./styles/TrailerCard.scss";
 
 const IMAGE_BASE = "https://image.tmdb.org/t/p/w355_and_h200_multi_faces";
 const IMAGE_BASE_2X = "https://image.tmdb.org/t/p/w710_and_h400_multi_faces";
 
 export const TrailerCard = memo(({
+  id,
+  mediaType = "movie",
   name,
   description,
   backdropPath,
+  date,
   isSkeleton,
   onClick,
   onMouseEnter,
   isPriority,
   ...trailerData
 }) => {
+  const linkTo = `/${mediaType}/${id}`;
+
   const handleClick = useCallback(() => {
     if (!isSkeleton && onClick) {
       onClick(trailerData);
@@ -63,12 +69,30 @@ export const TrailerCard = memo(({
     <div
       className="trailer-card"
       onMouseEnter={handleMouseEnter}
-      onClick={handleClick}
     >
-      <div className="trailer-card__backdrop">{renderBackdrop()}</div>
+      <div 
+        className="trailer-card__backdrop"
+        onClick={handleClick}
+        role="button"
+        aria-label={`Play trailer for ${name}`}
+      >
+        {renderBackdrop()}
+      </div>
 
       <div className="trailer-card__content">
-        <h3 className="trailer-card__name">{name}</h3>
+        <h3 className="trailer-card__name">
+          <Button 
+            className="trailer-card__button" 
+            as={Link} 
+            to={linkTo}
+            variant="ghost"
+            theme="light"
+            aria-label={`${name}, ${date}. View details.`}
+          >
+            {name}
+          </Button>
+        </h3>
+
         <p className="trailer-card__description">{description}</p>
       </div>
     </div>

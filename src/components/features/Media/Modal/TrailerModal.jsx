@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fetchTrailer } from "@services";
-import { Modal, Loader } from "@shared";
+import { Modal, SpinLoader } from "@shared";
 import { classNames } from "@utils";
 import "./styles/TrailerModal.scss";
 
@@ -59,7 +59,7 @@ export const TrailerModal = ({
 
         <div className="trailer-modal__video">
           {shouldRenderIframe && !isTrailerReady && (
-            <Loader 
+            <SpinLoader 
               className="trailer-modal__loader" 
               theme="light"
             />

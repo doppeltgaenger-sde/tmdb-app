@@ -6,7 +6,7 @@ import {
   Average, 
   Icon, 
   Modal, 
-  Loader,
+  SpinLoader,
 } from "@shared";
 import { classNames } from "@utils";
 import "./styles/MediaModal.scss";
@@ -56,7 +56,7 @@ export const MediaModal = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="media-modal">
         {!isMediaLoaded && (
-          <Loader 
+          <SpinLoader 
             className="media-modal__loader" 
             theme="light" 
           />
