@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-import { useViewport } from "@hooks";
-import { classNames } from "@utils";
+import { useEffect, useState, useRef } from "react";
+import { classNames, getCardCount } from "@utils";
 import { ProfileCard } from "@features";
 import { Slider } from "@shared";
 import "./styles/SelectionTrack.scss";
@@ -13,14 +12,34 @@ export const SelectionTrack = ({
   title,
   items = [],
   CardComponent = ProfileCard,
+  cardName = "ProfileCard",
+  dataType = "default",
 }) => {
-  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
-  const { isMobileLg, isTablet } = useViewport();
+  const contentRef = useRef(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
+  
+  const priorityThreshold = isInitialized 
+    ? getCardCount(cardName, dataType, containerWidth) 
+    : INITIAL_ITEMS;
+  const initialCount = isInitialized ? priorityThreshold + 2 : INITIAL_ITEMS;
 
-  const priorityThreshold = isMobileLg ? 3 : isTablet ? 5 : 8;
+  const [visibleCount, setVisibleCount] = useState(initialCount);
 
   useEffect(() => {
-    setVisibleCount(INITIAL_ITEMS);
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width);
+        setIsInitialized(true);
+      }
+    });
+
+    if (contentRef.current) observer.observe(contentRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setVisibleCount(initialCount);
 
     if (!items.length) return;
 
@@ -37,21 +56,18 @@ export const SelectionTrack = ({
       if ("cancelIdleCallback" in window) cancelIdleCallback(id);
       else clearTimeout(id);
     };
-  }, [items.length]);
+  }, [items.length, initialCount]);
 
   const renderContent = () => {
-    if (!items.length) {
+    if (!items.length || !isInitialized) {
       return [...Array(INITIAL_ITEMS)].map((_, index) => (
-        <CardComponent 
-          key={`skeleton-${index}`} 
-          isSkeleton 
-        />
+        <CardComponent key={`skeleton-${index}`} isSkeleton />
       ));
     }
 
     return items.slice(0, visibleCount).map((item, index) => (
       <CardComponent
-        key={item.id || index}           
+        key={item.id || index}          
         variant="fixed"
         {...item}
         isPriority={index < priorityThreshold}
@@ -63,7 +79,7 @@ export const SelectionTrack = ({
     <section className={classNames(["selection-track", className])}>
       <h2 className="selection-track__title">{title}</h2>
 
-      <div className="selection-track__content">
+      <div className="selection-track__content" ref={contentRef}>
         <Slider variant="selection">
           {renderContent()}
         </Slider>

@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useViewport } from "@hooks";
-import { classNames } from "@utils";
+import { classNames, getCardCount } from "@utils";
 import { PosterCard } from "@features";
 import { Slider, Tabs } from "@shared";
 import "./styles/MultipleTrack.scss";
 
 const INITIAL_ITEMS = 8;
 const FULL_ITEMS = 20;
-const MIN_LOADING_TIME = 500; 
+const MIN_LOADING_TIME = 500;
 
 const TRACK_VARIANTS = {
   default: { tabsVariant: "default" },
@@ -26,17 +25,37 @@ export const MultipleTrack = ({
   onCardActivate,
   onScrollStateChange,
   CardComponent = PosterCard,
+  cardName = "PosterCard",
   variant = "default",
+  dataType = "default",
 }) => {
   const config = TRACK_VARIANTS[variant] || TRACK_VARIANTS.default;
   const containerRef = useRef(null);
+  
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
   const [displayItems, setDisplayItems] = useState([]);
   const [isFadingOut, setIsFadingOut] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(INITIAL_ITEMS);
+  
+  const priorityThreshold = isInitialized 
+    ? getCardCount(cardName, dataType, containerWidth) 
+    : INITIAL_ITEMS;
+  const initialCount = isInitialized ? priorityThreshold + 2 : INITIAL_ITEMS;
+  
+  const [visibleCount, setVisibleCount] = useState(initialCount);
   const loadingStartTimeRef = useRef(null);
-  const { isMobileLg, isTablet } = useViewport();
 
-  const priorityThreshold = isMobileLg ? 3 : isTablet ? 5 : 8;
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        setContainerWidth(entry.contentRect.width);
+        setIsInitialized(true);
+      }
+    });
+
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setIsFadingOut(true);
@@ -56,7 +75,7 @@ export const MultipleTrack = ({
       const remainingTime = Math.max(0, MIN_LOADING_TIME - timePassed);
 
       setTimeout(() => {
-        setVisibleCount(INITIAL_ITEMS);
+        setVisibleCount(initialCount);
         setDisplayItems(items);
 
         requestAnimationFrame(() => {
@@ -70,6 +89,7 @@ export const MultipleTrack = ({
     node.addEventListener("transitionend", handleTransitionEnd);
     
     const fallback = setTimeout(() => {
+      setVisibleCount(initialCount);
       setDisplayItems(items);
       setIsFadingOut(false);
     }, MIN_LOADING_TIME + 300);
@@ -78,21 +98,16 @@ export const MultipleTrack = ({
       node.removeEventListener("transitionend", handleTransitionEnd);
       clearTimeout(fallback);
     };
-  }, [isFadingOut, items]);
+  }, [isFadingOut, items, initialCount]);
 
   useEffect(() => {
     if (isFadingOut || !displayItems.length) return;
 
     let id;
-
     if ("requestIdleCallback" in window) {
-      id = requestIdleCallback(() => {
-        setVisibleCount(FULL_ITEMS);
-      });
+      id = requestIdleCallback(() => setVisibleCount(FULL_ITEMS));
     } else {
-      id = setTimeout(() => {
-        setVisibleCount(FULL_ITEMS);
-      }, 200);
+      id = setTimeout(() => setVisibleCount(FULL_ITEMS), 200);
     }
 
     return () => {
@@ -105,15 +120,13 @@ export const MultipleTrack = ({
   const handleActivate = useCallback((item) => onCardActivate?.(item), [onCardActivate]);
 
   const renderContent = () => {
-    if (!displayItems.length) {
+    if (!displayItems.length || !isInitialized) {
       return [...Array(INITIAL_ITEMS)].map((_, index) => (
         <CardComponent key={`skeleton-${index}`} isSkeleton />
       ));
     }
 
-    const visibleItems = displayItems.slice(0, visibleCount);
-
-    return visibleItems.map((item, index) => (
+    return displayItems.slice(0, visibleCount).map((item, index) => (
       <CardComponent
         key={item.id}
         {...item}
@@ -125,12 +138,10 @@ export const MultipleTrack = ({
   };
 
   return (
-    <div 
-      className={classNames([
-        "multiple-track", 
-        `multiple-track--${variant}`,
-        className,
-      ])}
+    <div className={classNames([
+      "multiple-track", 
+      `multiple-track--${variant}`, 
+      className])}
     >
       <div className="multiple-track__title-block">
         <h2 className="multiple-track__title">{title}</h2>
@@ -148,11 +159,11 @@ export const MultipleTrack = ({
       <div
         ref={containerRef}
         className={classNames([
-          "multiple-track__items",
-          isFadingOut && "multiple-track__items--fading",
+          "multiple-track__items", 
+          isFadingOut && "multiple-track__items--fading"
         ])}
         style={{ 
-          transition: "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)", 
           willChange: "opacity" 
         }}
       >
