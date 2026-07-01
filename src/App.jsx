@@ -1,35 +1,12 @@
-import { useEffect } from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import { ViewportProvider } from "@hooks";
 import { store } from "@store";
+import { ViewportProvider } from "@hooks";
 import { MainContent } from "@base";
 import { GlobalLoader } from "@shared";
 import "@styles/index.scss";
 
 function App() {
-  if ("scrollRestoration" in window.history) {
-    window.history.scrollRestoration = "manual";
-  }
-
-  useEffect(() => {
-    const savedPosition = sessionStorage.getItem("scroll-position");
-
-    if (savedPosition) {
-      window.scrollTo(0, Number(savedPosition));
-    }
-
-    const handleScroll = () => {
-      sessionStorage.setItem("scroll-position", window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <Provider store={store}>
       <ViewportProvider>
