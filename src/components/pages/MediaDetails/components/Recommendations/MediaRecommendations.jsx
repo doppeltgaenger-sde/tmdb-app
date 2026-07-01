@@ -9,6 +9,7 @@ export const MediaRecommendations = ({ recommendations }) => {
         title="Recommended"
         items={recommendations}
         CardComponent={BackdropCard}
+        cardName="BackdropCard"
       />
     </section>
   );

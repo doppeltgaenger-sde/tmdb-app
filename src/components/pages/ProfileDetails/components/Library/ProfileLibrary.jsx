@@ -9,6 +9,7 @@ export const ProfileLibrary = ({ library }) => {
         title="Known For"
         items={library}
         CardComponent={PosterCard}
+        cardName="PosterCard"
       />
     </section>
   );

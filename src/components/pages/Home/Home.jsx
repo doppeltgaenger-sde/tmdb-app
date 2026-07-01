@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { fetchMediaTrack } from "@thunk";
+import { useDocumentTitle } from "@hooks";
 import { SignupBanner, Leaderboard } from "@blocks";
 import { LazyBlock } from "@shared";
 import {
@@ -21,6 +22,8 @@ export const Home = () => {
     },
     [dispatch],
   );
+
+  useDocumentTitle();
 
   return (
     <div className="home">

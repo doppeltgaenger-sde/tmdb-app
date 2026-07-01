@@ -1,6 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { 
+  Route, 
+  Routes, 
+  useLocation,
+  useNavigationType,
+} from "react-router-dom";
 import { initAppConfiguration } from "@thunk";
 import { Header, Footer } from "@layout";
 import { 
@@ -17,10 +22,32 @@ import {
 
 export const MainContent = () => {
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const navigationType = useNavigationType()
 
   useEffect(() => {
     dispatch(initAppConfiguration());
   }, [dispatch]);
+
+  useLayoutEffect(() => {
+    if (navigationType === "PUSH" || navigationType === "REPLACE") {
+      window.scrollTo(0, 0);
+    } else if (navigationType === "POP") {
+      const savedPosition = sessionStorage.getItem(`scroll-${pathname}`);
+      if (savedPosition) {
+        window.scrollTo(0, Number(savedPosition));
+      }
+    }
+  }, [pathname, navigationType]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      sessionStorage.setItem(`scroll-${pathname}`, window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
 
   return (
     <>   

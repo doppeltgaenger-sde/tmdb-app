@@ -12,6 +12,7 @@ export const UserActivity = ({ activities }) => {
         title="Recent Activity"
         items={processedActivities}
         CardComponent={ActivityCard}
+        cardName="ActivityCard"
       />
     </section>
   );

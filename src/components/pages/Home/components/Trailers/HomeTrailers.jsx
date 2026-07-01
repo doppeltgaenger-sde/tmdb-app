@@ -105,6 +105,7 @@ export const HomeTrailers = () => {
             activeTab={activeTab}
             onTabChange={handleTabChange}
             CardComponent={TrailerCard}
+            cardName="TrailerCard"
             onCardHover={handleCardHover}
             onCardActivate={handleCardActivate}
             onScrollStateChange={setIsScrolling}

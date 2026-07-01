@@ -7,7 +7,23 @@ export const MediaLibrary = ({ library }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeMedia, setActiveMedia] = useState(null);
 
-  const data = useMemo(() => library?.[activeTab] ?? [], [library, activeTab]);
+  const availableTabs = useMemo(() => {
+    const allTabs = [
+      { value: "videos", label: "Videos" },
+      { value: "backdrops", label: "Backdrops" },
+      { value: "posters", label: "Posters" },
+    ];
+    
+    return allTabs.filter((tab) => library?.[tab.value]?.length > 0);
+  }, [library]);
+
+  const activeTabValidated = useMemo(() => {
+    return availableTabs.some(t => t.value === activeTab) 
+      ? activeTab 
+      : (availableTabs[0]?.value || "videos");
+  }, [activeTab, availableTabs]);
+
+  const data = useMemo(() => library?.[activeTabValidated] ?? [], [library, activeTabValidated]);
 
   const handleTabChange = useCallback((tab) => {
     setActiveTab(tab);
@@ -26,29 +42,21 @@ export const MediaLibrary = ({ library }) => {
     }
   }, []);
 
-  if (!library || (
-    library.videos.length === 0 && 
-    library.backdrops.length === 0 && 
-    library.posters.length === 0
-  )) {
-    return null;
-  }
+  if (availableTabs.length === 0) return null;
 
   return (
     <section className="media-library">
       <MultipleTrack
         title="Media"
         items={data}
-        tabs={[
-          { value: "videos", label: "Videos" },
-          { value: "backdrops", label: "Backdrops" },
-          { value: "posters", label: "Posters" },
-        ]}
-        activeTab={activeTab}
+        tabs={availableTabs.length > 1 ? availableTabs : null}
+        activeTab={activeTabValidated}
         onTabChange={handleTabChange}
         onCardActivate={handleCardActivate}
         CardComponent={FrameCard}
+        cardName="FrameCard"
         variant="selection"
+        dataType={activeTab}
       />
 
       <TrailerModal
